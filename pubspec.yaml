@@ -64,9 +64,10 @@ flutter:
     - family: Ubuntu
       fonts:
         - asset: assets/Ubuntu-Bold.ttf
-          style: bold
+          weight: 700
         - asset: assets/Ubuntu-BoldItalic.ttf
-          style: bolditalic
+          style: italic
+          weight: 700
         - asset: assets/Ubuntu-Italic.ttf
         - asset: assets/Ubuntu-Regular.ttf
     - family: Trajan Pro
