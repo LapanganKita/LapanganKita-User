@@ -13,10 +13,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
       _showPassword = !_showPassword;
     });
   }
+
   void _togglevisibilityretype() {
     setState(() {
       _showretypepassword = !_showretypepassword;
-      
     });
   }
 
@@ -76,7 +76,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
             child: TextFormField(
               obscureText: !_showPassword,
               cursorColor: Theme.of(context).cursorColor,
-              maxLength: 20,
               decoration: InputDecoration(
                 prefixIcon:
                     Icon(Icons.lock, color: Color.fromARGB(255, 29, 97, 252)),
@@ -104,7 +103,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
             child: TextFormField(
               obscureText: !_showretypepassword,
               cursorColor: Theme.of(context).cursorColor,
-              maxLength: 20,
               decoration: InputDecoration(
                 prefixIcon:
                     Icon(Icons.person, color: Color.fromARGB(255, 29, 97, 252)),
@@ -115,7 +113,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     _togglevisibilityretype();
                   },
                   child: Icon(
-                    _showretypepassword ? Icons.visibility : Icons.visibility_off,
+                    _showretypepassword
+                        ? Icons.visibility
+                        : Icons.visibility_off,
                     color: Color.fromARGB(255, 29, 97, 252),
                   ),
                 ),
@@ -126,7 +126,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
               ),
             ),
-          )
+          ),
+          Container(
+              margin: EdgeInsets.only(top: 56),
+              width: 300,
+              height: 56,
+              child: RaisedButton(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(18.0)),
+                color: Color.fromARGB(255, 29, 97, 252),
+                textColor: Colors.white,
+                onPressed: () {},
+                child: Text("Register",style: TextStyle(fontFamily: "Ubuntu", fontSize: 18),),
+              ))
         ],
       ),
     ));
