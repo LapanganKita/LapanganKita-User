@@ -6,6 +6,20 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  bool _showPassword = false;
+  bool _showretypepassword = false;
+  void _togglevisibilitypassword() {
+    setState(() {
+      _showPassword = !_showPassword;
+    });
+  }
+  void _togglevisibilityretype() {
+    setState(() {
+      _showretypepassword = !_showretypepassword;
+      
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,7 +74,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           Container(
             margin: EdgeInsets.only(top: 24, left: 24, right: 24),
             child: TextFormField(
-              obscureText: true,
+              obscureText: !_showPassword,
               cursorColor: Theme.of(context).cursorColor,
               maxLength: 20,
               decoration: InputDecoration(
@@ -68,6 +82,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     Icon(Icons.lock, color: Color.fromARGB(255, 29, 97, 252)),
                 labelText: 'Password',
                 hintText: "Type your Password",
+                suffixIcon: GestureDetector(
+                  onTap: () {
+                    _togglevisibilitypassword();
+                  },
+                  child: Icon(
+                    _showPassword ? Icons.visibility : Icons.visibility_off,
+                    color: Color.fromARGB(255, 29, 97, 252),
+                  ),
+                ),
                 labelStyle: TextStyle(color: Color.fromARGB(255, 29, 97, 252)),
                 enabledBorder: UnderlineInputBorder(
                   borderSide:
@@ -79,7 +102,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           Container(
             margin: EdgeInsets.only(top: 24, left: 24, right: 24),
             child: TextFormField(
-              obscureText: true,
+              obscureText: !_showretypepassword,
               cursorColor: Theme.of(context).cursorColor,
               maxLength: 20,
               decoration: InputDecoration(
@@ -87,6 +110,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     Icon(Icons.person, color: Color.fromARGB(255, 29, 97, 252)),
                 labelText: 'Re-Type Password',
                 hintText: "Re-Type your Password",
+                suffixIcon: GestureDetector(
+                  onTap: () {
+                    _togglevisibilityretype();
+                  },
+                  child: Icon(
+                    _showretypepassword ? Icons.visibility : Icons.visibility_off,
+                    color: Color.fromARGB(255, 29, 97, 252),
+                  ),
+                ),
                 labelStyle: TextStyle(color: Color.fromARGB(255, 29, 97, 252)),
                 enabledBorder: UnderlineInputBorder(
                   borderSide:
