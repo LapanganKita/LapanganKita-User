@@ -133,7 +133,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               height: 56,
               child: RaisedButton(
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(18.0)),
+                    borderRadius: BorderRadius.circular(24.0)),
                 color: Color.fromARGB(255, 29, 97, 252),
                 textColor: Colors.white,
                 onPressed: () {},
