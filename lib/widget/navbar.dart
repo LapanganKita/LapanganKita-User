@@ -1,113 +1,70 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:lapangankita_user/models/bottom_bar.dart';
-import 'package:eva_icons_flutter/eva_icons_flutter.dart';
-import 'package:lapangankita_user/screen/register_screen.dart';
+import 'package:lapangankita_user/screen/home_screen.dart';
+import 'package:lapangankita_user/screen/score_screen.dart';
+import 'package:lapangankita_user/screen/profile_screen.dart';
+import 'package:lapangankita_user/screen/history_screen.dart';
 
 class navBar extends StatefulWidget {
   @override
   _navBarState createState() => _navBarState();
 }
 
-enum BottomIcons { Home, History, Score, Profile }
-
 class _navBarState extends State<navBar> {
-  BottomIcons bottomIcons = BottomIcons.Home;
+  int _currentindex = 0;
+  final List<Widget> _children = [
+    homeScreen(),
+    historyScreen(),
+    scoreScreen(),
+    profile_screen(),
+  ];
+
+  void onTabbedBar(int index) {
+    setState(() {
+      _currentindex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: <Widget>[
-          bottomIcons == BottomIcons.Home
-              ? Center(
-                  child: Text(
-                    "Hi, this is home page",
-                    style: TextStyle(fontSize: 18),
-                  ),
-                )
-              : Container(),
-          bottomIcons == BottomIcons.History
-              ? Center(
-                  child: Text(
-                    "Hi, this is favorite page",
-                    style: TextStyle(fontSize: 18),
-                  ),
-                )
-              : Container(),
-          bottomIcons == BottomIcons.Score
-              ? Center(
-                  child: Text(
-                    "Hi, this is search page",
-                    style: TextStyle(fontSize: 18),
-                  ),
-                )
-              : Container(),
-          bottomIcons == BottomIcons.Profile
-              ? Center(
-                  child: Text(
-                    "Hi, this is account page",
-                    style: TextStyle(fontSize: 18),
-                  ),
-                )
-              : Container(),
-          Align(
-            alignment: Alignment.bottomLeft,
-            child: Container(
-              padding: EdgeInsets.only(left: 24, right: 24, bottom: 30),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  BottomBar(
-                      onPressed: () {
-                        setState(() {
-                          bottomIcons = BottomIcons.Home;
-                        });
-                      },
-                      bottomIcons:
-                          bottomIcons == BottomIcons.Home ? true : false,
-                      icons: EvaIcons.home,
-                      text: "Home"),
-                  BottomBar(
-                      onPressed: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                          return RegisterScreen();
-                        }));
-
-                        setState(() {
-                          bottomIcons = BottomIcons.History;
-                        });
-                      },
-                      bottomIcons:
-                          bottomIcons == BottomIcons.History ? true : false,
-                      icons: Icons.history,
-                      text: "History"),
-                  BottomBar(
-                      onPressed: () {
-                        setState(() {
-                          bottomIcons = BottomIcons.Score;
-                        });
-                      },
-                      bottomIcons:
-                          bottomIcons == BottomIcons.Score ? true : false,
-                      icons: Icons.score,
-                      text: "Score"),
-                  BottomBar(
-                      onPressed: () {
-                        setState(() {
-                          bottomIcons = BottomIcons.Profile;
-                        });
-                      },
-                      bottomIcons:
-                          bottomIcons == BottomIcons.Profile ? true : false,
-                      icons: Icons.account_circle,
-                      text: "Profile"),
-                ],
+        body: _children[_currentindex],
+        bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: Colors.red,
+          onTap: onTabbedBar,
+          currentIndex: _currentindex,
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home, color: Color.fromARGB(255, 29, 97, 252)),
+              title: Text(
+                "Home",
+                style: TextStyle(color: Color.fromARGB(255, 29, 97, 252)),
               ),
             ),
-          )
-        ],
-      ),
-    );
+            BottomNavigationBarItem(
+              icon:
+                  Icon(Icons.history, color: Color.fromARGB(255, 29, 97, 252)),
+              title: Text(
+                "History",
+                style: TextStyle(color: Color.fromARGB(255, 29, 97, 252)),
+              ),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.score, color: Color.fromARGB(255, 29, 97, 252)),
+              title: Text(
+                "Score",
+                style: TextStyle(color: Color.fromARGB(255, 29, 97, 252)),
+              ),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.account_circle,
+                  color: Color.fromARGB(255, 29, 97, 252)),
+              title: Text(
+                "Profile",
+                style: TextStyle(color: Color.fromARGB(255, 29, 97, 252)),
+              ),
+            ),
+          ],
+        ));
   }
 }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:lapangankita_user/screen/register_screen.dart';
+import 'package:lapangankita_user/widget/navbar.dart';
 
 class loginScreen extends StatefulWidget {
   @override
@@ -96,7 +98,12 @@ class _loginScreenState extends State<loginScreen> {
                         borderRadius: BorderRadius.circular(24.0)),
                     color: Color.fromARGB(255, 29, 97, 252),
                     textColor: Colors.white,
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (context) {
+                        return navBar();
+                      }));
+                    },
                     child: Text(
                       "Login",
                       style: TextStyle(fontFamily: "Ubuntu", fontSize: 18),
@@ -113,7 +120,12 @@ class _loginScreenState extends State<loginScreen> {
                 children: [
                   Text("Don't have an account? "),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (context) {
+                        return RegisterScreen();
+                      }));
+                    },
                     child: new Text("Register Now",
                         style:
                             TextStyle(color: Color.fromARGB(255, 29, 97, 252))),

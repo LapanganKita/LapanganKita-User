@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lapangankita_user/widget/navbar.dart';
 
 class RegisterScreen extends StatefulWidget {
   @override
@@ -136,8 +137,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     borderRadius: BorderRadius.circular(24.0)),
                 color: Color.fromARGB(255, 29, 97, 252),
                 textColor: Colors.white,
-                onPressed: () {},
-                child: Text("Register",style: TextStyle(fontFamily: "Ubuntu", fontSize: 18),),
+                onPressed: () {
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) {
+                    return navBar();
+                  }));
+                },
+                child: Text(
+                  "Register",
+                  style: TextStyle(fontFamily: "Ubuntu", fontSize: 18),
+                ),
               ))
         ],
       ),
