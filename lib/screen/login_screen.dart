@@ -16,8 +16,8 @@ class _loginScreenState extends State<loginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-          child: Column(
+      resizeToAvoidBottomInset: true,
+      body: Stack(
         children: [
           Column(
             children: [
@@ -104,23 +104,26 @@ class _loginScreenState extends State<loginScreen> {
                   )),
             ],
           ),
-          Container(
-            margin: EdgeInsets.only(top: 300),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text("Don't have an account? "),
-                GestureDetector(
-                  onTap: () {
-                    print("asd");
-                  },
-                  child: new Text("Register Now", style: TextStyle(color: Color.fromARGB(255, 29, 97, 252))),
-                )
-              ],
+          Align(
+            alignment: Alignment(0.5, 0.95),
+            child: Container(
+              //margin: EdgeInsets.only(top: 300),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Don't have an account? "),
+                  GestureDetector(
+                    onTap: () {},
+                    child: new Text("Register Now",
+                        style:
+                            TextStyle(color: Color.fromARGB(255, 29, 97, 252))),
+                  )
+                ],
+              ),
             ),
           )
         ],
-      )),
+      ),
     );
   }
 }
