@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lapangankita_user/components/navbar.dart';
+import 'package:lapangankita_user/components/heading_text.dart';
 
 class RegisterScreen extends StatefulWidget {
   @override
@@ -28,16 +29,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
       child: Column(
         children: [
           Container(
-              alignment: Alignment.topLeft,
-              margin: EdgeInsets.only(top: 60, left: 24),
-              child: Text(
-                "REGISTER",
-                style: TextStyle(
-                    fontSize: 36,
-                    fontFamily: "Ubuntu",
-                    fontWeight: FontWeight.bold,
-                    color: Color.fromARGB(255, 29, 97, 252)),
-              )),
+            alignment: Alignment.topLeft,
+            margin: EdgeInsets.only(top: 60, left: 24),
+            child: HeadingText.withColor(
+              "REGISTER",
+              36,
+              Color.fromARGB(255, 29, 97, 252),
+            ),
+          ),
           Container(
             margin: EdgeInsets.only(top: 48, left: 24, right: 24),
             child: TextFormField(

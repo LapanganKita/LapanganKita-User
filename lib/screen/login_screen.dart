@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lapangankita_user/screen/register_screen.dart';
 import 'package:lapangankita_user/components/navbar.dart';
+import 'package:lapangankita_user/components/heading_text.dart';
 
 class loginScreen extends StatefulWidget {
   @override
@@ -24,16 +25,14 @@ class _loginScreenState extends State<loginScreen> {
           Column(
             children: [
               Container(
-                  alignment: Alignment.topLeft,
-                  margin: EdgeInsets.only(top: 60, left: 24),
-                  child: Text(
-                    "Login",
-                    style: TextStyle(
-                        fontSize: 36,
-                        fontFamily: "Ubuntu",
-                        fontWeight: FontWeight.bold,
-                        color: Color.fromARGB(255, 29, 97, 252)),
-                  )),
+                alignment: Alignment.topLeft,
+                margin: EdgeInsets.only(top: 60, left: 24),
+                child: HeadingText.withColor(
+                  "LOGIN",
+                  36,
+                  Color.fromARGB(255, 29, 97, 252),
+                ),
+              ),
               Container(
                 margin: EdgeInsets.only(top: 64, left: 24, right: 24),
                 child: TextFormField(
