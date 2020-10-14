@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lapangankita_user/widget/navbar.dart';
+import 'package:lapangankita_user/components/navbar.dart';
 
 class RegisterScreen extends StatefulWidget {
   @override
