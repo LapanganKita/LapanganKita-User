@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lapangankita_user/screen/register_screen.dart';
-import 'package:lapangankita_user/widget/navbar.dart';
+import 'package:lapangankita_user/components/navbar.dart';
 
 class loginScreen extends StatefulWidget {
   @override
