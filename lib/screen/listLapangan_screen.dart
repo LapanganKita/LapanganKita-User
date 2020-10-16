@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lapangankita_user/components/heading_text.dart';
+import 'package:lapangankita_user/screen/detailLapangan_screen.dart';
 
 class listLapangan extends StatefulWidget {
   @override
@@ -50,7 +51,12 @@ class _listLapanganState extends State<listLapangan> {
                             child: Card(
                               child: InkWell(
                                 splashColor: Colors.blue.withAlpha(50),
-                                onTap: () {},
+                                onTap: () {
+                                  Navigator.pushReplacement(context,
+                                      MaterialPageRoute(builder: (context) {
+                                    return detaillapangan();
+                                  }));
+                                },
                                 child: Container(
                                     child: Stack(
                                   fit: StackFit.expand,
