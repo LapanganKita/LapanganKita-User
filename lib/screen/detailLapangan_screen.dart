@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:lapangankita_user/components/heading_text.dart';
+import 'package:lapangankita_user/components/constant.dart' show primary_color;
 
 class detaillapangan extends StatefulWidget {
   @override
@@ -121,7 +122,7 @@ class _detaillapanganState extends State<detaillapangan> {
                 borderRadius: BorderRadius.only(
                     topRight: Radius.circular(40),
                     topLeft: Radius.circular(40)),
-                color: Color.fromARGB(255, 29, 97, 252),
+                color: primary_color,
               ),
             ),
           ),

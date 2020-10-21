@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:lapangankita_user/components/constant.dart';
 import 'package:lapangankita_user/components/heading_text.dart';
 import 'package:lapangankita_user/screen/listLapangan_screen.dart';
+import 'package:lapangankita_user/components/constant.dart' show primary_color;
 
 class homeScreen extends StatefulWidget {
   @override
@@ -18,8 +20,7 @@ class _homeScreenState extends State<homeScreen> {
             children: [
               Container(
                 width: (MediaQuery.of(context).size.width),
-                decoration:
-                    BoxDecoration(color: Color.fromARGB(255, 29, 97, 252)),
+                decoration: BoxDecoration(color: primary_color),
               ),
               Container(
                 child: Column(
@@ -220,9 +221,8 @@ class _homeScreenState extends State<homeScreen> {
                           height: 24,
                         ),
                         Container(
-                          child: HeadingText.withColor(
-                              "Favorite", 36, Color.fromARGB(255, 29, 97, 252)),
-                        ),
+                            child: HeadingText.withColor(
+                                "Favorite", 36, primary_color)),
                         Container(
                           child: Column(
                             children: [
@@ -291,8 +291,7 @@ class _homeScreenState extends State<homeScreen> {
                                                           HeadingText.withColor(
                                                             "Lapangan ASD",
                                                             16,
-                                                            Color.fromARGB(255,
-                                                                29, 97, 252),
+                                                            primary_color,
                                                           ),
                                                           Row(
                                                             children: [
@@ -389,8 +388,7 @@ class _homeScreenState extends State<homeScreen> {
                                                           HeadingText.withColor(
                                                             "Lapangan ASD",
                                                             16,
-                                                            Color.fromARGB(255,
-                                                                29, 97, 252),
+                                                            primary_color,
                                                           ),
                                                           Row(
                                                             children: [
@@ -487,8 +485,7 @@ class _homeScreenState extends State<homeScreen> {
                                                           HeadingText.withColor(
                                                             "Lapangan ASD",
                                                             16,
-                                                            Color.fromARGB(255,
-                                                                29, 97, 252),
+                                                            primary_color,
                                                           ),
                                                           Row(
                                                             children: [
@@ -542,7 +539,7 @@ class _homeScreenState extends State<homeScreen> {
                         Container(
                           margin: EdgeInsets.only(top: 24, bottom: 24),
                           child: HeadingText.withColor(
-                              "Lapangan", 36, Color.fromARGB(255, 29, 97, 252)),
+                              "Lapangan", 36, primary_color),
                         ),
                         SingleChildScrollView(
                           scrollDirection: Axis.vertical,
