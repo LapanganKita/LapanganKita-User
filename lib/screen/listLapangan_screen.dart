@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lapangankita_user/components/heading_text.dart';
 import 'package:lapangankita_user/screen/detailLapangan_screen.dart';
+import 'package:lapangankita_user/components/constant.dart' show primary_color;
 
 class listLapangan extends StatefulWidget {
   @override
@@ -12,7 +13,7 @@ class _listLapanganState extends State<listLapangan> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: Color.fromARGB(255, 29, 97, 252),
+          backgroundColor: primary_color,
           title: Text(
             "List Lapangan",
           )),
@@ -27,14 +28,14 @@ class _listLapanganState extends State<listLapangan> {
                       cursorColor: Theme.of(context).cursorColor,
                       decoration: InputDecoration(
                         prefixIcon: Icon(Icons.search,
-                            color: Color.fromARGB(255, 29, 97, 252)),
+                            color: primary_color),
                         labelText: 'Cari Lapangan',
                         hintText: "Nama Lapangan",
                         labelStyle:
-                            TextStyle(color: Color.fromARGB(255, 29, 97, 252)),
+                            TextStyle(color: primary_color),
                         enabledBorder: UnderlineInputBorder(
                           borderSide: BorderSide(
-                              color: Color.fromARGB(255, 29, 97, 252)),
+                              color: primary_color),
                         ),
                       ),
                     ),

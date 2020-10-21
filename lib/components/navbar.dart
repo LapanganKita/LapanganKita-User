@@ -4,6 +4,7 @@ import 'package:lapangankita_user/screen/home_screen.dart';
 import 'package:lapangankita_user/screen/score_screen.dart';
 import 'package:lapangankita_user/screen/profile_screen.dart';
 import 'package:lapangankita_user/screen/history_screen.dart';
+import 'package:lapangankita_user/components/constant.dart' show primary_color;
 
 class navBar extends StatefulWidget {
   @override
@@ -35,33 +36,33 @@ class _navBarState extends State<navBar> {
           currentIndex: _currentindex,
           items: [
             BottomNavigationBarItem(
-              icon: Icon(Icons.home, color: Color.fromARGB(255, 29, 97, 252)),
+              icon: Icon(Icons.home, color: primary_color),
               title: Text(
                 "Home",
-                style: TextStyle(color: Color.fromARGB(255, 29, 97, 252)),
+                style: TextStyle(color: primary_color),
               ),
             ),
             BottomNavigationBarItem(
               icon:
-                  Icon(Icons.history, color: Color.fromARGB(255, 29, 97, 252)),
+                  Icon(Icons.history, color: primary_color),
               title: Text(
                 "History",
-                style: TextStyle(color: Color.fromARGB(255, 29, 97, 252)),
+                style: TextStyle(color: primary_color),
               ),
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.score, color: Color.fromARGB(255, 29, 97, 252)),
+              icon: Icon(Icons.score, color: primary_color),
               title: Text(
                 "Score",
-                style: TextStyle(color: Color.fromARGB(255, 29, 97, 252)),
+                style: TextStyle(color: primary_color),
               ),
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.account_circle,
-                  color: Color.fromARGB(255, 29, 97, 252)),
+                  color: primary_color),
               title: Text(
                 "Profile",
-                style: TextStyle(color: Color.fromARGB(255, 29, 97, 252)),
+                style: TextStyle(color: primary_color),
               ),
             ),
           ],

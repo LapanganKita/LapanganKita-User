@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:lapangankita_user/components/constant.dart' show primary_color;
 
 class BottomBar extends StatefulWidget {
   Function onPressed;
@@ -32,7 +33,7 @@ class _BottomBarState extends State<BottomBar> {
                   children: <Widget>[
                     Icon(
                       widget.icons,
-                      color: Color.fromARGB(255, 29, 97, 252),
+                      color: primary_color,
                     ),
                     SizedBox(
                       width: 8,

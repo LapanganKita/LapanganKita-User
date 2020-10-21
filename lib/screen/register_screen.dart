@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lapangankita_user/components/navbar.dart';
 import 'package:lapangankita_user/components/heading_text.dart';
+import 'package:lapangankita_user/components/constant.dart' show primary_color;
 
 class RegisterScreen extends StatefulWidget {
   @override
@@ -34,7 +35,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             child: HeadingText.withColor(
               "REGISTER",
               36,
-              Color.fromARGB(255, 29, 97, 252),
+              primary_color,
             ),
           ),
           Container(
@@ -43,13 +44,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
               cursorColor: Theme.of(context).cursorColor,
               decoration: InputDecoration(
                 prefixIcon:
-                    Icon(Icons.person, color: Color.fromARGB(255, 29, 97, 252)),
+                    Icon(Icons.person, color: primary_color),
                 labelText: 'Full Name',
                 hintText: "Your Full Name",
-                labelStyle: TextStyle(color: Color.fromARGB(255, 29, 97, 252)),
+                labelStyle: TextStyle(color: primary_color),
                 enabledBorder: UnderlineInputBorder(
                   borderSide:
-                      BorderSide(color: Color.fromARGB(255, 29, 97, 252)),
+                      BorderSide(color: primary_color),
                 ),
               ),
             ),
@@ -60,13 +61,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
               cursorColor: Theme.of(context).cursorColor,
               decoration: InputDecoration(
                 prefixIcon:
-                    Icon(Icons.email, color: Color.fromARGB(255, 29, 97, 252)),
+                    Icon(Icons.email, color: primary_color),
                 labelText: 'Email',
                 hintText: "Email Address",
-                labelStyle: TextStyle(color: Color.fromARGB(255, 29, 97, 252)),
+                labelStyle: TextStyle(color: primary_color),
                 enabledBorder: UnderlineInputBorder(
                   borderSide:
-                      BorderSide(color: Color.fromARGB(255, 29, 97, 252)),
+                      BorderSide(color: primary_color),
                 ),
               ),
             ),
@@ -78,7 +79,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               cursorColor: Theme.of(context).cursorColor,
               decoration: InputDecoration(
                 prefixIcon:
-                    Icon(Icons.lock, color: Color.fromARGB(255, 29, 97, 252)),
+                    Icon(Icons.lock, color: primary_color),
                 labelText: 'Password',
                 hintText: "Type your Password",
                 suffixIcon: GestureDetector(
@@ -87,13 +88,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   },
                   child: Icon(
                     _showPassword ? Icons.visibility : Icons.visibility_off,
-                    color: Color.fromARGB(255, 29, 97, 252),
+                    color: primary_color,
                   ),
                 ),
-                labelStyle: TextStyle(color: Color.fromARGB(255, 29, 97, 252)),
+                labelStyle: TextStyle(color: primary_color),
                 enabledBorder: UnderlineInputBorder(
                   borderSide:
-                      BorderSide(color: Color.fromARGB(255, 29, 97, 252)),
+                      BorderSide(color: primary_color),
                 ),
               ),
             ),
@@ -105,7 +106,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               cursorColor: Theme.of(context).cursorColor,
               decoration: InputDecoration(
                 prefixIcon:
-                    Icon(Icons.person, color: Color.fromARGB(255, 29, 97, 252)),
+                    Icon(Icons.person, color: primary_color),
                 labelText: 'Re-Type Password',
                 hintText: "Re-Type your Password",
                 suffixIcon: GestureDetector(
@@ -116,13 +117,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     _showretypepassword
                         ? Icons.visibility
                         : Icons.visibility_off,
-                    color: Color.fromARGB(255, 29, 97, 252),
+                    color: primary_color,
                   ),
                 ),
-                labelStyle: TextStyle(color: Color.fromARGB(255, 29, 97, 252)),
+                labelStyle: TextStyle(color: primary_color),
                 enabledBorder: UnderlineInputBorder(
                   borderSide:
-                      BorderSide(color: Color.fromARGB(255, 29, 97, 252)),
+                      BorderSide(color: primary_color),
                 ),
               ),
             ),
@@ -134,7 +135,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               child: RaisedButton(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(24.0)),
-                color: Color.fromARGB(255, 29, 97, 252),
+                color: primary_color,
                 textColor: Colors.white,
                 onPressed: () {
                   Navigator.pushReplacement(context,

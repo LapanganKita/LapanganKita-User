@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lapangankita_user/screen/register_screen.dart';
 import 'package:lapangankita_user/components/navbar.dart';
 import 'package:lapangankita_user/components/heading_text.dart';
+import 'package:lapangankita_user/components/constant.dart' show primary_color;
 
 class loginScreen extends StatefulWidget {
   @override
@@ -30,7 +31,7 @@ class _loginScreenState extends State<loginScreen> {
                 child: HeadingText.withColor(
                   "LOGIN",
                   36,
-                  Color.fromARGB(255, 29, 97, 252),
+                  primary_color,
                 ),
               ),
               Container(
@@ -39,14 +40,14 @@ class _loginScreenState extends State<loginScreen> {
                   cursorColor: Theme.of(context).cursorColor,
                   decoration: InputDecoration(
                     prefixIcon: Icon(Icons.email,
-                        color: Color.fromARGB(255, 29, 97, 252)),
+                        color: primary_color),
                     labelText: 'Email',
                     hintText: "Email Address",
                     labelStyle:
-                        TextStyle(color: Color.fromARGB(255, 29, 97, 252)),
+                        TextStyle(color: primary_color),
                     enabledBorder: UnderlineInputBorder(
                       borderSide:
-                          BorderSide(color: Color.fromARGB(255, 29, 97, 252)),
+                          BorderSide(color: primary_color),
                     ),
                   ),
                 ),
@@ -58,7 +59,7 @@ class _loginScreenState extends State<loginScreen> {
                   cursorColor: Theme.of(context).cursorColor,
                   decoration: InputDecoration(
                     prefixIcon: Icon(Icons.lock,
-                        color: Color.fromARGB(255, 29, 97, 252)),
+                        color: primary_color),
                     labelText: 'Password',
                     hintText: "Type your Password",
                     suffixIcon: GestureDetector(
@@ -67,14 +68,14 @@ class _loginScreenState extends State<loginScreen> {
                       },
                       child: Icon(
                         _showPassword ? Icons.visibility : Icons.visibility_off,
-                        color: Color.fromARGB(255, 29, 97, 252),
+                        color: primary_color,
                       ),
                     ),
                     labelStyle:
-                        TextStyle(color: Color.fromARGB(255, 29, 97, 252)),
+                        TextStyle(color: primary_color),
                     enabledBorder: UnderlineInputBorder(
                       borderSide:
-                          BorderSide(color: Color.fromARGB(255, 29, 97, 252)),
+                          BorderSide(color: primary_color),
                     ),
                   ),
                 ),
@@ -95,7 +96,7 @@ class _loginScreenState extends State<loginScreen> {
                   child: RaisedButton(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(24.0)),
-                    color: Color.fromARGB(255, 29, 97, 252),
+                    color: primary_color,
                     textColor: Colors.white,
                     onPressed: () {
                       Navigator.pushReplacement(context,
@@ -127,7 +128,7 @@ class _loginScreenState extends State<loginScreen> {
                     },
                     child: new Text("Register Now",
                         style:
-                            TextStyle(color: Color.fromARGB(255, 29, 97, 252))),
+                            TextStyle(color: primary_color)),
                   )
                 ],
               ),
