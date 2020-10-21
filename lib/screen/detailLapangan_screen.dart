@@ -9,6 +9,8 @@ class detaillapangan extends StatefulWidget {
 }
 
 class _detaillapanganState extends State<detaillapangan> {
+  var isSelected = false;
+  var icon = Icons.favorite_border;
   int _currentIndex = 0;
   List cardList = [Item1(), Item2(), Item3(), Item4()];
   List<T> map<T>(List list, Function handler) {
@@ -86,7 +88,7 @@ class _detaillapanganState extends State<detaillapangan> {
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              padding: EdgeInsets.only(top: 16, left: 56),
+              padding: EdgeInsets.only(top: 16, left: MediaQuery.of(context).size.width/10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -96,11 +98,11 @@ class _detaillapanganState extends State<detaillapangan> {
                         "Sport Centre Puncak Permai", 23, Colors.white),
                   ),
                   Container(
-                    margin: EdgeInsets.only(bottom: 4),
+                      margin: EdgeInsets.only(bottom: 4),
                       child: Text(
-                    "Surabaya",
-                    style: TextStyle(fontSize: 15, color: Colors.white),
-                  )),
+                        "Surabaya",
+                        style: TextStyle(fontSize: 15, color: Colors.white),
+                      )),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -111,6 +113,25 @@ class _detaillapanganState extends State<detaillapangan> {
                       Text(
                         "(22 Reviews)",
                         style: TextStyle(color: Colors.white),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(left: 92),
+                        child: IconButton(
+                          icon: Icon(
+                            icon,
+                            size: 30,
+                          ),
+                          color: Colors.white,
+                          onPressed: () {
+                            // Respond to icon toggle
+                            setState(() {
+                              isSelected = !isSelected;
+                              icon = isSelected
+                                  ? Icons.favorite
+                                  : Icons.favorite_border;
+                            });
+                          },
+                        ),
                       )
                     ],
                   ),
@@ -136,8 +157,286 @@ class _detaillapanganState extends State<detaillapangan> {
                     topLeft: Radius.circular(40)),
                 color: Colors.white,
               ),
+              child: Container(
+                margin: EdgeInsets.only(top: 24, right: 48, left: 48),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          child: Column(
+                            children: [
+                              Container(
+                                width: 40,
+                                height: 40,
+                                child: Image.asset(
+                                  "assets/images/11-park.png",
+                                  fit: BoxFit.fill,
+                                ),
+                              ),
+                              Text("Parking")
+                            ],
+                          ),
+                        ),
+                        Container(
+                          child: Column(
+                            children: [
+                              Container(
+                                width: 40,
+                                height: 40,
+                                child: Image.asset(
+                                  "assets/images/11-park.png",
+                                  fit: BoxFit.fill,
+                                ),
+                              ),
+                              Text("Parking")
+                            ],
+                          ),
+                        ),
+                        Container(
+                          child: Column(
+                            children: [
+                              Container(
+                                width: 40,
+                                height: 40,
+                                child: Image.asset(
+                                  "assets/images/11-park.png",
+                                  fit: BoxFit.fill,
+                                ),
+                              ),
+                              Text("Parking")
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(top: 24),
+                      child: Row(
+                        children: [
+                          Container(
+                            margin: EdgeInsets.only(right: 16),
+                            child: Image.asset(
+                              "assets/images/placeholder.png",
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                          Container(
+                            width: MediaQuery.of(context).size.width-150,
+                            child: Text(
+                              "Jl. Raya Darmo Permai III No.80, Pradahkalikendal, Kec. Dukuhpakis, Kota SBY",
+                              maxLines: 2,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(top: 24),
+                      child: Row(
+                        children: [
+                          Container(
+                            margin: EdgeInsets.only(right: 16),
+                            child: Image.asset(
+                              "assets/images/phone.png",
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                          Text("0813-3359-5708"),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(top: 24),
+                      child: Row(
+                        children: [
+                          Container(
+                            margin: EdgeInsets.only(right: 16),
+                            child: Image.asset(
+                              "assets/images/clock.png",
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                          Text("Mon-Sun"),
+                          Text("06.00 - 23.00"),
+                        ],
+                      ),
+                    ),
+                    Container(
+                        alignment: Alignment.centerLeft,
+                        margin: EdgeInsets.only(top: 24),
+                        child: HeadingText.withColor(
+                            "Pilih Kategori", 20, primary_color)),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(children: [
+                        Container(
+                          margin: EdgeInsets.fromLTRB(0, 0, 32, 0),
+                          child: Column(
+                            children: [
+                              GestureDetector(
+                                onTap: () {}, // handle your image tap here
+                                child: Image.asset(
+                                  'assets/images/basketball.png',
+                                  fit: BoxFit
+                                      .fill, // this is the solution for border
+                                ),
+                              ),
+                              Container(
+                                margin: EdgeInsets.fromLTRB(0, 8, 0, 0),
+                                child: Text(
+                                  "Basket",
+                                  style: TextStyle(
+                                      color: primary_color,
+                                      fontFamily: 'Ubuntu',
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.fromLTRB(0, 16, 32, 0),
+                          child: Column(
+                            children: [
+                              RaisedButton(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(32)),
+                                color: primary_color,
+                                child: Container(
+                                  width: 48,
+                                  height: 73,
+                                  decoration: BoxDecoration(),
+                                  child: Image.asset(
+                                      "assets/images/basketball.png"),
+                                ),
+                                onPressed: () {},
+                              ),
+                              Container(
+                                margin: EdgeInsets.fromLTRB(0, 8, 0, 0),
+                                child: Text(
+                                  "Basket",
+                                  style: TextStyle(
+                                      color: primary_color,
+                                      fontFamily: 'Ubuntu',
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.fromLTRB(0, 16, 32, 0),
+                          child: Column(
+                            children: [
+                              RaisedButton(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(32)),
+                                color: primary_color,
+                                child: Container(
+                                  width: 48,
+                                  height: 73,
+                                  decoration: BoxDecoration(),
+                                  child: Image.asset(
+                                      "assets/images/basketball.png"),
+                                ),
+                                onPressed: () {},
+                              ),
+                              Container(
+                                margin: EdgeInsets.fromLTRB(0, 8, 0, 0),
+                                child: Text(
+                                  "Futsal",
+                                  style: TextStyle(
+                                      color: primary_color,
+                                      fontFamily: 'Ubuntu',
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.fromLTRB(0, 16, 32, 0),
+                          child: Column(
+                            children: [
+                              RaisedButton(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(32)),
+                                color: primary_color,
+                                child: Container(
+                                  width: 48,
+                                  height: 73,
+                                  decoration: BoxDecoration(),
+                                  child: Image.asset(
+                                      "assets/images/basketball.png"),
+                                ),
+                                onPressed: () {},
+                              ),
+                              Container(
+                                margin: EdgeInsets.fromLTRB(0, 8, 0, 0),
+                                child: Text(
+                                  "Badminton",
+                                  style: TextStyle(
+                                      color: primary_color,
+                                      fontFamily: 'Ubuntu',
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.fromLTRB(0, 16, 32, 0),
+                          child: Column(
+                            children: [
+                              RaisedButton(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(32)),
+                                color: primary_color,
+                                child: Container(
+                                    width: 48,
+                                    height: 73,
+                                    decoration: BoxDecoration(),
+                                    child: Stack(
+                                      fit: StackFit.expand,
+                                      children: [
+                                        Image.asset(
+                                            "assets/images/basketball.png"),
+                                      ],
+                                    )),
+                                onPressed: () {},
+                              ),
+                              Container(
+                                margin: EdgeInsets.fromLTRB(0, 8, 0, 0),
+                                child: Text(
+                                  "Ping Pong",
+                                  style: TextStyle(
+                                      color: primary_color,
+                                      fontFamily: 'Ubuntu',
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ]),
+                    )
+                  ],
+                ),
+              ),
             ),
           ),
+          Container(
+            margin: EdgeInsets.only(top:32),
+            child: IconButton(
+              icon: Icon(Icons.arrow_back),
+              color: Colors.white,
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          )
         ],
       ),
     );
