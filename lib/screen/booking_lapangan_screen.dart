@@ -162,56 +162,28 @@ class _BookingLapanganState extends State<BookingLapangan> {
                   color: Colors.white,
                 ),
                 child: Container(
+                  alignment: Alignment.topCenter,
                   child: TabBar(
                     indicatorWeight: 0.01,
                     labelColor: primary_color,
                     labelStyle:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+                        TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
                     unselectedLabelStyle: TextStyle(),
                     tabs: <Widget>[
                       Tab(
-                        text: "Tab 1",
+                        text: "Booking",
                       ),
                       Tab(
-                        text: "Tab 2",
+                        text: "Details",
                       ),
                       Tab(
-                        text: "Tab 3",
+                        text: "Review",
                       ),
                     ],
                   ),
                 ),
               ),
             ),
-            TabBarView(children: [
-              Container(
-                height: 100,
-                child: Center(
-                  child: Text(
-                    "Tab 1",
-                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                  ),
-                ),
-              ),
-              Container(
-                height: 200,
-                child: Center(
-                  child: Text(
-                    "Tab 2",
-                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                  ),
-                ),
-              ),
-              Container(
-                height: 200,
-                child: Center(
-                  child: Text(
-                    "Tab 3",
-                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                  ),
-                ),
-              ),
-            ]),
             Container(
               margin: EdgeInsets.only(top: 32),
               child: IconButton(

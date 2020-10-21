@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:lapangankita_user/components/heading_text.dart';
 import 'package:lapangankita_user/components/constant.dart' show primary_color;
-import 'package:lapangankita_user/screen/halamanbooking/booking_lapangan_screen.dart';
+import 'package:lapangankita_user/screen/booking_lapangan_screen.dart';
 
 class detaillapangan extends StatefulWidget {
   @override
