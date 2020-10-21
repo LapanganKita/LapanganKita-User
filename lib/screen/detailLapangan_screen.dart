@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:lapangankita_user/components/heading_text.dart';
 import 'package:lapangankita_user/components/constant.dart' show primary_color;
+import 'package:lapangankita_user/screen/halamanbooking/booking_lapangan_screen.dart';
 
 class detaillapangan extends StatefulWidget {
   @override
@@ -88,7 +89,8 @@ class _detaillapanganState extends State<detaillapangan> {
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              padding: EdgeInsets.only(top: 16, left: MediaQuery.of(context).size.width/10),
+              padding: EdgeInsets.only(
+                  top: 16, left: MediaQuery.of(context).size.width / 10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -223,7 +225,7 @@ class _detaillapanganState extends State<detaillapangan> {
                             ),
                           ),
                           Container(
-                            width: MediaQuery.of(context).size.width-150,
+                            width: MediaQuery.of(context).size.width - 150,
                             child: Text(
                               "Jl. Raya Darmo Permai III No.80, Pradahkalikendal, Kec. Dukuhpakis, Kota SBY",
                               maxLines: 2,
@@ -276,7 +278,12 @@ class _detaillapanganState extends State<detaillapangan> {
                           child: Column(
                             children: [
                               GestureDetector(
-                                onTap: () {}, // handle your image tap here
+                                onTap: () {
+                                  Navigator.push(context,
+                                      MaterialPageRoute(builder: (context) {
+                                    return BookingLapangan();
+                                  }));
+                                }, // handle your image tap here
                                 child: Image.asset(
                                   'assets/images/basketball.png',
                                   fit: BoxFit
@@ -428,7 +435,7 @@ class _detaillapanganState extends State<detaillapangan> {
             ),
           ),
           Container(
-            margin: EdgeInsets.only(top:32),
+            margin: EdgeInsets.only(top: 32),
             child: IconButton(
               icon: Icon(Icons.arrow_back),
               color: Colors.white,
