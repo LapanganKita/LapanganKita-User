@@ -161,27 +161,26 @@ class _BookingLapanganState extends State<BookingLapangan> {
                       topLeft: Radius.circular(40)),
                   color: Colors.white,
                 ),
-              ),
-            ),
-            Container(
-              color: Colors.red,
-              child: TabBar(
-                indicatorWeight: 0.01,
-                labelColor: primary_color,
-                labelStyle:
-                    TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
-                unselectedLabelStyle: TextStyle(),
-                tabs: <Widget>[
-                  Tab(
-                    text: "Tab 1",
+                child: Container(
+                  child: TabBar(
+                    indicatorWeight: 0.01,
+                    labelColor: primary_color,
+                    labelStyle:
+                        TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+                    unselectedLabelStyle: TextStyle(),
+                    tabs: <Widget>[
+                      Tab(
+                        text: "Tab 1",
+                      ),
+                      Tab(
+                        text: "Tab 2",
+                      ),
+                      Tab(
+                        text: "Tab 3",
+                      ),
+                    ],
                   ),
-                  Tab(
-                    text: "Tab 2",
-                  ),
-                  Tab(
-                    text: "Tab 3",
-                  ),
-                ],
+                ),
               ),
             ),
             TabBarView(children: [
