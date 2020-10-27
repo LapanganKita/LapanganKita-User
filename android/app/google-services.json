@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1079292739897",
+    "firebase_url": "https://lapangankita-98536.firebaseio.com",
+    "project_id": "lapangankita-98536",
+    "storage_bucket": "lapangankita-98536.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1079292739897:android:f44a30e78f48f1e46668e8",
+        "android_client_info": {
+          "package_name": "com.example.lapangankita_user"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1079292739897-85qkbj3uckc1rmb28p2a93657qvf4dcr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwc58zA614-0U3-6zQicObxgW3Rjj1PeY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1079292739897-85qkbj3uckc1rmb28p2a93657qvf4dcr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
