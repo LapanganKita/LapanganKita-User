@@ -151,38 +151,52 @@ class _BookingLapanganState extends State<BookingLapangan> {
                 ),
               ),
             ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Container(
-                height: MediaQuery.of(context).size.height / 1.9,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(40),
-                      topLeft: Radius.circular(40)),
-                  color: Colors.white,
-                ),
-                child: Container(
-                  alignment: Alignment.topCenter,
-                  child: TabBar(
-                    indicatorWeight: 0.01,
-                    labelColor: primary_color,
-                    labelStyle:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
-                    unselectedLabelStyle: TextStyle(),
-                    tabs: <Widget>[
-                      Tab(
-                        text: "Booking",
+            Stack(
+              children: [
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Container(
+                    height: MediaQuery.of(context).size.height / 1.9,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(40),
+                          topLeft: Radius.circular(40)),
+                      color: Colors.white,
+                    ),
+                    child: Container(
+                      alignment: Alignment.topCenter,
+                      child: TabBar(
+                        indicatorWeight: 0.01,
+                        labelColor: primary_color,
+                        labelStyle: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 24),
+                        unselectedLabelStyle: TextStyle(),
+                        tabs: <Widget>[
+                          Tab(
+                            text: "Booking",
+                          ),
+                          Tab(
+                            text: "Details",
+                          ),
+                          Tab(
+                            text: "Review",
+                          ),
+                        ],
                       ),
-                      Tab(
-                        text: "Details",
-                      ),
-                      Tab(
-                        text: "Review",
-                      ),
-                    ],
+                    ),
                   ),
                 ),
-              ),
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Container(
+                      height: MediaQuery.of(context).size.height / 2.2,
+                      child: TabBarView(children: [
+                        Text("datsadadsdsaa"),
+                        Text("asd"),
+                        Text("asdadf")
+                      ])),
+                ),
+              ],
             ),
             Container(
               margin: EdgeInsets.only(top: 32),
@@ -193,7 +207,7 @@ class _BookingLapanganState extends State<BookingLapangan> {
                   Navigator.of(context).pop();
                 },
               ),
-            )
+            ),
           ],
         ),
       ),
