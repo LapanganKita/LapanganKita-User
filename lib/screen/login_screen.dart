@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:lapangankita_user/authentication_service.dart';
 import 'package:lapangankita_user/screen/register_screen.dart';
 import 'package:lapangankita_user/components/navbar.dart';
 import 'package:lapangankita_user/components/heading_text.dart';
 import 'package:lapangankita_user/components/constant.dart' show primary_color;
+import 'package:provider/provider.dart';
 
 class loginScreen extends StatefulWidget {
   @override
@@ -11,6 +13,8 @@ class loginScreen extends StatefulWidget {
 
 class _loginScreenState extends State<loginScreen> {
   bool _showPassword = false;
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
   void _togglevisibilitypassword() {
     setState(() {
       _showPassword = !_showPassword;
@@ -37,17 +41,15 @@ class _loginScreenState extends State<loginScreen> {
               Container(
                 margin: EdgeInsets.only(top: 64, left: 24, right: 24),
                 child: TextFormField(
+                  controller: emailController,
                   cursorColor: Theme.of(context).cursorColor,
                   decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.email,
-                        color: primary_color),
+                    prefixIcon: Icon(Icons.email, color: primary_color),
                     labelText: 'Email',
                     hintText: "Email Address",
-                    labelStyle:
-                        TextStyle(color: primary_color),
+                    labelStyle: TextStyle(color: primary_color),
                     enabledBorder: UnderlineInputBorder(
-                      borderSide:
-                          BorderSide(color: primary_color),
+                      borderSide: BorderSide(color: primary_color),
                     ),
                   ),
                 ),
@@ -55,11 +57,11 @@ class _loginScreenState extends State<loginScreen> {
               Container(
                 margin: EdgeInsets.only(top: 24, left: 24, right: 24),
                 child: TextFormField(
+                  controller: passwordController,
                   obscureText: !_showPassword,
                   cursorColor: Theme.of(context).cursorColor,
                   decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.lock,
-                        color: primary_color),
+                    prefixIcon: Icon(Icons.lock, color: primary_color),
                     labelText: 'Password',
                     hintText: "Type your Password",
                     suffixIcon: GestureDetector(
@@ -71,11 +73,9 @@ class _loginScreenState extends State<loginScreen> {
                         color: primary_color,
                       ),
                     ),
-                    labelStyle:
-                        TextStyle(color: primary_color),
+                    labelStyle: TextStyle(color: primary_color),
                     enabledBorder: UnderlineInputBorder(
-                      borderSide:
-                          BorderSide(color: primary_color),
+                      borderSide: BorderSide(color: primary_color),
                     ),
                   ),
                 ),
@@ -99,10 +99,10 @@ class _loginScreenState extends State<loginScreen> {
                     color: primary_color,
                     textColor: Colors.white,
                     onPressed: () {
-                      Navigator.pushReplacement(context,
-                          MaterialPageRoute(builder: (context) {
-                        return navBar();
-                      }));
+                      context.read<AuthenticationService>().login(
+                            email: emailController.text.trim(),
+                            password: passwordController.text.trim(),
+                          );
                     },
                     child: Text(
                       "Login",
@@ -127,8 +127,7 @@ class _loginScreenState extends State<loginScreen> {
                       }));
                     },
                     child: new Text("Register Now",
-                        style:
-                            TextStyle(color: primary_color)),
+                        style: TextStyle(color: primary_color)),
                   )
                 ],
               ),
