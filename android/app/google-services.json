@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1079292739897:android:f44a30e78f48f1e46668e8",
+        "mobilesdk_app_id": "1:1079292739897:android:516f4d8ef6f69f4f6668e8",
         "android_client_info": {
-          "package_name": "com.example.lapangankita_user"
+          "package_name": "com.lapangankita.mobile"
         }
       },
       "oauth_client": [
