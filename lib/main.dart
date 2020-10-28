@@ -5,6 +5,8 @@ import 'package:lapangankita_user/components/navbar.dart';
 import 'package:lapangankita_user/screen/authenticate/login_screen.dart';
 import 'package:lapangankita_user/screen/authenticate/register_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:lapangankita_user/screen/onboarding/login_register_onboard_screen.dart';
+import 'package:lapangankita_user/screen/onboarding/onboard.dart';
 import 'package:provider/provider.dart';
 
 Future<void> main() async {
@@ -44,7 +46,7 @@ class AuthenticationWrapper extends StatelessWidget {
     if (firebaseuser != null) {
       return navBar();
     }
-    return loginScreen();
+    return Onboarding();
   }
 }
 // vincen
