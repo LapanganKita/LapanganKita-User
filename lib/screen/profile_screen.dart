@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:lapangankita_user/authentication_service.dart';
+import 'package:provider/provider.dart';
 
 class profile_screen extends StatefulWidget {
   @override
@@ -13,7 +15,15 @@ class _profile_screenState extends State<profile_screen> {
         title: Text("Profile Page"),
       ),
       body: Center(
-        child: Text("This is Profile Page"),
+        child: Column(children: [
+          Text("This is Profile Page"),
+          RaisedButton(
+            onPressed: () {
+              context.read<AuthenticationService>().signOut();
+            },
+            child: Text("Sign Out"),
+          )
+        ]),
       ),
     );
   }
