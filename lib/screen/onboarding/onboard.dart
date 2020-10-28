@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lapangankita_user/screen/authenticate/register_screen.dart';
 import 'package:lapangankita_user/screen/onboarding/login_register_onboard_screen.dart';
 import 'package:lapangankita_user/screen/onboarding/slider.dart';
 import 'package:lapangankita_user/components/constant.dart' show primary_color;
@@ -80,6 +81,10 @@ class _OnboardingState extends State<Onboarding> {
                     _controller.nextPage(
                         duration: Duration(milliseconds: 800),
                         curve: Curves.easeInOutQuint);
+                        Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) {
+                    return LoginRegisterOnboard();
+                  }));
                   },
                   child: AnimatedContainer(
                       duration: Duration(milliseconds: 300),
