@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:lapangankita_user/screen/home_screen.dart';
-import 'package:lapangankita_user/screen/score_screen.dart';
-import 'package:lapangankita_user/screen/profile_screen.dart';
-import 'package:lapangankita_user/screen/history_screen.dart';
+import 'package:lapangankita_user/screen/home/home_screen.dart';
+import 'package:lapangankita_user/screen/home/score_screen.dart';
+import 'package:lapangankita_user/screen/home/profile_screen.dart';
+import 'package:lapangankita_user/screen/home/history_screen.dart';
 import 'package:lapangankita_user/components/constant.dart' show primary_color;
 
 class navBar extends StatefulWidget {
@@ -43,8 +43,7 @@ class _navBarState extends State<navBar> {
               ),
             ),
             BottomNavigationBarItem(
-              icon:
-                  Icon(Icons.history, color: primary_color),
+              icon: Icon(Icons.history, color: primary_color),
               title: Text(
                 "History",
                 style: TextStyle(color: primary_color),
@@ -58,8 +57,7 @@ class _navBarState extends State<navBar> {
               ),
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.account_circle,
-                  color: primary_color),
+              icon: Icon(Icons.account_circle, color: primary_color),
               title: Text(
                 "Profile",
                 style: TextStyle(color: primary_color),

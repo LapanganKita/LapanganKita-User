@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lapangankita_user/authentication_service.dart';
-import 'package:lapangankita_user/screen/register_screen.dart';
+import 'package:lapangankita_user/screen/authenticate/register_screen.dart';
 import 'package:lapangankita_user/components/navbar.dart';
 import 'package:lapangankita_user/components/heading_text.dart';
 import 'package:lapangankita_user/components/constant.dart' show primary_color;
@@ -121,7 +121,7 @@ class _loginScreenState extends State<loginScreen> {
                   Text("Don't have an account? "),
                   GestureDetector(
                     onTap: () {
-                      Navigator.pushReplacement(context,
+                      Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
                         return RegisterScreen();
                       }));
