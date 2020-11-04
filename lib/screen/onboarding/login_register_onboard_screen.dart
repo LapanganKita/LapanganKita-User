@@ -69,7 +69,7 @@ class _LoginRegisterOnboardState extends State<LoginRegisterOnboard> {
                               color: primary_color,
                               textColor: Colors.white,
                               onPressed: () {
-                                Navigator.pushReplacement(context,
+                                Navigator.push(context,
                                     MaterialPageRoute(builder: (context) {
                                   return loginScreen();
                                 }));
@@ -90,7 +90,7 @@ class _LoginRegisterOnboardState extends State<LoginRegisterOnboard> {
                               color: primary_color,
                               textColor: Colors.white,
                               onPressed: () {
-                                Navigator.pushReplacement(context,
+                                Navigator.push(context,
                                     MaterialPageRoute(builder: (context) {
                                   return RegisterScreen();
                                 }));
