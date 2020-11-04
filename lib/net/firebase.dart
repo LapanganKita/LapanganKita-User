@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:lapangankita_user/net/user.dart';
 
 Future<void> CreateUser(String name, email, password) async {
   CollectionReference users = FirebaseFirestore.instance.collection("Users");
