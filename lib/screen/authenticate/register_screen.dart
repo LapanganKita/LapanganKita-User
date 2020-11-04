@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lapangankita_user/components/navbar.dart';
 import 'package:lapangankita_user/components/heading_text.dart';
 import 'package:lapangankita_user/components/constant.dart' show primary_color;
+import 'package:lapangankita_user/screen/services/auth.dart';
 
 class RegisterScreen extends StatefulWidget {
   @override
@@ -9,6 +10,11 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  String error = '';
+  String email = '';
+  String password = '';
+  String retypePassword = '';
+  String fullName = '';
   bool _showPassword = false;
   bool _showretypepassword = false;
   void _togglevisibilitypassword() {
@@ -23,132 +29,155 @@ class _RegisterScreenState extends State<RegisterScreen> {
     });
   }
 
+  final AuthService _auth = AuthService();
+  final _formkey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: SingleChildScrollView(
-      child: Column(
-        children: [
-          Container(
-            alignment: Alignment.topLeft,
-            margin: EdgeInsets.only(top: 60, left: 24),
-            child: HeadingText.withColor(
-              "REGISTER",
-              36,
-              primary_color,
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.only(top: 48, left: 24, right: 24),
-            child: TextFormField(
-              cursorColor: Theme.of(context).cursorColor,
-              decoration: InputDecoration(
-                prefixIcon:
-                    Icon(Icons.person, color: primary_color),
-                labelText: 'Full Name',
-                hintText: "Your Full Name",
-                labelStyle: TextStyle(color: primary_color),
-                enabledBorder: UnderlineInputBorder(
-                  borderSide:
-                      BorderSide(color: primary_color),
-                ),
+      child: Form(
+        key: _formkey,
+        child: Column(
+          children: [
+            Container(
+              alignment: Alignment.topLeft,
+              margin: EdgeInsets.only(top: 60, left: 24),
+              child: HeadingText.withColor(
+                "REGISTER",
+                36,
+                primary_color,
               ),
             ),
-          ),
-          Container(
-            margin: EdgeInsets.only(top: 24, left: 24, right: 24),
-            child: TextFormField(
-              cursorColor: Theme.of(context).cursorColor,
-              decoration: InputDecoration(
-                prefixIcon:
-                    Icon(Icons.email, color: primary_color),
-                labelText: 'Email',
-                hintText: "Email Address",
-                labelStyle: TextStyle(color: primary_color),
-                enabledBorder: UnderlineInputBorder(
-                  borderSide:
-                      BorderSide(color: primary_color),
-                ),
-              ),
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.only(top: 24, left: 24, right: 24),
-            child: TextFormField(
-              obscureText: !_showPassword,
-              cursorColor: Theme.of(context).cursorColor,
-              decoration: InputDecoration(
-                prefixIcon:
-                    Icon(Icons.lock, color: primary_color),
-                labelText: 'Password',
-                hintText: "Type your Password",
-                suffixIcon: GestureDetector(
-                  onTap: () {
-                    _togglevisibilitypassword();
-                  },
-                  child: Icon(
-                    _showPassword ? Icons.visibility : Icons.visibility_off,
-                    color: primary_color,
-                  ),
-                ),
-                labelStyle: TextStyle(color: primary_color),
-                enabledBorder: UnderlineInputBorder(
-                  borderSide:
-                      BorderSide(color: primary_color),
-                ),
-              ),
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.only(top: 24, left: 24, right: 24),
-            child: TextFormField(
-              obscureText: !_showretypepassword,
-              cursorColor: Theme.of(context).cursorColor,
-              decoration: InputDecoration(
-                prefixIcon:
-                    Icon(Icons.person, color: primary_color),
-                labelText: 'Re-Type Password',
-                hintText: "Re-Type your Password",
-                suffixIcon: GestureDetector(
-                  onTap: () {
-                    _togglevisibilityretype();
-                  },
-                  child: Icon(
-                    _showretypepassword
-                        ? Icons.visibility
-                        : Icons.visibility_off,
-                    color: primary_color,
-                  ),
-                ),
-                labelStyle: TextStyle(color: primary_color),
-                enabledBorder: UnderlineInputBorder(
-                  borderSide:
-                      BorderSide(color: primary_color),
-                ),
-              ),
-            ),
-          ),
-          Container(
-              margin: EdgeInsets.only(top: 56),
-              width: 300,
-              height: 56,
-              child: RaisedButton(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(24.0)),
-                color: primary_color,
-                textColor: Colors.white,
-                onPressed: () {
-                  Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) {
-                    return navBar();
-                  }));
+            Container(
+              margin: EdgeInsets.only(top: 48, left: 24, right: 24),
+              child: TextFormField(
+                validator: (val) => val.isEmpty ? 'Enter Your Full Name' : null,
+                onChanged: (val) {
+                  setState(() => fullName = val);
                 },
-                child: Text(
-                  "Register",
-                  style: TextStyle(fontFamily: "Ubuntu", fontSize: 18),
+                cursorColor: Theme.of(context).cursorColor,
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.person, color: primary_color),
+                  labelText: 'Full Name',
+                  hintText: "Your Full Name",
+                  labelStyle: TextStyle(color: primary_color),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: primary_color),
+                  ),
                 ),
-              ))
-        ],
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 24, left: 24, right: 24),
+              child: TextFormField(
+                validator: (val) => val.isEmpty ? 'Enter Your Email' : null,
+                onChanged: (val) {
+                  setState(() => email = val);
+                },
+                cursorColor: Theme.of(context).cursorColor,
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.email, color: primary_color),
+                  labelText: 'Email',
+                  hintText: "Email Address",
+                  labelStyle: TextStyle(color: primary_color),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: primary_color),
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 24, left: 24, right: 24),
+              child: TextFormField(
+                validator: (val) => val.length < 6
+                    ? 'Must contain a minimum of 8 characters'
+                    : null,
+                onChanged: (val) {
+                  setState(() => password = val);
+                },
+                obscureText: !_showPassword,
+                cursorColor: Theme.of(context).cursorColor,
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.lock, color: primary_color),
+                  labelText: 'Password',
+                  hintText: "Type your Password",
+                  suffixIcon: GestureDetector(
+                    onTap: () {
+                      _togglevisibilitypassword();
+                    },
+                    child: Icon(
+                      _showPassword ? Icons.visibility : Icons.visibility_off,
+                      color: primary_color,
+                    ),
+                  ),
+                  labelStyle: TextStyle(color: primary_color),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: primary_color),
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 24, left: 24, right: 24),
+              child: TextFormField(
+                validator: (val) => val.length < 6
+                    ? 'Must contain a minimum of 8 characters'
+                    : null,
+                onChanged: (val) {
+                  setState(() => retypePassword = val);
+                },
+                obscureText: !_showretypepassword,
+                cursorColor: Theme.of(context).cursorColor,
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.person, color: primary_color),
+                  labelText: 'Re-Type Password',
+                  hintText: "Re-Type your Password",
+                  suffixIcon: GestureDetector(
+                    onTap: () {
+                      _togglevisibilityretype();
+                    },
+                    child: Icon(
+                      _showretypepassword
+                          ? Icons.visibility
+                          : Icons.visibility_off,
+                      color: primary_color,
+                    ),
+                  ),
+                  labelStyle: TextStyle(color: primary_color),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: primary_color),
+                  ),
+                ),
+              ),
+            ),
+            Container(
+                margin: EdgeInsets.only(top: 56),
+                width: 300,
+                height: 56,
+                child: RaisedButton(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(24.0)),
+                  color: primary_color,
+                  textColor: Colors.white,
+                  onPressed: () async {
+                    if (_formkey.currentState.validate()) {
+                      dynamic result = await _auth.register(email, password);
+                      if (result == null) {
+                        setState(() => error = 'Please enter a valid email');
+                      }
+                    }
+                  },
+                  child: Text(
+                    "Register",
+                    style: TextStyle(fontFamily: "Ubuntu", fontSize: 18),
+                  ),
+                )),
+            SizedBox(
+              height: 12,
+            ),
+          ],
+        ),
       ),
     ));
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:lapangankita_user/authentication_service.dart';
+import 'package:lapangankita_user/screen/authenticate/authenticate.dart';
+import 'package:lapangankita_user/screen/services/auth.dart';
 import 'package:provider/provider.dart';
 
 class profile_screen extends StatefulWidget {
@@ -8,6 +9,8 @@ class profile_screen extends StatefulWidget {
 }
 
 class _profile_screenState extends State<profile_screen> {
+  final AuthService _auth = AuthService();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,8 +21,8 @@ class _profile_screenState extends State<profile_screen> {
         child: Column(children: [
           Text("This is Profile Page"),
           RaisedButton(
-            onPressed: () {
-              context.read<AuthenticationService>().signOut();
+            onPressed: () async {
+              await _auth.signOut();
             },
             child: Text("Sign Out"),
           )

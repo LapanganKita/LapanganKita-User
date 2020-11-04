@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:lapangankita_user/authentication_service.dart';
+import 'package:lapangankita_user/screen/authenticate/authenticate.dart';
 import 'package:lapangankita_user/screen/authenticate/register_screen.dart';
 import 'package:lapangankita_user/components/navbar.dart';
 import 'package:lapangankita_user/components/heading_text.dart';
 import 'package:lapangankita_user/components/constant.dart' show primary_color;
+import 'package:lapangankita_user/screen/services/auth.dart';
 import 'package:provider/provider.dart';
 
 class loginScreen extends StatefulWidget {
@@ -21,6 +22,9 @@ class _loginScreenState extends State<loginScreen> {
     });
   }
 
+  String email = '';
+  String password = '';
+  final AuthService _auth = AuthService();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,6 +45,9 @@ class _loginScreenState extends State<loginScreen> {
               Container(
                 margin: EdgeInsets.only(top: 64, left: 24, right: 24),
                 child: TextFormField(
+                  onChanged: (val) {
+                    setState(() => email = val);
+                  },
                   controller: emailController,
                   cursorColor: Theme.of(context).cursorColor,
                   decoration: InputDecoration(
@@ -57,6 +64,9 @@ class _loginScreenState extends State<loginScreen> {
               Container(
                 margin: EdgeInsets.only(top: 24, left: 24, right: 24),
                 child: TextFormField(
+                  onChanged: (val) {
+                    setState(() => password = val);
+                  },
                   controller: passwordController,
                   obscureText: !_showPassword,
                   cursorColor: Theme.of(context).cursorColor,
@@ -98,11 +108,9 @@ class _loginScreenState extends State<loginScreen> {
                         borderRadius: BorderRadius.circular(24.0)),
                     color: primary_color,
                     textColor: Colors.white,
-                    onPressed: () {
-                      context.read<AuthenticationService>().login(
-                            email: emailController.text.trim(),
-                            password: passwordController.text.trim(),
-                          );
+                    onPressed: () async {
+                      print(email);
+                      print(password);
                     },
                     child: Text(
                       "Login",
