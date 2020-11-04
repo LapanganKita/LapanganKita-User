@@ -1,7 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:lapangankita_user/components/navbar.dart';
 import 'package:lapangankita_user/components/heading_text.dart';
 import 'package:lapangankita_user/components/constant.dart' show primary_color;
+import 'package:lapangankita_user/net/firebase.dart';
 import 'package:lapangankita_user/screen/services/auth.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -15,6 +18,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
   String password = '';
   String retypePassword = '';
   String fullName = '';
+  final nameController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  
   bool _showPassword = false;
   bool _showretypepassword = false;
   void _togglevisibilitypassword() {
@@ -52,6 +59,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             Container(
               margin: EdgeInsets.only(top: 48, left: 24, right: 24),
               child: TextFormField(
+                controller: nameController,
                 validator: (val) => val.isEmpty ? 'Enter Your Full Name' : null,
                 onChanged: (val) {
                   setState(() => fullName = val);
@@ -71,6 +79,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             Container(
               margin: EdgeInsets.only(top: 24, left: 24, right: 24),
               child: TextFormField(
+                controller: emailController,
                 validator: (val) => val.isEmpty ? 'Enter Your Email' : null,
                 onChanged: (val) {
                   setState(() => email = val);
@@ -90,6 +99,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             Container(
               margin: EdgeInsets.only(top: 24, left: 24, right: 24),
               child: TextFormField(
+                controller: passwordController,
                 validator: (val) => val.length < 6
                     ? 'Must contain a minimum of 8 characters'
                     : null,
@@ -163,6 +173,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   onPressed: () async {
                     if (_formkey.currentState.validate()) {
                       dynamic result = await _auth.register(email, password);
+                      CreateUser(nameController.text, emailController.text, passwordController.text);
                       if (result == null) {
                         setState(() => error = 'Please enter a valid email');
                       }
