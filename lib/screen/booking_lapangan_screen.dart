@@ -11,6 +11,7 @@ class BookingLapangan extends StatefulWidget {
 
 class _BookingLapanganState extends State<BookingLapangan> {
   CalendarController _controller = CalendarController();
+  String selectedNomerLapangan;
   @override
   var isSelected = false;
   var icon = Icons.favorite_border;
@@ -166,12 +167,15 @@ class _BookingLapanganState extends State<BookingLapangan> {
                       color: Colors.white,
                     ),
                     child: Container(
+                      margin: EdgeInsets.only(top: 8),
                       alignment: Alignment.topCenter,
                       child: TabBar(
                         indicatorWeight: 0.01,
                         labelColor: primary_color,
                         labelStyle: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 24),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 24,
+                            fontFamily: "Roboto"),
                         unselectedLabelStyle: TextStyle(),
                         tabs: <Widget>[
                           Tab(
@@ -196,9 +200,35 @@ class _BookingLapanganState extends State<BookingLapangan> {
                         SingleChildScrollView(
                             child: Column(
                           children: [
-                            TableCalendar(calendarController: _controller),
+                            TableCalendar(
+                              calendarController: _controller,
+                              initialCalendarFormat: CalendarFormat.week,
+                              headerStyle: HeaderStyle(
+                                  centerHeaderTitle: true,
+                                  formatButtonVisible: false,
+                                  titleTextStyle: TextStyle(
+                                      color: primary_color,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold),
+                                  leftChevronIcon: Icon(
+                                    Icons.arrow_back_ios,
+                                    color: primary_color,
+                                    size: 16,
+                                  ),
+                                  rightChevronIcon: Icon(
+                                    Icons.arrow_forward_ios,
+                                    color: primary_color,
+                                    size: 16,
+                                  ),
+                                  leftChevronMargin: EdgeInsets.only(left: 72),
+                                  rightChevronMargin:
+                                      EdgeInsets.only(right: 72)),
+                            ),
+                            SizedBox(
+                              height: 30,
+                            ),
                             Container(
-                              margin: EdgeInsets.only(left: 24, top: 16),
+                              margin: EdgeInsets.only(left: 24),
                               child: Align(
                                 alignment: Alignment.topLeft,
                                 child: Text(
@@ -211,6 +241,124 @@ class _BookingLapanganState extends State<BookingLapangan> {
                                 ),
                               ),
                             ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Row(
+                              children: [
+                                InkWell(
+                                  onTap: () {
+                                    changeNomerLapangan("lapangan1");
+                                  },
+                                  child: Container(
+                                    margin: EdgeInsets.only(left: 24),
+                                    height: 56,
+                                    width: 56,
+                                    decoration:
+                                        (selectedNomerLapangan == "lapangan1")
+                                            ? BoxDecoration(
+                                                color: primary_color,
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(16)))
+                                            : BoxDecoration(),
+                                    child: Center(
+                                      child: Text(
+                                        "1",
+                                        style: TextStyle(
+                                            color: (selectedNomerLapangan ==
+                                                    "lapangan1")
+                                                ? Colors.white
+                                                : primary_color,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w500),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    changeNomerLapangan("lapangan2");
+                                  },
+                                  child: Container(
+                                    margin: EdgeInsets.only(left: 24),
+                                    height: 56,
+                                    width: 56,
+                                    decoration:
+                                        (selectedNomerLapangan == "lapangan2")
+                                            ? BoxDecoration(
+                                                color: primary_color,
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(16)))
+                                            : BoxDecoration(),
+                                    child: Center(
+                                      child: Text(
+                                        "2",
+                                        style: TextStyle(
+                                            color: (selectedNomerLapangan ==
+                                                    "lapangan2")
+                                                ? Colors.white
+                                                : primary_color,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w500),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    changeNomerLapangan("lapangan3");
+                                  },
+                                  child: Container(
+                                    margin: EdgeInsets.only(left: 24),
+                                    height: 56,
+                                    width: 56,
+                                    decoration:
+                                        (selectedNomerLapangan == "lapangan3")
+                                            ? BoxDecoration(
+                                                color: primary_color,
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(16)))
+                                            : BoxDecoration(),
+                                    child: Center(
+                                      child: Text(
+                                        "3",
+                                        style: TextStyle(
+                                            color: (selectedNomerLapangan ==
+                                                    "lapangan3")
+                                                ? Colors.white
+                                                : primary_color,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w500),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(left: 24),
+                              child: Align(
+                                alignment: Alignment.topLeft,
+                                child: Text(
+                                  "Pilih Waktu",
+                                  style: TextStyle(
+                                      color: primary_color,
+                                      fontFamily: "Ubuntu",
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            ),
+                            Text("Detail"),
+                            Text("Reviw"),
+                            Text("Reviw"),
+                            Text("Reviw"),
+                            Text("Reviw"),
+                            Text("Reviw"),
+                            Text("Reviw"),
                           ],
                         )),
                         Text("Detail"),
@@ -233,6 +381,11 @@ class _BookingLapanganState extends State<BookingLapangan> {
         ),
       ),
     );
+  }
+
+  void changeNomerLapangan(String noLapangan) {
+    selectedNomerLapangan = noLapangan;
+    setState(() {});
   }
 }
 
