@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:lapangankita_user/components/constant.dart';
 import 'package:lapangankita_user/components/heading_text.dart';
 import 'package:lapangankita_user/screen/listLapangan_screen.dart';
 import 'package:lapangankita_user/components/constant.dart' show primary_color;
+import 'package:lapangankita_user/net/firebase.dart';
 
 class homeScreen extends StatefulWidget {
   @override
@@ -11,7 +13,11 @@ class homeScreen extends StatefulWidget {
 
 class _homeScreenState extends State<homeScreen> {
   @override
+
   Widget build(BuildContext context) {
+    
+    Joni.Currentusername();
+    
     return Scaffold(
       body: Container(
           child: Stack(
@@ -43,7 +49,7 @@ class _homeScreenState extends State<homeScreen> {
                       alignment: Alignment.centerLeft,
                       child: Container(
                         margin: EdgeInsets.only(left: 32),
-                        child: Text("Trevincen Tambunan",
+                        child: Text(username,
                             style: TextStyle(
                                 fontFamily: 'Ubuntu',
                                 fontSize: 30,
@@ -145,7 +151,9 @@ class _homeScreenState extends State<homeScreen> {
                                   child: Image.asset(
                                       "assets/images/basketball.png"),
                                 ),
-                                onPressed: () {},
+                                onPressed: () {
+                                  
+                                },
                               ),
                               Container(
                                 margin: EdgeInsets.fromLTRB(0, 8, 0, 0),
