@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:lapangankita_user/components/heading_text.dart';
 import 'package:lapangankita_user/components/constant.dart' show primary_color;
+import 'package:table_calendar/table_calendar.dart';
 
 class BookingLapangan extends StatefulWidget {
   @override
@@ -9,6 +10,7 @@ class BookingLapangan extends StatefulWidget {
 }
 
 class _BookingLapanganState extends State<BookingLapangan> {
+  CalendarController _controller = CalendarController();
   @override
   var isSelected = false;
   var icon = Icons.favorite_border;
@@ -191,9 +193,28 @@ class _BookingLapanganState extends State<BookingLapangan> {
                   child: Container(
                       height: MediaQuery.of(context).size.height / 2.2,
                       child: TabBarView(children: [
-                        Text("datsadadsdsaa"),
-                        Text("asd"),
-                        Text("asdadf")
+                        SingleChildScrollView(
+                            child: Column(
+                          children: [
+                            TableCalendar(calendarController: _controller),
+                            Container(
+                              margin: EdgeInsets.only(left: 24, top: 16),
+                              child: Align(
+                                alignment: Alignment.topLeft,
+                                child: Text(
+                                  "Nomer Lapangan",
+                                  style: TextStyle(
+                                      color: primary_color,
+                                      fontFamily: "Ubuntu",
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            ),
+                          ],
+                        )),
+                        Text("Detail"),
+                        Text("Reviw")
                       ])),
                 ),
               ],
