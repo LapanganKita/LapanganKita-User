@@ -21,7 +21,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final nameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  
+
   bool _showPassword = false;
   bool _showretypepassword = false;
   void _togglevisibilitypassword() {
@@ -101,7 +101,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               child: TextFormField(
                 controller: passwordController,
                 validator: (val) => val.length < 6
-                    ? 'Must contain a minimum of 8 characters'
+                    ? 'Must contain a minimum of 6 characters'
                     : null,
                 onChanged: (val) {
                   setState(() => password = val);
@@ -132,7 +132,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               margin: EdgeInsets.only(top: 24, left: 24, right: 24),
               child: TextFormField(
                 validator: (val) => val.length < 6
-                    ? 'Must contain a minimum of 8 characters'
+                    ? 'Must contain a minimum of 6 characters'
                     : null,
                 onChanged: (val) {
                   setState(() => retypePassword = val);
@@ -173,7 +173,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   onPressed: () async {
                     if (_formkey.currentState.validate()) {
                       dynamic result = await _auth.register(email, password);
-                      CreateUser(nameController.text, emailController.text, passwordController.text);
+                      CreateUser(nameController.text, emailController.text,
+                          passwordController.text);
                       if (result == null) {
                         setState(() => error = 'Please enter a valid email');
                       }
@@ -184,8 +185,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     style: TextStyle(fontFamily: "Ubuntu", fontSize: 18),
                   ),
                 )),
-            SizedBox(
-              height: 12,
+            SizedBox(height: 12),
+            Text(
+              error,
+              style: TextStyle(color: Colors.red, fontSize: 14),
             ),
           ],
         ),
