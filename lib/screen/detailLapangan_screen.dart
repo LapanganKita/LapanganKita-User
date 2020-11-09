@@ -140,7 +140,7 @@ class _detaillapanganState extends State<detaillapangan> {
                   ),
                 ],
               ),
-              height: MediaQuery.of(context).size.height / 1.4,
+              height: MediaQuery.of(context).size.height / 2,
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
@@ -273,164 +273,166 @@ class _detaillapanganState extends State<detaillapangan> {
                           margin: EdgeInsets.only(top: 24),
                           child: HeadingText.withColor(
                               "Pilih Kategori", 20, primary_color)),
-                      SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(children: [
-                          Container(
-                            margin: EdgeInsets.fromLTRB(0, 0, 32, 0),
-                            child: Column(
-                              children: [
-                                GestureDetector(
-                                  onTap: () {
-                                    Navigator.push(context,
-                                        MaterialPageRoute(builder: (context) {
-                                      return BookingLapangan();
-                                    }));
-                                  }, // handle your image tap here
-                                  child: Image.asset(
-                                    'assets/images/basketball.png',
-                                    fit: BoxFit
-                                        .fill, // this is the solution for border
-                                  ),
-                                ),
-                                Container(
-                                  margin: EdgeInsets.fromLTRB(0, 8, 0, 0),
-                                  child: Text(
-                                    "Basket",
-                                    style: TextStyle(
-                                        color: primary_color,
-                                        fontFamily: 'Ubuntu',
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.fromLTRB(0, 16, 32, 0),
-                            child: Column(
-                              children: [
-                                RaisedButton(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(32)),
-                                  color: primary_color,
-                                  child: Container(
-                                    width: 48,
-                                    height: 73,
-                                    decoration: BoxDecoration(),
+                      Container(
+                        margin: EdgeInsets.only(top: 24),
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(children: [
+                            Container(
+                              margin: EdgeInsets.fromLTRB(0, 0, 32, 0),
+                              child: Column(
+                                children: [
+                                  GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(context,
+                                          MaterialPageRoute(builder: (context) {
+                                        return BookingLapangan();
+                                      }));
+                                    }, // handle your image tap here
                                     child: Image.asset(
-                                        "assets/images/basketball.png"),
+                                      'assets/images/basketball.png',
+                                      fit: BoxFit
+                                          .fill, // this is the solution for border
+                                    ),
                                   ),
-                                  onPressed: () {},
-                                ),
-                                Container(
-                                  margin: EdgeInsets.fromLTRB(0, 8, 0, 0),
-                                  child: Text(
-                                    "Basket",
-                                    style: TextStyle(
-                                        color: primary_color,
-                                        fontFamily: 'Ubuntu',
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                )
-                              ],
+                                  Container(
+                                    margin: EdgeInsets.fromLTRB(0, 8, 0, 0),
+                                    child: Text(
+                                      "Basket",
+                                      style: TextStyle(
+                                          color: primary_color,
+                                          fontFamily: 'Ubuntu',
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  )
+                                ],
+                              ),
                             ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.fromLTRB(0, 16, 32, 0),
-                            child: Column(
-                              children: [
-                                RaisedButton(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(32)),
-                                  color: primary_color,
-                                  child: Container(
-                                    width: 48,
-                                    height: 73,
-                                    decoration: BoxDecoration(),
+                            Container(
+                              margin: EdgeInsets.fromLTRB(0, 0, 32, 0),
+                              child: Column(
+                                children: [
+                                  GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(context,
+                                          MaterialPageRoute(builder: (context) {
+                                        return BookingLapangan();
+                                      }));
+                                    }, // handle your image tap here
                                     child: Image.asset(
-                                        "assets/images/basketball.png"),
+                                      'assets/images/basketball.png',
+                                      fit: BoxFit
+                                          .fill, // this is the solution for border
+                                    ),
                                   ),
-                                  onPressed: () {},
-                                ),
-                                Container(
-                                  margin: EdgeInsets.fromLTRB(0, 8, 0, 0),
-                                  child: Text(
-                                    "Futsal",
-                                    style: TextStyle(
-                                        color: primary_color,
-                                        fontFamily: 'Ubuntu',
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                )
-                              ],
+                                  Container(
+                                    margin: EdgeInsets.fromLTRB(0, 8, 0, 0),
+                                    child: Text(
+                                      "Basket",
+                                      style: TextStyle(
+                                          color: primary_color,
+                                          fontFamily: 'Ubuntu',
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  )
+                                ],
+                              ),
                             ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.fromLTRB(0, 16, 32, 0),
-                            child: Column(
-                              children: [
-                                RaisedButton(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(32)),
-                                  color: primary_color,
-                                  child: Container(
-                                    width: 48,
-                                    height: 73,
-                                    decoration: BoxDecoration(),
+                            Container(
+                              margin: EdgeInsets.fromLTRB(0, 0, 32, 0),
+                              child: Column(
+                                children: [
+                                  GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(context,
+                                          MaterialPageRoute(builder: (context) {
+                                        return BookingLapangan();
+                                      }));
+                                    }, // handle your image tap here
                                     child: Image.asset(
-                                        "assets/images/basketball.png"),
+                                      'assets/images/basketball.png',
+                                      fit: BoxFit
+                                          .fill, // this is the solution for border
+                                    ),
                                   ),
-                                  onPressed: () {},
-                                ),
-                                Container(
-                                  margin: EdgeInsets.fromLTRB(0, 8, 0, 0),
-                                  child: Text(
-                                    "Badminton",
-                                    style: TextStyle(
-                                        color: primary_color,
-                                        fontFamily: 'Ubuntu',
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                )
-                              ],
+                                  Container(
+                                    margin: EdgeInsets.fromLTRB(0, 8, 0, 0),
+                                    child: Text(
+                                      "Basket",
+                                      style: TextStyle(
+                                          color: primary_color,
+                                          fontFamily: 'Ubuntu',
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  )
+                                ],
+                              ),
                             ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.fromLTRB(0, 16, 32, 0),
-                            child: Column(
-                              children: [
-                                RaisedButton(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(32)),
-                                  color: primary_color,
-                                  child: Container(
-                                      width: 48,
-                                      height: 73,
-                                      decoration: BoxDecoration(),
-                                      child: Stack(
-                                        fit: StackFit.expand,
-                                        children: [
-                                          Image.asset(
-                                              "assets/images/basketball.png"),
-                                        ],
-                                      )),
-                                  onPressed: () {},
-                                ),
-                                Container(
-                                  margin: EdgeInsets.fromLTRB(0, 8, 0, 0),
-                                  child: Text(
-                                    "Ping Pong",
-                                    style: TextStyle(
-                                        color: primary_color,
-                                        fontFamily: 'Ubuntu',
-                                        fontWeight: FontWeight.bold),
+                            Container(
+                              margin: EdgeInsets.fromLTRB(0, 0, 32, 0),
+                              child: Column(
+                                children: [
+                                  GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(context,
+                                          MaterialPageRoute(builder: (context) {
+                                        return BookingLapangan();
+                                      }));
+                                    }, // handle your image tap here
+                                    child: Image.asset(
+                                      'assets/images/basketball.png',
+                                      fit: BoxFit
+                                          .fill, // this is the solution for border
+                                    ),
                                   ),
-                                )
-                              ],
+                                  Container(
+                                    margin: EdgeInsets.fromLTRB(0, 8, 0, 0),
+                                    child: Text(
+                                      "Basket",
+                                      style: TextStyle(
+                                          color: primary_color,
+                                          fontFamily: 'Ubuntu',
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  )
+                                ],
+                              ),
                             ),
-                          ),
-                        ]),
+                            Container(
+                              margin: EdgeInsets.fromLTRB(0, 0, 32, 0),
+                              child: Column(
+                                children: [
+                                  GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(context,
+                                          MaterialPageRoute(builder: (context) {
+                                        return BookingLapangan();
+                                      }));
+                                    }, // handle your image tap here
+                                    child: Image.asset(
+                                      'assets/images/basketball.png',
+                                      fit: BoxFit
+                                          .fill, // this is the solution for border
+                                    ),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.fromLTRB(0, 8, 0, 0),
+                                    child: Text(
+                                      "Basket",
+                                      style: TextStyle(
+                                          color: primary_color,
+                                          fontFamily: 'Ubuntu',
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ]),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 40,
                       )
                     ],
                   ),
