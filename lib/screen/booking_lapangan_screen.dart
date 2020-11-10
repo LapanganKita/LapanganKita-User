@@ -1122,7 +1122,35 @@ class _BookingLapanganState extends State<BookingLapangan> {
                             )
                           ],
                         )),
-                        Text("Detail"),
+                        Container(
+                            margin: EdgeInsets.only(left: 24, top: 16),
+                            child: Column(
+                              children: [
+                                Container(
+                                  child: Text(
+                                    "Lorem Ipsum is simply dummy text of the printing  and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley ",
+                                    style: TextStyle(
+                                        fontSize: 14, fontFamily: "Ubuntu"),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 16,
+                                ),
+                                Container(
+                                  child: Align(
+                                    alignment: Alignment.topLeft,
+                                    child: Text(
+                                      "Location",
+                                      style: TextStyle(
+                                          color: primary_color,
+                                          fontFamily: "Ubuntu",
+                                          fontSize: 32,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            )),
                         Text("Reviw")
                       ])),
                 ),
