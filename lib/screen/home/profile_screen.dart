@@ -94,10 +94,7 @@ class _profile_screenState extends State<profile_screen> {
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(32)),
-                margin: EdgeInsets.only(
-                  right: 32,
-                  top: 32
-                ),
+                margin: EdgeInsets.only(right: 32, top: 32),
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height / 2.3,
                 child: Column(
