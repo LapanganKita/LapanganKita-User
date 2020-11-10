@@ -5,6 +5,7 @@ import 'package:lapangankita_user/components/heading_text.dart';
 import 'package:lapangankita_user/screen/listLapangan_screen.dart';
 import 'package:lapangankita_user/components/constant.dart' show primary_color;
 import 'package:lapangankita_user/net/firebase.dart';
+import 'package:lapangankita_user/screen/viewmore/viewmore_favorite.dart';
 
 class homeScreen extends StatefulWidget {
   @override
@@ -13,11 +14,9 @@ class homeScreen extends StatefulWidget {
 
 class _homeScreenState extends State<homeScreen> {
   @override
-
   Widget build(BuildContext context) {
-    
     Joni.Currentusername();
-    
+
     return Scaffold(
       body: Container(
           child: Stack(
@@ -151,9 +150,7 @@ class _homeScreenState extends State<homeScreen> {
                                   child: Image.asset(
                                       "assets/images/basketball.png"),
                                 ),
-                                onPressed: () {
-                                  
-                                },
+                                onPressed: () {},
                               ),
                               Container(
                                 margin: EdgeInsets.fromLTRB(0, 8, 0, 0),
@@ -238,7 +235,12 @@ class _homeScreenState extends State<homeScreen> {
                                 child: Align(
                                   alignment: Alignment.centerRight,
                                   child: GestureDetector(
-                                    onTap: () {},
+                                    onTap: () {
+                                      Navigator.push(context,
+                                          MaterialPageRoute(builder: (context) {
+                                        return viewMoreFavorite();
+                                      }));
+                                    },
                                     child: Text("View More"),
                                   ),
                                 ),
