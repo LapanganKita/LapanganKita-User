@@ -14,12 +14,12 @@ class homeScreen extends StatefulWidget {
 
 class _homeScreenState extends State<homeScreen> {
   @override
-  Widget build(BuildContext context) {
-    void initState() {
-      super.initState();
-      Joni.Currentusername();
-    }
+  void initState() {
+    super.initState();
+    Joni.Currentusername();
+  }
 
+  Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
           child: Stack(
