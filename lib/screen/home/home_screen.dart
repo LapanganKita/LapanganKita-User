@@ -15,7 +15,10 @@ class homeScreen extends StatefulWidget {
 class _homeScreenState extends State<homeScreen> {
   @override
   Widget build(BuildContext context) {
-    Joni.Currentusername();
+    void initState() {
+      super.initState();
+      Joni.Currentusername();
+    }
 
     return Scaffold(
       body: Container(
