@@ -171,8 +171,8 @@ class _profile_screenState extends State<profile_screen> {
                     ),
                     Divider(indent: 32, endIndent: 32, thickness: 2),
                     GestureDetector(
-                      onTap: () {
-                        print("Pressed");
+                      onTap: () async {
+                        await _auth.signOut();
                       },
                       child: Container(
                         margin: EdgeInsets.only(left: 35),
