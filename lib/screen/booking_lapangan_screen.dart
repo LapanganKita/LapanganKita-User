@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:lapangankita_user/components/heading_text.dart';
 import 'package:lapangankita_user/components/constant.dart' show primary_color;
+import 'package:lapangankita_user/net/firebase.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class BookingLapangan extends StatefulWidget {
@@ -1109,7 +1110,11 @@ class _BookingLapanganState extends State<BookingLapangan> {
                                     borderRadius: BorderRadius.circular(24.0)),
                                 color: primary_color,
                                 textColor: Colors.white,
-                                onPressed: () {},
+                                onPressed: () {
+                                  String tanggal = _controller.selectedDay.toIso8601String();
+                                  String tanggalfix = tanggal.substring(0 , tanggal.indexOf("T"));
+                                  AddTransaction("partnerid", "fieldid", tanggalfix, selectedPilihWaktu, "subtotal", "status", "couponid", "total", DateTime.now());
+                                },
                                 child: Text(
                                   "Booking Lapangan",
                                   style: TextStyle(
