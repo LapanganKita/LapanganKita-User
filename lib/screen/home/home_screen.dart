@@ -91,7 +91,7 @@ class _homeScreenState extends State<homeScreen> {
                                 onPressed: () {
                                   Navigator.push(context,
                                       MaterialPageRoute(builder: (context) {
-                                    return listLapangan();
+                                    return listLapangan(tipe : "Basket");
                                   }));
                                 },
                               ),
@@ -123,7 +123,12 @@ class _homeScreenState extends State<homeScreen> {
                                   child: Image.asset(
                                       "assets/images/basketball.png"),
                                 ),
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.push(context,
+                                      MaterialPageRoute(builder: (context) {
+                                    return listLapangan(tipe : "Futsal");
+                                  }));
+                                },
                               ),
                               Container(
                                 margin: EdgeInsets.fromLTRB(0, 8, 0, 0),
@@ -153,7 +158,12 @@ class _homeScreenState extends State<homeScreen> {
                                   child: Image.asset(
                                       "assets/images/basketball.png"),
                                 ),
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.push(context,
+                                      MaterialPageRoute(builder: (context) {
+                                    return listLapangan(tipe : "Badminton");
+                                  }));
+                                },
                               ),
                               Container(
                                 margin: EdgeInsets.fromLTRB(0, 8, 0, 0),
@@ -187,7 +197,12 @@ class _homeScreenState extends State<homeScreen> {
                                             "assets/images/basketball.png"),
                                       ],
                                     )),
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.push(context,
+                                      MaterialPageRoute(builder: (context) {
+                                    return listLapangan(tipe : "pingpong");
+                                  }));
+                                },
                               ),
                               Container(
                                 margin: EdgeInsets.fromLTRB(0, 8, 0, 0),
