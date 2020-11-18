@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lapangankita_user/components/constant.dart';
 import 'package:lapangankita_user/components/heading_text.dart';
 import 'package:lapangankita_user/components/constant.dart' show primary_color;
-import 'package:lapangankita_user/screen/detailLapangan_screen.dart';
+import 'package:lapangankita_user/screen/detail_lapangan_screen.dart';
 
 class historyScreen extends StatefulWidget {
   @override

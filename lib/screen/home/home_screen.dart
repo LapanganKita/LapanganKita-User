@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:lapangankita_user/components/constant.dart';
 import 'package:lapangankita_user/components/heading_text.dart';
-import 'package:lapangankita_user/screen/listLapangan_screen.dart';
+import 'package:lapangankita_user/screen/list_lapangan_screen.dart';
 import 'package:lapangankita_user/components/constant.dart' show primary_color;
 import 'package:lapangankita_user/net/firebase.dart';
 import 'package:lapangankita_user/screen/viewmore/viewmore_favorite.dart';

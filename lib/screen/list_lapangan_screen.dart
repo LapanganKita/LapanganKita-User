@@ -1,23 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:lapangankita_user/components/constant.dart';
 import 'package:lapangankita_user/components/heading_text.dart';
-import 'package:lapangankita_user/components/constant.dart' show primary_color;
-import 'package:lapangankita_user/net/firebase.dart';
 import 'package:lapangankita_user/screen/detail_lapangan_screen.dart';
+import 'package:lapangankita_user/components/constant.dart' show primary_color;
 
-class viewMoreFavorite extends StatefulWidget {
+class listLapangan extends StatefulWidget {
   @override
-  _viewMoreFavoriteState createState() => _viewMoreFavoriteState();
+  _listLapanganState createState() => _listLapanganState();
 }
 
-class _viewMoreFavoriteState extends State<viewMoreFavorite> {
+class _listLapanganState extends State<listLapangan> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
           backgroundColor: primary_color,
           title: Text(
-            "Favorite",
+            "List Lapangan",
           )),
       body: Container(
           child: Container(
