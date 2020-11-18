@@ -381,7 +381,8 @@ class _listLapanganState extends State<listLapangan> {
                           // ),
                           StreamBuilder(
                               stream: FirebaseFirestore.instance
-                                  .collection('Lapangan').where("jenis",isEqualTo:'${widget.tipe}')
+                                  .collection('Lapangan')
+                                  .where("jenis", isEqualTo: '${widget.tipe}')
                                   .snapshots(),
                               builder: (BuildContext context,
                                   AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -389,7 +390,7 @@ class _listLapanganState extends State<listLapangan> {
                                   return Center(
                                     child: CircularProgressIndicator(),
                                   );
-                                }else{
+                                } else {
                                   print(snapshot);
                                   print("${widget.tipe}");
                                 }
@@ -405,7 +406,13 @@ class _listLapanganState extends State<listLapangan> {
                                         child: InkWell(
                                           splashColor:
                                               Colors.blue.withAlpha(30),
-                                          onTap: () {},
+                                          onTap: () {
+                                            Navigator.pushReplacement(context,
+                                                MaterialPageRoute(
+                                                    builder: (context) {
+                                              return detaillapangan();
+                                            }));
+                                          },
                                           child: Container(
                                               child: Stack(
                                             fit: StackFit.expand,
