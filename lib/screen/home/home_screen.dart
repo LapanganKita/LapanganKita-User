@@ -36,9 +36,11 @@ class _homeScreenState extends State<homeScreen> {
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Container(
-                        margin: EdgeInsets.only(left: 32, top: 48),
+                        margin: EdgeInsets.only(
+                            left: MediaQuery.of(context).size.width / 14,
+                            top: MediaQuery.of(context).size.height / 14),
                         child: Text(
-                          "Welcome",
+                          "Welcome,",
                           style: TextStyle(
                               fontFamily: 'Ubuntu',
                               fontSize: 25,
@@ -61,11 +63,15 @@ class _homeScreenState extends State<homeScreen> {
                     ),
                     Container(
                       alignment: Alignment.centerLeft,
-                      margin: EdgeInsets.only(left: 32, top: 32, bottom: 16),
+                      margin: EdgeInsets.only(
+                        left: MediaQuery.of(context).size.width / 14,
+                        top: MediaQuery.of(context).size.height / 24,
+                      ),
+                      // bottom: MediaQuery.of(context).size.height / 96),
                       child: Text("Category : ",
                           style: TextStyle(
                               fontFamily: 'Ubuntu',
-                              fontSize: 15,
+                              fontSize: 18,
                               fontWeight: FontWeight.bold,
                               color: Colors.white)),
                     ),
@@ -91,7 +97,7 @@ class _homeScreenState extends State<homeScreen> {
                                 onPressed: () {
                                   Navigator.push(context,
                                       MaterialPageRoute(builder: (context) {
-                                    return listLapangan(tipe : "Basket");
+                                    return listLapangan(tipe: "Basket");
                                   }));
                                 },
                               ),
@@ -126,7 +132,7 @@ class _homeScreenState extends State<homeScreen> {
                                 onPressed: () {
                                   Navigator.push(context,
                                       MaterialPageRoute(builder: (context) {
-                                    return listLapangan(tipe : "Futsal");
+                                    return listLapangan(tipe: "Futsal");
                                   }));
                                 },
                               ),
@@ -161,7 +167,7 @@ class _homeScreenState extends State<homeScreen> {
                                 onPressed: () {
                                   Navigator.push(context,
                                       MaterialPageRoute(builder: (context) {
-                                    return listLapangan(tipe : "Badminton");
+                                    return listLapangan(tipe: "Badminton");
                                   }));
                                 },
                               ),
@@ -200,7 +206,7 @@ class _homeScreenState extends State<homeScreen> {
                                 onPressed: () {
                                   Navigator.push(context,
                                       MaterialPageRoute(builder: (context) {
-                                    return listLapangan(tipe : "pingpong");
+                                    return listLapangan(tipe: "pingpong");
                                   }));
                                 },
                               ),
@@ -837,8 +843,8 @@ class _homeScreenState extends State<homeScreen> {
                 ),
               );
             },
-            initialChildSize: 0.5,
-            minChildSize: 0.5,
+            initialChildSize: 0.55,
+            minChildSize: 0.55,
             maxChildSize: 0.8,
           ),
         ],
