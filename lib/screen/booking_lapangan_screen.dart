@@ -7,6 +7,8 @@ import 'package:table_calendar/table_calendar.dart';
 
 class BookingLapangan extends StatefulWidget {
   @override
+  String lapanganid = "";
+  BookingLapangan({Key key, this.lapanganid}) : super(key: key);
   _BookingLapanganState createState() => _BookingLapanganState();
 }
 
