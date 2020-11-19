@@ -62,7 +62,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 controller: nameController,
                 validator: (val) => val.isEmpty ? 'Enter Your Full Name' : null,
                 onChanged: (val) {
-                  setState(() => fullName = val);
+                  setState(() => fullName = val.trim());
                 },
                 cursorColor: Theme.of(context).cursorColor,
                 decoration: InputDecoration(
@@ -82,7 +82,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 controller: emailController,
                 validator: (val) => val.isEmpty ? 'Enter Your Email' : null,
                 onChanged: (val) {
-                  setState(() => email = val);
+                  setState(() => email = val.trim());
                 },
                 cursorColor: Theme.of(context).cursorColor,
                 decoration: InputDecoration(
