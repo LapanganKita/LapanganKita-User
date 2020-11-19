@@ -53,7 +53,7 @@ class _loginScreenState extends State<loginScreen> {
                       validator: (val) =>
                           val.isEmpty ? 'Enter Your Email' : null,
                       onChanged: (val) {
-                        setState(() => email = val);
+                        setState(() => email = val.trim());
                       },
                       controller: emailController,
                       cursorColor: Theme.of(context).cursorColor,
