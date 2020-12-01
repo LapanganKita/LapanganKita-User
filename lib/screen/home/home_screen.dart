@@ -5,7 +5,7 @@ import 'package:lapangankita_user/components/heading_text.dart';
 import 'package:lapangankita_user/screen/detail_lapangan_screen.dart';
 import 'package:lapangankita_user/screen/list_lapangan_screen.dart';
 import 'package:lapangankita_user/components/constant.dart' show primary_color;
-import 'package:lapangankita_user/net/firebase.dart';
+import 'package:lapangankita_user/databaseManager/firebase.dart';
 import 'package:lapangankita_user/screen/viewmore/viewmore_favorite.dart';
 
 class homeScreen extends StatefulWidget {
@@ -581,130 +581,137 @@ class _homeScreenState extends State<homeScreen> {
                           child: Column(
                             children: [
                               StreamBuilder(
-                              stream: FirebaseFirestore.instance
-                                  .collection('Lapangan')
-                                  .snapshots(),
-                              builder: (BuildContext context,
-                                  AsyncSnapshot<QuerySnapshot> snapshot) {
-                                if (!snapshot.hasData) {
-                                  return Center(
-                                    child: CircularProgressIndicator(),
-                                  );
-                                } else {
-                                  print(snapshot);
-                                }
-                                return Column(
-                                    children: snapshot.data.docs
-                                        .map((DocumentSnapshot document) {
-                                  return Center(
-                                    child: Container(
-                                      width: MediaQuery.of(context).size.width -
-                                          72,
-                                      height: 180,
-                                      child: Card(
-                                        child: InkWell(
-                                          splashColor:
-                                              Colors.blue.withAlpha(30),
-                                          onTap: () {
-                                            Navigator.pushReplacement(context,
-                                                MaterialPageRoute(
-                                                    builder: (context) {
-                                              return detaillapangan();
-                                            }));
-                                          },
-                                          child: Container(
-                                              child: Stack(
-                                            fit: StackFit.expand,
-                                            alignment: Alignment.bottomLeft,
-                                            children: [
-                                              Container(
-                                                child: Image.network(
-                                                  "https://images.unsplash.com/photo-1464983308776-3c7215084895?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80",
-                                                  fit: BoxFit.cover,
-                                                ),
-                                              ),
-                                              Positioned(
-                                                bottom: 0,
-                                                left: 0,
-                                                width: MediaQuery.of(context)
-                                                        .size
-                                                        .width -
-                                                    80,
-                                                child: Container(
-                                                  padding: EdgeInsets.all(8),
-                                                  decoration: BoxDecoration(
-                                                    color: Colors.white60,
-                                                    borderRadius:
-                                                        BorderRadius.only(
-                                                            topRight: Radius
-                                                                .circular(8),
-                                                            topLeft:
-                                                                Radius.circular(
-                                                                    8)),
+                                  stream: FirebaseFirestore.instance
+                                      .collection('Lapangan')
+                                      .snapshots(),
+                                  builder: (BuildContext context,
+                                      AsyncSnapshot<QuerySnapshot> snapshot) {
+                                    if (!snapshot.hasData) {
+                                      return Center(
+                                        child: CircularProgressIndicator(),
+                                      );
+                                    } else {
+                                      print(snapshot);
+                                    }
+                                    return Column(
+                                        children: snapshot.data.docs
+                                            .map((DocumentSnapshot document) {
+                                      return Center(
+                                        child: Container(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width -
+                                              72,
+                                          height: 180,
+                                          child: Card(
+                                            child: InkWell(
+                                              splashColor:
+                                                  Colors.blue.withAlpha(30),
+                                              onTap: () {
+                                                Navigator.pushReplacement(
+                                                    context, MaterialPageRoute(
+                                                        builder: (context) {
+                                                  return detaillapangan();
+                                                }));
+                                              },
+                                              child: Container(
+                                                  child: Stack(
+                                                fit: StackFit.expand,
+                                                alignment: Alignment.bottomLeft,
+                                                children: [
+                                                  Container(
+                                                    child: Image.network(
+                                                      "https://images.unsplash.com/photo-1464983308776-3c7215084895?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80",
+                                                      fit: BoxFit.cover,
+                                                    ),
                                                   ),
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Column(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: <Widget>[
-                                                          HeadingText.withColor(
-                                                            document.data()[
-                                                                "details"],
-                                                            16,
-                                                            primary_color,
-                                                          ),
-                                                          Row(
-                                                            children: [
-                                                              Icon(
-                                                                Icons
-                                                                    .location_on,
-                                                              ),
-                                                              Text(
-                                                                "Location",
-                                                              ),
-                                                            ],
-                                                          )
-                                                        ],
+                                                  Positioned(
+                                                    bottom: 0,
+                                                    left: 0,
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width -
+                                                            80,
+                                                    child: Container(
+                                                      padding:
+                                                          EdgeInsets.all(8),
+                                                      decoration: BoxDecoration(
+                                                        color: Colors.white60,
+                                                        borderRadius:
+                                                            BorderRadius.only(
+                                                                topRight: Radius
+                                                                    .circular(
+                                                                        8),
+                                                                topLeft: Radius
+                                                                    .circular(
+                                                                        8)),
                                                       ),
-                                                      Column(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .end,
+                                                      child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
                                                         children: [
-                                                          Row(
-                                                            children: [
-                                                              Icon(Icons
-                                                                  .star_border),
-                                                              Icon(Icons
-                                                                  .star_border),
-                                                              Icon(Icons
-                                                                  .star_border),
-                                                              Icon(Icons
-                                                                  .star_border),
+                                                          Column(
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .start,
+                                                            children: <Widget>[
+                                                              HeadingText
+                                                                  .withColor(
+                                                                document.data()[
+                                                                    "details"],
+                                                                16,
+                                                                primary_color,
+                                                              ),
+                                                              Row(
+                                                                children: [
+                                                                  Icon(
+                                                                    Icons
+                                                                        .location_on,
+                                                                  ),
+                                                                  Text(
+                                                                    "Location",
+                                                                  ),
+                                                                ],
+                                                              )
                                                             ],
                                                           ),
-                                                          Text(document
-                                                              .data()["harga"])
+                                                          Column(
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .end,
+                                                            children: [
+                                                              Row(
+                                                                children: [
+                                                                  Icon(Icons
+                                                                      .star_border),
+                                                                  Icon(Icons
+                                                                      .star_border),
+                                                                  Icon(Icons
+                                                                      .star_border),
+                                                                  Icon(Icons
+                                                                      .star_border),
+                                                                ],
+                                                              ),
+                                                              Text(document
+                                                                      .data()[
+                                                                  "harga"])
+                                                            ],
+                                                          ),
                                                         ],
                                                       ),
-                                                    ],
+                                                    ),
                                                   ),
-                                                ),
-                                              ),
-                                            ],
-                                          )),
+                                                ],
+                                              )),
+                                            ),
+                                            elevation: 8,
+                                          ),
                                         ),
-                                        elevation: 8,
-                                      ),
-                                    ),
-                                  );
-                                }).toList());
-                              })
+                                      );
+                                    }).toList());
+                                  })
                             ],
                           ),
                         )

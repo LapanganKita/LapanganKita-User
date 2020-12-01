@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:lapangankita_user/components/navbar.dart';
 import 'package:lapangankita_user/components/heading_text.dart';
 import 'package:lapangankita_user/components/constant.dart' show primary_color;
-import 'package:lapangankita_user/net/firebase.dart';
+import 'package:lapangankita_user/databaseManager/firebase.dart';
 import 'package:lapangankita_user/screen/services/auth.dart';
 
 class RegisterScreen extends StatefulWidget {

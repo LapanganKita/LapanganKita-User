@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:lapangankita_user/components/heading_text.dart';
 import 'package:lapangankita_user/components/constant.dart' show primary_color;
-import 'package:lapangankita_user/net/firebase.dart';
+import 'package:lapangankita_user/databaseManager/firebase.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class BookingLapangan extends StatefulWidget {
@@ -49,7 +49,8 @@ class _BookingLapanganState extends State<BookingLapangan> {
                           height: MediaQuery.of(context).size.height / 3,
                           autoPlay: true,
                           autoPlayInterval: Duration(seconds: 3),
-                          autoPlayAnimationDuration: Duration(milliseconds: 800),
+                          autoPlayAnimationDuration:
+                              Duration(milliseconds: 800),
                           autoPlayCurve: Curves.fastOutSlowIn,
                           pauseAutoPlayOnTouch: true,
                           aspectRatio: 2.0,
@@ -225,7 +226,8 @@ class _BookingLapanganState extends State<BookingLapangan> {
                                       color: primary_color,
                                       size: 16,
                                     ),
-                                    leftChevronMargin: EdgeInsets.only(left: 72),
+                                    leftChevronMargin:
+                                        EdgeInsets.only(left: 72),
                                     rightChevronMargin:
                                         EdgeInsets.only(right: 72)),
                               ),
@@ -259,13 +261,13 @@ class _BookingLapanganState extends State<BookingLapangan> {
                                       margin: EdgeInsets.only(left: 24),
                                       height: 56,
                                       width: 56,
-                                      decoration:
-                                          (selectedNomerLapangan == "lapangan1")
-                                              ? BoxDecoration(
-                                                  color: primary_color,
-                                                  borderRadius: BorderRadius.all(
-                                                      Radius.circular(16)))
-                                              : BoxDecoration(),
+                                      decoration: (selectedNomerLapangan ==
+                                              "lapangan1")
+                                          ? BoxDecoration(
+                                              color: primary_color,
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(16)))
+                                          : BoxDecoration(),
                                       child: Center(
                                         child: Text(
                                           "1",
@@ -288,13 +290,13 @@ class _BookingLapanganState extends State<BookingLapangan> {
                                       margin: EdgeInsets.only(left: 24),
                                       height: 56,
                                       width: 56,
-                                      decoration:
-                                          (selectedNomerLapangan == "lapangan2")
-                                              ? BoxDecoration(
-                                                  color: primary_color,
-                                                  borderRadius: BorderRadius.all(
-                                                      Radius.circular(16)))
-                                              : BoxDecoration(),
+                                      decoration: (selectedNomerLapangan ==
+                                              "lapangan2")
+                                          ? BoxDecoration(
+                                              color: primary_color,
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(16)))
+                                          : BoxDecoration(),
                                       child: Center(
                                         child: Text(
                                           "2",
@@ -317,13 +319,13 @@ class _BookingLapanganState extends State<BookingLapangan> {
                                       margin: EdgeInsets.only(left: 24),
                                       height: 56,
                                       width: 56,
-                                      decoration:
-                                          (selectedNomerLapangan == "lapangan3")
-                                              ? BoxDecoration(
-                                                  color: primary_color,
-                                                  borderRadius: BorderRadius.all(
-                                                      Radius.circular(16)))
-                                              : BoxDecoration(),
+                                      decoration: (selectedNomerLapangan ==
+                                              "lapangan3")
+                                          ? BoxDecoration(
+                                              color: primary_color,
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(16)))
+                                          : BoxDecoration(),
                                       child: Center(
                                         child: Text(
                                           "3",
@@ -370,26 +372,32 @@ class _BookingLapanganState extends State<BookingLapangan> {
                                           },
                                           child: Container(
                                             height: 60,
-                                            width: MediaQuery.of(context).size.width/5,
-                                            decoration:
-                                                (selectedPilihWaktu == "00.00")
-                                                    ? BoxDecoration(
-                                                        color: primary_color,
-                                                        borderRadius:
-                                                            BorderRadius.circular(
-                                                                8.0))
-                                                    : BoxDecoration(),
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                5,
+                                            decoration: (selectedPilihWaktu ==
+                                                    "00.00")
+                                                ? BoxDecoration(
+                                                    color: primary_color,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0))
+                                                : BoxDecoration(),
                                             child: Center(
                                               child: Text(
                                                 "00.00",
                                                 style: TextStyle(
-                                                    color: (selectedPilihWaktu ==
-                                                            "00.00")
-                                                        ? Colors.white
-                                                        : Colors.grey
-                                                            .withOpacity(0.4),
+                                                    color:
+                                                        (selectedPilihWaktu ==
+                                                                "00.00")
+                                                            ? Colors.white
+                                                            : Colors.grey
+                                                                .withOpacity(
+                                                                    0.4),
                                                     fontSize: 18,
-                                                    fontWeight: FontWeight.w600),
+                                                    fontWeight:
+                                                        FontWeight.w600),
                                               ),
                                             ),
                                           ),
@@ -400,26 +408,32 @@ class _BookingLapanganState extends State<BookingLapangan> {
                                           },
                                           child: Container(
                                             height: 60,
-                                            width: MediaQuery.of(context).size.width/5,
-                                            decoration:
-                                                (selectedPilihWaktu == "01.00")
-                                                    ? BoxDecoration(
-                                                        color: primary_color,
-                                                        borderRadius:
-                                                            BorderRadius.circular(
-                                                                8.0))
-                                                    : BoxDecoration(),
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                5,
+                                            decoration: (selectedPilihWaktu ==
+                                                    "01.00")
+                                                ? BoxDecoration(
+                                                    color: primary_color,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0))
+                                                : BoxDecoration(),
                                             child: Center(
                                               child: Text(
                                                 "01.00",
                                                 style: TextStyle(
-                                                    color: (selectedPilihWaktu ==
-                                                            "01.00")
-                                                        ? Colors.white
-                                                        : Colors.grey
-                                                            .withOpacity(0.4),
+                                                    color:
+                                                        (selectedPilihWaktu ==
+                                                                "01.00")
+                                                            ? Colors.white
+                                                            : Colors.grey
+                                                                .withOpacity(
+                                                                    0.4),
                                                     fontSize: 18,
-                                                    fontWeight: FontWeight.w600),
+                                                    fontWeight:
+                                                        FontWeight.w600),
                                               ),
                                             ),
                                           ),
@@ -430,26 +444,32 @@ class _BookingLapanganState extends State<BookingLapangan> {
                                           },
                                           child: Container(
                                             height: 60,
-                                            width: MediaQuery.of(context).size.width/5,
-                                            decoration:
-                                                (selectedPilihWaktu == "02.00")
-                                                    ? BoxDecoration(
-                                                        color: primary_color,
-                                                        borderRadius:
-                                                            BorderRadius.circular(
-                                                                8.0))
-                                                    : BoxDecoration(),
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                5,
+                                            decoration: (selectedPilihWaktu ==
+                                                    "02.00")
+                                                ? BoxDecoration(
+                                                    color: primary_color,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0))
+                                                : BoxDecoration(),
                                             child: Center(
                                               child: Text(
                                                 "02.00",
                                                 style: TextStyle(
-                                                    color: (selectedPilihWaktu ==
-                                                            "02.00")
-                                                        ? Colors.white
-                                                        : Colors.grey
-                                                            .withOpacity(0.4),
+                                                    color:
+                                                        (selectedPilihWaktu ==
+                                                                "02.00")
+                                                            ? Colors.white
+                                                            : Colors.grey
+                                                                .withOpacity(
+                                                                    0.4),
                                                     fontSize: 18,
-                                                    fontWeight: FontWeight.w600),
+                                                    fontWeight:
+                                                        FontWeight.w600),
                                               ),
                                             ),
                                           ),
@@ -460,26 +480,32 @@ class _BookingLapanganState extends State<BookingLapangan> {
                                           },
                                           child: Container(
                                             height: 60,
-                                            width: MediaQuery.of(context).size.width/5,
-                                            decoration:
-                                                (selectedPilihWaktu == "03.00")
-                                                    ? BoxDecoration(
-                                                        color: primary_color,
-                                                        borderRadius:
-                                                            BorderRadius.circular(
-                                                                8.0))
-                                                    : BoxDecoration(),
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                5,
+                                            decoration: (selectedPilihWaktu ==
+                                                    "03.00")
+                                                ? BoxDecoration(
+                                                    color: primary_color,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0))
+                                                : BoxDecoration(),
                                             child: Center(
                                               child: Text(
                                                 "03.00",
                                                 style: TextStyle(
-                                                    color: (selectedPilihWaktu ==
-                                                            "03.00")
-                                                        ? Colors.white
-                                                        : Colors.grey
-                                                            .withOpacity(0.4),
+                                                    color:
+                                                        (selectedPilihWaktu ==
+                                                                "03.00")
+                                                            ? Colors.white
+                                                            : Colors.grey
+                                                                .withOpacity(
+                                                                    0.4),
                                                     fontSize: 18,
-                                                    fontWeight: FontWeight.w600),
+                                                    fontWeight:
+                                                        FontWeight.w600),
                                               ),
                                             ),
                                           ),
@@ -496,26 +522,32 @@ class _BookingLapanganState extends State<BookingLapangan> {
                                           },
                                           child: Container(
                                             height: 60,
-                                            width: MediaQuery.of(context).size.width/5,
-                                            decoration:
-                                                (selectedPilihWaktu == "04.00")
-                                                    ? BoxDecoration(
-                                                        color: primary_color,
-                                                        borderRadius:
-                                                            BorderRadius.circular(
-                                                                8.0))
-                                                    : BoxDecoration(),
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                5,
+                                            decoration: (selectedPilihWaktu ==
+                                                    "04.00")
+                                                ? BoxDecoration(
+                                                    color: primary_color,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0))
+                                                : BoxDecoration(),
                                             child: Center(
                                               child: Text(
                                                 "04.00",
                                                 style: TextStyle(
-                                                    color: (selectedPilihWaktu ==
-                                                            "04.00")
-                                                        ? Colors.white
-                                                        : Colors.grey
-                                                            .withOpacity(0.4),
+                                                    color:
+                                                        (selectedPilihWaktu ==
+                                                                "04.00")
+                                                            ? Colors.white
+                                                            : Colors.grey
+                                                                .withOpacity(
+                                                                    0.4),
                                                     fontSize: 18,
-                                                    fontWeight: FontWeight.w600),
+                                                    fontWeight:
+                                                        FontWeight.w600),
                                               ),
                                             ),
                                           ),
@@ -526,26 +558,32 @@ class _BookingLapanganState extends State<BookingLapangan> {
                                           },
                                           child: Container(
                                             height: 60,
-                                            width: MediaQuery.of(context).size.width/5,
-                                            decoration:
-                                                (selectedPilihWaktu == "05.00")
-                                                    ? BoxDecoration(
-                                                        color: primary_color,
-                                                        borderRadius:
-                                                            BorderRadius.circular(
-                                                                8.0))
-                                                    : BoxDecoration(),
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                5,
+                                            decoration: (selectedPilihWaktu ==
+                                                    "05.00")
+                                                ? BoxDecoration(
+                                                    color: primary_color,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0))
+                                                : BoxDecoration(),
                                             child: Center(
                                               child: Text(
                                                 "05.00",
                                                 style: TextStyle(
-                                                    color: (selectedPilihWaktu ==
-                                                            "05.00")
-                                                        ? Colors.white
-                                                        : Colors.grey
-                                                            .withOpacity(0.4),
+                                                    color:
+                                                        (selectedPilihWaktu ==
+                                                                "05.00")
+                                                            ? Colors.white
+                                                            : Colors.grey
+                                                                .withOpacity(
+                                                                    0.4),
                                                     fontSize: 18,
-                                                    fontWeight: FontWeight.w600),
+                                                    fontWeight:
+                                                        FontWeight.w600),
                                               ),
                                             ),
                                           ),
@@ -556,26 +594,32 @@ class _BookingLapanganState extends State<BookingLapangan> {
                                           },
                                           child: Container(
                                             height: 60,
-                                            width: MediaQuery.of(context).size.width/5,
-                                            decoration:
-                                                (selectedPilihWaktu == "06.00")
-                                                    ? BoxDecoration(
-                                                        color: primary_color,
-                                                        borderRadius:
-                                                            BorderRadius.circular(
-                                                                8.0))
-                                                    : BoxDecoration(),
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                5,
+                                            decoration: (selectedPilihWaktu ==
+                                                    "06.00")
+                                                ? BoxDecoration(
+                                                    color: primary_color,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0))
+                                                : BoxDecoration(),
                                             child: Center(
                                               child: Text(
                                                 "06.00",
                                                 style: TextStyle(
-                                                    color: (selectedPilihWaktu ==
-                                                            "06.00")
-                                                        ? Colors.white
-                                                        : Colors.grey
-                                                            .withOpacity(0.4),
+                                                    color:
+                                                        (selectedPilihWaktu ==
+                                                                "06.00")
+                                                            ? Colors.white
+                                                            : Colors.grey
+                                                                .withOpacity(
+                                                                    0.4),
                                                     fontSize: 18,
-                                                    fontWeight: FontWeight.w600),
+                                                    fontWeight:
+                                                        FontWeight.w600),
                                               ),
                                             ),
                                           ),
@@ -586,26 +630,32 @@ class _BookingLapanganState extends State<BookingLapangan> {
                                           },
                                           child: Container(
                                             height: 60,
-                                            width: MediaQuery.of(context).size.width/5,
-                                            decoration:
-                                                (selectedPilihWaktu == "07.00")
-                                                    ? BoxDecoration(
-                                                        color: primary_color,
-                                                        borderRadius:
-                                                            BorderRadius.circular(
-                                                                8.0))
-                                                    : BoxDecoration(),
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                5,
+                                            decoration: (selectedPilihWaktu ==
+                                                    "07.00")
+                                                ? BoxDecoration(
+                                                    color: primary_color,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0))
+                                                : BoxDecoration(),
                                             child: Center(
                                               child: Text(
                                                 "07.00",
                                                 style: TextStyle(
-                                                    color: (selectedPilihWaktu ==
-                                                            "07.00")
-                                                        ? Colors.white
-                                                        : Colors.grey
-                                                            .withOpacity(0.4),
+                                                    color:
+                                                        (selectedPilihWaktu ==
+                                                                "07.00")
+                                                            ? Colors.white
+                                                            : Colors.grey
+                                                                .withOpacity(
+                                                                    0.4),
                                                     fontSize: 18,
-                                                    fontWeight: FontWeight.w600),
+                                                    fontWeight:
+                                                        FontWeight.w600),
                                               ),
                                             ),
                                           ),
@@ -622,26 +672,32 @@ class _BookingLapanganState extends State<BookingLapangan> {
                                           },
                                           child: Container(
                                             height: 60,
-                                            width: MediaQuery.of(context).size.width/5,
-                                            decoration:
-                                                (selectedPilihWaktu == "08.00")
-                                                    ? BoxDecoration(
-                                                        color: primary_color,
-                                                        borderRadius:
-                                                            BorderRadius.circular(
-                                                                8.0))
-                                                    : BoxDecoration(),
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                5,
+                                            decoration: (selectedPilihWaktu ==
+                                                    "08.00")
+                                                ? BoxDecoration(
+                                                    color: primary_color,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0))
+                                                : BoxDecoration(),
                                             child: Center(
                                               child: Text(
                                                 "08.00",
                                                 style: TextStyle(
-                                                    color: (selectedPilihWaktu ==
-                                                            "08.00")
-                                                        ? Colors.white
-                                                        : Colors.grey
-                                                            .withOpacity(0.4),
+                                                    color:
+                                                        (selectedPilihWaktu ==
+                                                                "08.00")
+                                                            ? Colors.white
+                                                            : Colors.grey
+                                                                .withOpacity(
+                                                                    0.4),
                                                     fontSize: 18,
-                                                    fontWeight: FontWeight.w600),
+                                                    fontWeight:
+                                                        FontWeight.w600),
                                               ),
                                             ),
                                           ),
@@ -652,26 +708,32 @@ class _BookingLapanganState extends State<BookingLapangan> {
                                           },
                                           child: Container(
                                             height: 60,
-                                            width: MediaQuery.of(context).size.width/5,
-                                            decoration:
-                                                (selectedPilihWaktu == "09.00")
-                                                    ? BoxDecoration(
-                                                        color: primary_color,
-                                                        borderRadius:
-                                                            BorderRadius.circular(
-                                                                8.0))
-                                                    : BoxDecoration(),
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                5,
+                                            decoration: (selectedPilihWaktu ==
+                                                    "09.00")
+                                                ? BoxDecoration(
+                                                    color: primary_color,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0))
+                                                : BoxDecoration(),
                                             child: Center(
                                               child: Text(
                                                 "09.00",
                                                 style: TextStyle(
-                                                    color: (selectedPilihWaktu ==
-                                                            "09.00")
-                                                        ? Colors.white
-                                                        : Colors.grey
-                                                            .withOpacity(0.4),
+                                                    color:
+                                                        (selectedPilihWaktu ==
+                                                                "09.00")
+                                                            ? Colors.white
+                                                            : Colors.grey
+                                                                .withOpacity(
+                                                                    0.4),
                                                     fontSize: 18,
-                                                    fontWeight: FontWeight.w600),
+                                                    fontWeight:
+                                                        FontWeight.w600),
                                               ),
                                             ),
                                           ),
@@ -682,25 +744,30 @@ class _BookingLapanganState extends State<BookingLapangan> {
                                           },
                                           child: Container(
                                             height: 60,
-                                            width: MediaQuery.of(context).size.width/5,
-                                            decoration:
-                                                (selectedPilihWaktu == "10.00")
-                                                    ? BoxDecoration(
-                                                        color: primary_color,
-                                                        borderRadius:
-                                                            BorderRadius.circular(
-                                                                8.0))
-                                                    : BoxDecoration(),
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                5,
+                                            decoration: (selectedPilihWaktu ==
+                                                    "10.00")
+                                                ? BoxDecoration(
+                                                    color: primary_color,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0))
+                                                : BoxDecoration(),
                                             child: Center(
                                               child: Text(
                                                 "10.00",
                                                 style: TextStyle(
-                                                    color: (selectedPilihWaktu ==
-                                                            "10.00")
-                                                        ? Colors.white
-                                                        : primary_color,
+                                                    color:
+                                                        (selectedPilihWaktu ==
+                                                                "10.00")
+                                                            ? Colors.white
+                                                            : primary_color,
                                                     fontSize: 18,
-                                                    fontWeight: FontWeight.w600),
+                                                    fontWeight:
+                                                        FontWeight.w600),
                                               ),
                                             ),
                                           ),
@@ -711,25 +778,30 @@ class _BookingLapanganState extends State<BookingLapangan> {
                                           },
                                           child: Container(
                                             height: 60,
-                                            width: MediaQuery.of(context).size.width/5,
-                                            decoration:
-                                                (selectedPilihWaktu == "11.00")
-                                                    ? BoxDecoration(
-                                                        color: primary_color,
-                                                        borderRadius:
-                                                            BorderRadius.circular(
-                                                                8.0))
-                                                    : BoxDecoration(),
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                5,
+                                            decoration: (selectedPilihWaktu ==
+                                                    "11.00")
+                                                ? BoxDecoration(
+                                                    color: primary_color,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0))
+                                                : BoxDecoration(),
                                             child: Center(
                                               child: Text(
                                                 "11.00",
                                                 style: TextStyle(
-                                                    color: (selectedPilihWaktu ==
-                                                            "11.00")
-                                                        ? Colors.white
-                                                        : primary_color,
+                                                    color:
+                                                        (selectedPilihWaktu ==
+                                                                "11.00")
+                                                            ? Colors.white
+                                                            : primary_color,
                                                     fontSize: 18,
-                                                    fontWeight: FontWeight.w600),
+                                                    fontWeight:
+                                                        FontWeight.w600),
                                               ),
                                             ),
                                           ),
@@ -746,25 +818,30 @@ class _BookingLapanganState extends State<BookingLapangan> {
                                           },
                                           child: Container(
                                             height: 60,
-                                            width: MediaQuery.of(context).size.width/5,
-                                            decoration:
-                                                (selectedPilihWaktu == "12.00")
-                                                    ? BoxDecoration(
-                                                        color: primary_color,
-                                                        borderRadius:
-                                                            BorderRadius.circular(
-                                                                8.0))
-                                                    : BoxDecoration(),
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                5,
+                                            decoration: (selectedPilihWaktu ==
+                                                    "12.00")
+                                                ? BoxDecoration(
+                                                    color: primary_color,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0))
+                                                : BoxDecoration(),
                                             child: Center(
                                               child: Text(
                                                 "12.00",
                                                 style: TextStyle(
-                                                    color: (selectedPilihWaktu ==
-                                                            "12.00")
-                                                        ? Colors.white
-                                                        : primary_color,
+                                                    color:
+                                                        (selectedPilihWaktu ==
+                                                                "12.00")
+                                                            ? Colors.white
+                                                            : primary_color,
                                                     fontSize: 18,
-                                                    fontWeight: FontWeight.w600),
+                                                    fontWeight:
+                                                        FontWeight.w600),
                                               ),
                                             ),
                                           ),
@@ -775,25 +852,30 @@ class _BookingLapanganState extends State<BookingLapangan> {
                                           },
                                           child: Container(
                                             height: 60,
-                                            width: MediaQuery.of(context).size.width/5,
-                                            decoration:
-                                                (selectedPilihWaktu == "13.00")
-                                                    ? BoxDecoration(
-                                                        color: primary_color,
-                                                        borderRadius:
-                                                            BorderRadius.circular(
-                                                                8.0))
-                                                    : BoxDecoration(),
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                5,
+                                            decoration: (selectedPilihWaktu ==
+                                                    "13.00")
+                                                ? BoxDecoration(
+                                                    color: primary_color,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0))
+                                                : BoxDecoration(),
                                             child: Center(
                                               child: Text(
                                                 "13.00",
                                                 style: TextStyle(
-                                                    color: (selectedPilihWaktu ==
-                                                            "13.00")
-                                                        ? Colors.white
-                                                        : primary_color,
+                                                    color:
+                                                        (selectedPilihWaktu ==
+                                                                "13.00")
+                                                            ? Colors.white
+                                                            : primary_color,
                                                     fontSize: 18,
-                                                    fontWeight: FontWeight.w600),
+                                                    fontWeight:
+                                                        FontWeight.w600),
                                               ),
                                             ),
                                           ),
@@ -804,25 +886,30 @@ class _BookingLapanganState extends State<BookingLapangan> {
                                           },
                                           child: Container(
                                             height: 60,
-                                            width: MediaQuery.of(context).size.width/5,
-                                            decoration:
-                                                (selectedPilihWaktu == "14.00")
-                                                    ? BoxDecoration(
-                                                        color: primary_color,
-                                                        borderRadius:
-                                                            BorderRadius.circular(
-                                                                8.0))
-                                                    : BoxDecoration(),
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                5,
+                                            decoration: (selectedPilihWaktu ==
+                                                    "14.00")
+                                                ? BoxDecoration(
+                                                    color: primary_color,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0))
+                                                : BoxDecoration(),
                                             child: Center(
                                               child: Text(
                                                 "14.00",
                                                 style: TextStyle(
-                                                    color: (selectedPilihWaktu ==
-                                                            "14.00")
-                                                        ? Colors.white
-                                                        : primary_color,
+                                                    color:
+                                                        (selectedPilihWaktu ==
+                                                                "14.00")
+                                                            ? Colors.white
+                                                            : primary_color,
                                                     fontSize: 18,
-                                                    fontWeight: FontWeight.w600),
+                                                    fontWeight:
+                                                        FontWeight.w600),
                                               ),
                                             ),
                                           ),
@@ -833,25 +920,30 @@ class _BookingLapanganState extends State<BookingLapangan> {
                                           },
                                           child: Container(
                                             height: 60,
-                                            width: MediaQuery.of(context).size.width/5,
-                                            decoration:
-                                                (selectedPilihWaktu == "15.00")
-                                                    ? BoxDecoration(
-                                                        color: primary_color,
-                                                        borderRadius:
-                                                            BorderRadius.circular(
-                                                                8.0))
-                                                    : BoxDecoration(),
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                5,
+                                            decoration: (selectedPilihWaktu ==
+                                                    "15.00")
+                                                ? BoxDecoration(
+                                                    color: primary_color,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0))
+                                                : BoxDecoration(),
                                             child: Center(
                                               child: Text(
                                                 "15.00",
                                                 style: TextStyle(
-                                                    color: (selectedPilihWaktu ==
-                                                            "15.00")
-                                                        ? Colors.white
-                                                        : primary_color,
+                                                    color:
+                                                        (selectedPilihWaktu ==
+                                                                "15.00")
+                                                            ? Colors.white
+                                                            : primary_color,
                                                     fontSize: 18,
-                                                    fontWeight: FontWeight.w600),
+                                                    fontWeight:
+                                                        FontWeight.w600),
                                               ),
                                             ),
                                           ),
@@ -868,25 +960,30 @@ class _BookingLapanganState extends State<BookingLapangan> {
                                           },
                                           child: Container(
                                             height: 60,
-                                            width: MediaQuery.of(context).size.width/5,
-                                            decoration:
-                                                (selectedPilihWaktu == "16.00")
-                                                    ? BoxDecoration(
-                                                        color: primary_color,
-                                                        borderRadius:
-                                                            BorderRadius.circular(
-                                                                8.0))
-                                                    : BoxDecoration(),
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                5,
+                                            decoration: (selectedPilihWaktu ==
+                                                    "16.00")
+                                                ? BoxDecoration(
+                                                    color: primary_color,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0))
+                                                : BoxDecoration(),
                                             child: Center(
                                               child: Text(
                                                 "16.00",
                                                 style: TextStyle(
-                                                    color: (selectedPilihWaktu ==
-                                                            "16.00")
-                                                        ? Colors.white
-                                                        : primary_color,
+                                                    color:
+                                                        (selectedPilihWaktu ==
+                                                                "16.00")
+                                                            ? Colors.white
+                                                            : primary_color,
                                                     fontSize: 18,
-                                                    fontWeight: FontWeight.w600),
+                                                    fontWeight:
+                                                        FontWeight.w600),
                                               ),
                                             ),
                                           ),
@@ -897,25 +994,30 @@ class _BookingLapanganState extends State<BookingLapangan> {
                                           },
                                           child: Container(
                                             height: 60,
-                                            width: MediaQuery.of(context).size.width/5,
-                                            decoration:
-                                                (selectedPilihWaktu == "17.00")
-                                                    ? BoxDecoration(
-                                                        color: primary_color,
-                                                        borderRadius:
-                                                            BorderRadius.circular(
-                                                                8.0))
-                                                    : BoxDecoration(),
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                5,
+                                            decoration: (selectedPilihWaktu ==
+                                                    "17.00")
+                                                ? BoxDecoration(
+                                                    color: primary_color,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0))
+                                                : BoxDecoration(),
                                             child: Center(
                                               child: Text(
                                                 "17.00",
                                                 style: TextStyle(
-                                                    color: (selectedPilihWaktu ==
-                                                            "17.00")
-                                                        ? Colors.white
-                                                        : primary_color,
+                                                    color:
+                                                        (selectedPilihWaktu ==
+                                                                "17.00")
+                                                            ? Colors.white
+                                                            : primary_color,
                                                     fontSize: 18,
-                                                    fontWeight: FontWeight.w600),
+                                                    fontWeight:
+                                                        FontWeight.w600),
                                               ),
                                             ),
                                           ),
@@ -926,25 +1028,30 @@ class _BookingLapanganState extends State<BookingLapangan> {
                                           },
                                           child: Container(
                                             height: 60,
-                                            width: MediaQuery.of(context).size.width/5,
-                                            decoration:
-                                                (selectedPilihWaktu == "18.00")
-                                                    ? BoxDecoration(
-                                                        color: primary_color,
-                                                        borderRadius:
-                                                            BorderRadius.circular(
-                                                                8.0))
-                                                    : BoxDecoration(),
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                5,
+                                            decoration: (selectedPilihWaktu ==
+                                                    "18.00")
+                                                ? BoxDecoration(
+                                                    color: primary_color,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0))
+                                                : BoxDecoration(),
                                             child: Center(
                                               child: Text(
                                                 "18.00",
                                                 style: TextStyle(
-                                                    color: (selectedPilihWaktu ==
-                                                            "18.00")
-                                                        ? Colors.white
-                                                        : primary_color,
+                                                    color:
+                                                        (selectedPilihWaktu ==
+                                                                "18.00")
+                                                            ? Colors.white
+                                                            : primary_color,
                                                     fontSize: 18,
-                                                    fontWeight: FontWeight.w600),
+                                                    fontWeight:
+                                                        FontWeight.w600),
                                               ),
                                             ),
                                           ),
@@ -955,25 +1062,30 @@ class _BookingLapanganState extends State<BookingLapangan> {
                                           },
                                           child: Container(
                                             height: 60,
-                                            width: MediaQuery.of(context).size.width/5,
-                                            decoration:
-                                                (selectedPilihWaktu == "19.00")
-                                                    ? BoxDecoration(
-                                                        color: primary_color,
-                                                        borderRadius:
-                                                            BorderRadius.circular(
-                                                                8.0))
-                                                    : BoxDecoration(),
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                5,
+                                            decoration: (selectedPilihWaktu ==
+                                                    "19.00")
+                                                ? BoxDecoration(
+                                                    color: primary_color,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0))
+                                                : BoxDecoration(),
                                             child: Center(
                                               child: Text(
                                                 "19.00",
                                                 style: TextStyle(
-                                                    color: (selectedPilihWaktu ==
-                                                            "19.00")
-                                                        ? Colors.white
-                                                        : primary_color,
+                                                    color:
+                                                        (selectedPilihWaktu ==
+                                                                "19.00")
+                                                            ? Colors.white
+                                                            : primary_color,
                                                     fontSize: 18,
-                                                    fontWeight: FontWeight.w600),
+                                                    fontWeight:
+                                                        FontWeight.w600),
                                               ),
                                             ),
                                           ),
@@ -990,25 +1102,30 @@ class _BookingLapanganState extends State<BookingLapangan> {
                                           },
                                           child: Container(
                                             height: 60,
-                                            width: MediaQuery.of(context).size.width/5,
-                                            decoration:
-                                                (selectedPilihWaktu == "20.00")
-                                                    ? BoxDecoration(
-                                                        color: primary_color,
-                                                        borderRadius:
-                                                            BorderRadius.circular(
-                                                                8.0))
-                                                    : BoxDecoration(),
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                5,
+                                            decoration: (selectedPilihWaktu ==
+                                                    "20.00")
+                                                ? BoxDecoration(
+                                                    color: primary_color,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0))
+                                                : BoxDecoration(),
                                             child: Center(
                                               child: Text(
                                                 "20.00",
                                                 style: TextStyle(
-                                                    color: (selectedPilihWaktu ==
-                                                            "20.00")
-                                                        ? Colors.white
-                                                        : primary_color,
+                                                    color:
+                                                        (selectedPilihWaktu ==
+                                                                "20.00")
+                                                            ? Colors.white
+                                                            : primary_color,
                                                     fontSize: 18,
-                                                    fontWeight: FontWeight.w600),
+                                                    fontWeight:
+                                                        FontWeight.w600),
                                               ),
                                             ),
                                           ),
@@ -1019,25 +1136,30 @@ class _BookingLapanganState extends State<BookingLapangan> {
                                           },
                                           child: Container(
                                             height: 60,
-                                            width: MediaQuery.of(context).size.width/5,
-                                            decoration:
-                                                (selectedPilihWaktu == "21.00")
-                                                    ? BoxDecoration(
-                                                        color: primary_color,
-                                                        borderRadius:
-                                                            BorderRadius.circular(
-                                                                8.0))
-                                                    : BoxDecoration(),
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                5,
+                                            decoration: (selectedPilihWaktu ==
+                                                    "21.00")
+                                                ? BoxDecoration(
+                                                    color: primary_color,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0))
+                                                : BoxDecoration(),
                                             child: Center(
                                               child: Text(
                                                 "21.00",
                                                 style: TextStyle(
-                                                    color: (selectedPilihWaktu ==
-                                                            "21.00")
-                                                        ? Colors.white
-                                                        : primary_color,
+                                                    color:
+                                                        (selectedPilihWaktu ==
+                                                                "21.00")
+                                                            ? Colors.white
+                                                            : primary_color,
                                                     fontSize: 18,
-                                                    fontWeight: FontWeight.w600),
+                                                    fontWeight:
+                                                        FontWeight.w600),
                                               ),
                                             ),
                                           ),
@@ -1048,25 +1170,30 @@ class _BookingLapanganState extends State<BookingLapangan> {
                                           },
                                           child: Container(
                                             height: 60,
-                                            width: MediaQuery.of(context).size.width/5,
-                                            decoration:
-                                                (selectedPilihWaktu == "22.00")
-                                                    ? BoxDecoration(
-                                                        color: primary_color,
-                                                        borderRadius:
-                                                            BorderRadius.circular(
-                                                                8.0))
-                                                    : BoxDecoration(),
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                5,
+                                            decoration: (selectedPilihWaktu ==
+                                                    "22.00")
+                                                ? BoxDecoration(
+                                                    color: primary_color,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0))
+                                                : BoxDecoration(),
                                             child: Center(
                                               child: Text(
                                                 "22.00",
                                                 style: TextStyle(
-                                                    color: (selectedPilihWaktu ==
-                                                            "22.00")
-                                                        ? Colors.white
-                                                        : primary_color,
+                                                    color:
+                                                        (selectedPilihWaktu ==
+                                                                "22.00")
+                                                            ? Colors.white
+                                                            : primary_color,
                                                     fontSize: 18,
-                                                    fontWeight: FontWeight.w600),
+                                                    fontWeight:
+                                                        FontWeight.w600),
                                               ),
                                             ),
                                           ),
@@ -1077,25 +1204,30 @@ class _BookingLapanganState extends State<BookingLapangan> {
                                           },
                                           child: Container(
                                             height: 60,
-                                            width: MediaQuery.of(context).size.width/5,
-                                            decoration:
-                                                (selectedPilihWaktu == "23.00")
-                                                    ? BoxDecoration(
-                                                        color: primary_color,
-                                                        borderRadius:
-                                                            BorderRadius.circular(
-                                                                8.0))
-                                                    : BoxDecoration(),
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                5,
+                                            decoration: (selectedPilihWaktu ==
+                                                    "23.00")
+                                                ? BoxDecoration(
+                                                    color: primary_color,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0))
+                                                : BoxDecoration(),
                                             child: Center(
                                               child: Text(
                                                 "23.00",
                                                 style: TextStyle(
-                                                    color: (selectedPilihWaktu ==
-                                                            "23.00")
-                                                        ? Colors.white
-                                                        : primary_color,
+                                                    color:
+                                                        (selectedPilihWaktu ==
+                                                                "23.00")
+                                                            ? Colors.white
+                                                            : primary_color,
                                                     fontSize: 18,
-                                                    fontWeight: FontWeight.w600),
+                                                    fontWeight:
+                                                        FontWeight.w600),
                                               ),
                                             ),
                                           ),
@@ -1110,13 +1242,25 @@ class _BookingLapanganState extends State<BookingLapangan> {
                                 width: 300,
                                 child: RaisedButton(
                                   shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(24.0)),
+                                      borderRadius:
+                                          BorderRadius.circular(24.0)),
                                   color: primary_color,
                                   textColor: Colors.white,
                                   onPressed: () {
-                                    String tanggal = _controller.selectedDay.toIso8601String();
-                                    String tanggalfix = tanggal.substring(0 , tanggal.indexOf("T"));
-                                    AddTransaction("partnerid", "fieldid", tanggalfix, selectedPilihWaktu, "subtotal", "status", "couponid", "total", DateTime.now());
+                                    String tanggal = _controller.selectedDay
+                                        .toIso8601String();
+                                    String tanggalfix = tanggal.substring(
+                                        0, tanggal.indexOf("T"));
+                                    AddTransaction(
+                                        "partnerid",
+                                        "fieldid",
+                                        tanggalfix,
+                                        selectedPilihWaktu,
+                                        "subtotal",
+                                        "status",
+                                        "couponid",
+                                        "total",
+                                        DateTime.now());
                                   },
                                   child: Text(
                                     "Booking Lapangan",
