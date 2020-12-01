@@ -42,317 +42,181 @@ class _historyScreenState extends State<historyScreen> {
           ),
           body: TabBarView(
             children: [
-              SingleChildScrollView(
-                scrollDirection: Axis.vertical,
-                child: Column(
-                  children: [
-                    Container(
-                      margin: EdgeInsets.only(bottom: 8),
-                      width: MediaQuery.of(context).size.width,
-                      height: 180,
-                      child: Card(
-                        child: InkWell(
-                          splashColor: Colors.blue.withAlpha(50),
-                          onTap: () {},
-                          child: Container(
-                            child: Stack(
-                              fit: StackFit.expand,
-                              alignment: Alignment.bottomLeft,
-                              children: [
-                                Container(
-                                  child: Image.network(
-                                    "https://images.unsplash.com/photo-1464983308776-3c7215084895?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80",
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                                Positioned(
-                                  bottom: 0,
-                                  left: 0,
-                                  width: MediaQuery.of(context).size.width - 56,
-                                  child: Container(
-                                    padding: EdgeInsets.all(8),
-                                    decoration: BoxDecoration(
-                                      color: Colors.white60,
-                                      borderRadius: BorderRadius.only(
-                                          topRight: Radius.circular(8),
-                                          topLeft: Radius.circular(8)),
-                                    ),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            HeadingText.withColor(
-                                              "Nama Lapangan",
-                                              16,
-                                              Color.fromARGB(255, 29, 97, 252),
-                                            ),
-                                            Row(
-                                              children: [
-                                                Icon(
-                                                  Icons.location_on,
-                                                ),
-                                                Text(
-                                                  "Lokasi",
-                                                ),
-                                              ],
-                                            )
-                                          ],
-                                        ),
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.end,
-                                          children: [
-                                            Text("Status"),
-                                            Text("Waktu")
-                                          ],
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                        elevation: 8,
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(bottom: 8),
-                      width: MediaQuery.of(context).size.width,
-                      height: 180,
-                      child: Card(
-                        child: InkWell(
-                          splashColor: Colors.blue.withAlpha(50),
-                          onTap: () {},
-                          child: Container(
-                              child: Stack(
-                            fit: StackFit.expand,
-                            alignment: Alignment.bottomLeft,
-                            children: [
-                              Container(
-                                child: Image.network(
-                                  "https://images.unsplash.com/photo-1464983308776-3c7215084895?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80",
-                                  fit: BoxFit.cover,
-                                ),
+              ListView(
+                children: [
+                  SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child: Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: 120,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(20),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.grey,
+                                  offset: Offset(3, 5),
+                                  blurRadius: 30)
+                            ]),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+                              child: Image.network(
+                                "https://images.unsplash.com/photo-1464983308776-3c7215084895?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80",
+                                height: 120,
+                                width: 120,
+                                fit: BoxFit.cover,
                               ),
-                              Positioned(
-                                bottom: 0,
-                                left: 0,
-                                width: MediaQuery.of(context).size.width - 56,
+                            ),
+                            Container(
+                              child: Padding(
+                                padding: EdgeInsets.only(left: 8),
                                 child: Container(
-                                  padding: EdgeInsets.all(8),
-                                  decoration: BoxDecoration(
-                                    color: Colors.white60,
-                                    borderRadius: BorderRadius.only(
-                                        topRight: Radius.circular(8),
-                                        topLeft: Radius.circular(8)),
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: <Widget>[
-                                          HeadingText.withColor(
-                                            "Nama Lapangan",
-                                            16,
-                                            Color.fromARGB(255, 29, 97, 252),
-                                          ),
-                                          Row(
-                                            children: [
-                                              Icon(
-                                                Icons.location_on,
-                                              ),
-                                              Text(
-                                                "Lokasi",
-                                              ),
-                                            ],
-                                          )
-                                        ],
-                                      ),
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.end,
-                                        children: [
-                                          Text("Status"),
-                                          Text("Waktu")
-                                        ],
-                                      ),
+                                      Container(
+                                          margin: EdgeInsets.only(top: 8),
+                                          child: Text(
+                                            "Sport Centre Puncak Permai",
+                                            style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 16,
+                                              fontFamily: "Ubuntu",
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          )),
+                                      Container(
+                                          margin: EdgeInsets.only(top: 8),
+                                          child: Text(
+                                            "2020/08/20 - 18.00",
+                                            style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 12,
+                                              fontFamily: "Ubuntu",
+                                            ),
+                                          )),
+                                      Container(
+                                        margin: EdgeInsets.only(top: 8),
+                                        child: Text("Status:"),
+                                      )
                                     ],
                                   ),
                                 ),
                               ),
-                            ],
-                          )),
+                            )
+                            // RichText(
+                            //   text: TextSpan(children: [
+                            //     TextSpan(
+                            //       text: "2020/08/20 - 18.00",
+                            //       style: TextStyle(
+                            //         color: Colors.black,
+                            //         fontSize: 16,
+                            //         fontFamily: "Ubuntu",
+                            //       ),
+                            //     ),
+
+                            //   ]),
+                            // ),
+                          ],
                         ),
-                        elevation: 8,
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-              SingleChildScrollView(
-                scrollDirection: Axis.vertical,
-                child: Column(
-                  children: [
-                    Container(
-                      margin: EdgeInsets.only(bottom: 8),
-                      width: MediaQuery.of(context).size.width,
-                      height: 180,
-                      child: Card(
-                        child: InkWell(
-                          splashColor: Colors.blue.withAlpha(50),
-                          onTap: () {},
-                          child: Container(
-                            child: Stack(
-                              fit: StackFit.expand,
-                              alignment: Alignment.bottomLeft,
-                              children: [
-                                Container(
-                                  child: Image.network(
-                                    "https://images.unsplash.com/photo-1464983308776-3c7215084895?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80",
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                                Positioned(
-                                  bottom: 0,
-                                  left: 0,
-                                  width: MediaQuery.of(context).size.width - 56,
-                                  child: Container(
-                                    padding: EdgeInsets.all(8),
-                                    decoration: BoxDecoration(
-                                      color: Colors.white60,
-                                      borderRadius: BorderRadius.only(
-                                          topRight: Radius.circular(8),
-                                          topLeft: Radius.circular(8)),
-                                    ),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            HeadingText.withColor(
-                                              "Nama Lapangan",
-                                              16,
-                                              Color.fromARGB(255, 29, 97, 252),
-                                            ),
-                                            Row(
-                                              children: [
-                                                Icon(
-                                                  Icons.location_on,
-                                                ),
-                                                Text(
-                                                  "Lokasi",
-                                                ),
-                                              ],
-                                            )
-                                          ],
-                                        ),
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.end,
-                                          children: [
-                                            Text("Status"),
-                                            Text("Waktu")
-                                          ],
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                        elevation: 8,
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(bottom: 8),
-                      width: MediaQuery.of(context).size.width,
-                      height: 180,
-                      child: Card(
-                        child: InkWell(
-                          splashColor: Colors.blue.withAlpha(50),
-                          onTap: () {},
-                          child: Container(
-                              child: Stack(
-                            fit: StackFit.expand,
-                            alignment: Alignment.bottomLeft,
-                            children: [
-                              Container(
-                                child: Image.network(
-                                  "https://images.unsplash.com/photo-1464983308776-3c7215084895?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80",
-                                  fit: BoxFit.cover,
-                                ),
+              ListView(
+                children: [
+                  SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child: Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: 120,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(20),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.grey,
+                                  offset: Offset(3, 5),
+                                  blurRadius: 30)
+                            ]),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+                              child: Image.network(
+                                "https://images.unsplash.com/photo-1464983308776-3c7215084895?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80",
+                                height: 120,
+                                width: 120,
+                                fit: BoxFit.cover,
                               ),
-                              Positioned(
-                                bottom: 0,
-                                left: 0,
-                                width: MediaQuery.of(context).size.width - 56,
+                            ),
+                            Container(
+                              child: Padding(
+                                padding: EdgeInsets.only(left: 8),
                                 child: Container(
-                                  padding: EdgeInsets.all(8),
-                                  decoration: BoxDecoration(
-                                    color: Colors.white60,
-                                    borderRadius: BorderRadius.only(
-                                        topRight: Radius.circular(8),
-                                        topLeft: Radius.circular(8)),
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: <Widget>[
-                                          HeadingText.withColor(
-                                            "Nama Lapangan",
-                                            16,
-                                            Color.fromARGB(255, 29, 97, 252),
-                                          ),
-                                          Row(
-                                            children: [
-                                              Icon(
-                                                Icons.location_on,
-                                              ),
-                                              Text(
-                                                "Lokasi",
-                                              ),
-                                            ],
-                                          )
-                                        ],
-                                      ),
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.end,
-                                        children: [
-                                          Text("Status"),
-                                          Text("Waktu")
-                                        ],
-                                      ),
+                                      Container(
+                                          margin: EdgeInsets.only(top: 8),
+                                          child: Text(
+                                            "Sport Centre Puncak Permai",
+                                            style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 16,
+                                              fontFamily: "Ubuntu",
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          )),
+                                      Container(
+                                          margin: EdgeInsets.only(top: 8),
+                                          child: Text(
+                                            "2020/08/20 - 18.00",
+                                            style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 12,
+                                              fontFamily: "Ubuntu",
+                                            ),
+                                          )),
+                                      Container(
+                                        margin: EdgeInsets.only(top: 8),
+                                        child: Text("Status:"),
+                                      )
                                     ],
                                   ),
                                 ),
                               ),
-                            ],
-                          )),
+                            )
+                            // RichText(
+                            //   text: TextSpan(children: [
+                            //     TextSpan(
+                            //       text: "2020/08/20 - 18.00",
+                            //       style: TextStyle(
+                            //         color: Colors.black,
+                            //         fontSize: 16,
+                            //         fontFamily: "Ubuntu",
+                            //       ),
+                            //     ),
+
+                            //   ]),
+                            // ),
+                          ],
                         ),
-                        elevation: 8,
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ],
           ),
