@@ -149,6 +149,7 @@ class _profile_screenState extends State<profile_screen> {
                       ),
                       Divider(
                         height: 10.0,
+                        thickness: 0.4,
                         color: Colors.grey,
                       ),
                       GestureDetector(
@@ -159,6 +160,7 @@ class _profile_screenState extends State<profile_screen> {
                         ),
                       ),
                       Divider(
+                        thickness: 0.4,
                         height: 10.0,
                         color: Colors.grey,
                       ),
@@ -167,6 +169,7 @@ class _profile_screenState extends State<profile_screen> {
                         text: "Shipping",
                       ),
                       Divider(
+                        thickness: 0.4,
                         height: 10.0,
                         color: Colors.grey,
                       ),
@@ -180,6 +183,7 @@ class _profile_screenState extends State<profile_screen> {
                         ),
                       ),
                       Divider(
+                        thickness: 0.4,
                         height: 10.0,
                         color: Colors.grey,
                       ),
@@ -228,6 +232,7 @@ class _profile_screenState extends State<profile_screen> {
                         ],
                       ),
                       Divider(
+                        thickness: 0.4,
                         height: 10.0,
                         color: Colors.grey,
                       ),
