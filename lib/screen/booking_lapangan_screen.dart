@@ -1251,7 +1251,7 @@ class _BookingLapanganState extends State<BookingLapangan> {
                                         .toIso8601String();
                                     String tanggalfix = tanggal.substring(
                                         0, tanggal.indexOf("T"));
-                                    AddTransaction(
+                                    addTransaction(
                                         "partnerid",
                                         "fieldid",
                                         tanggalfix,

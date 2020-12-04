@@ -17,7 +17,7 @@ class _homeScreenState extends State<homeScreen> {
   @override
   void initState() {
     super.initState();
-    GetUsername.Currentusername();
+    GetUsername.currentusername();
   }
 
   Widget build(BuildContext context) {

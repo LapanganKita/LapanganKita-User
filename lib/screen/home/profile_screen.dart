@@ -16,8 +16,8 @@ class profile_screen extends StatefulWidget {
 class _profile_screenState extends State<profile_screen> {
   void initState() {
     super.initState();
-    GetUsername.Currentusername();
-    GetEmail.CurrentEmail();
+    GetUsername.currentusername();
+    GetEmail.currentEmail();
   }
 
   final AuthService _auth = AuthService();
