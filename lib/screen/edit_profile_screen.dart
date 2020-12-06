@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lapangankita_user/components/constant.dart';
 import 'package:lapangankita_user/databaseManager/firebase.dart';
-import 'package:lapangankita_user/screen/home/profile_screen.dart';
-import 'package:lapangankita_user/screen/wrapper.dart';
 
 class EditProfile extends StatefulWidget {
   @override
