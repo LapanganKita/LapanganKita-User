@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lapangankita_user/components/constant.dart';
 import 'package:lapangankita_user/databaseManager/firebase.dart';
-import 'package:lapangankita_user/screen/home/profile_screen.dart';
-import 'package:lapangankita_user/screen/wrapper.dart';
 
 class EditProfile extends StatefulWidget {
   @override
@@ -12,8 +10,8 @@ class EditProfile extends StatefulWidget {
 class _EditProfileState extends State<EditProfile> {
   void initState() {
     super.initState();
-    GetUsername.Currentusername();
-    GetEmail.CurrentEmail();
+    GetUsername.currentusername();
+    GetEmail.currentEmail();
   }
 
   updatData(String name, String email) async {
@@ -44,10 +42,7 @@ class _EditProfileState extends State<EditProfile> {
               color: primary_color,
             ),
             onPressed: () {
-              Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) {
-                return Wrapper();
-              }));
+              Navigator.of(context).pop();
             }),
       ),
       body: Container(
@@ -160,8 +155,7 @@ class _EditProfileState extends State<EditProfile> {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20)),
                   onPressed: () {
-                    Navigator.push(
-                        context, PageRouteBuilder(pageBuilder: null));
+                    Navigator.of(context).pop();
                   },
                   child: Text("CANCEL",
                       style: TextStyle(

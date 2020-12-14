@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-Future<void> CreateUser(String name, email, password) async {
+Future<void> createUser(String name, email, password) async {
   FirebaseAuth auth = FirebaseAuth.instance;
   String uid = auth.currentUser.uid.toString();
   DocumentReference users =
@@ -18,7 +18,7 @@ Future<void> CreateUser(String name, email, password) async {
 String username = "";
 
 class GetUsername {
-  static Future<void> Currentusername() async {
+  static Future<void> currentusername() async {
     FirebaseAuth auth = FirebaseAuth.instance;
     String uid = auth.currentUser.uid.toString();
     DocumentReference users =
@@ -29,7 +29,8 @@ class GetUsername {
   }
 }
 
-Future<void> AddTransaction(String partnerid, fieldid, date, time, subtotal, status, couponid, total, ordertime) async {
+Future<void> addTransaction(String partnerid, fieldid, date, time, subtotal,
+    status, couponid, total, ordertime) async {
   CollectionReference transactions =
       FirebaseFirestore.instance.collection("Transactions");
   transactions.add({
@@ -42,14 +43,15 @@ Future<void> AddTransaction(String partnerid, fieldid, date, time, subtotal, sta
     'couponid': couponid,
     'total': total,
     'ordertime': ordertime,
-  }).then((doc){
+  }).then((doc) {
     FirebaseAuth auth = FirebaseAuth.instance;
     String uid = auth.currentUser.uid.toString();
-    DocumentReference user =
-        FirebaseFirestore.instance.collection("Users").doc(uid).collection("transactions").doc(doc.id);
-    user.set({
-      "transactionid" : doc.id
-    });
+    DocumentReference user = FirebaseFirestore.instance
+        .collection("Users")
+        .doc(uid)
+        .collection("transactions")
+        .doc(doc.id);
+    user.set({"transactionid": doc.id});
   });
 
   return;
