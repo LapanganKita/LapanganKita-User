@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:lapangankita_user/components/constant.dart';
@@ -15,9 +16,21 @@ class homeScreen extends StatefulWidget {
 
 class _homeScreenState extends State<homeScreen> {
   @override
+  User _auth = FirebaseAuth.instance.currentUser;
+  CollectionReference userCollection =
+      FirebaseFirestore.instance.collection("Users");
+  String name ="";
+
+  void getUserUpdate() async {
+    userCollection.doc(_auth.uid).snapshots().listen((event) {
+      name = event.data()['name'];
+      setState(() {});
+    });
+  }
+
   void initState() {
+    getUserUpdate();
     super.initState();
-    GetUsername.currentusername();
   }
 
   Widget build(BuildContext context) {
@@ -54,7 +67,7 @@ class _homeScreenState extends State<homeScreen> {
                       alignment: Alignment.centerLeft,
                       child: Container(
                         margin: EdgeInsets.only(left: 32),
-                        child: Text(username,
+                        child: Text(name,
                             style: TextStyle(
                                 fontFamily: 'Ubuntu',
                                 fontSize: 30,

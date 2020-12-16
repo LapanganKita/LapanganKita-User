@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lapangankita_user/components/constant.dart';
 import 'package:lapangankita_user/components/custom_tile.dart';
@@ -14,9 +16,23 @@ class profile_screen extends StatefulWidget {
 }
 
 class _profile_screenState extends State<profile_screen> {
+  User _user = FirebaseAuth.instance.currentUser;
+  CollectionReference userCollection =
+      FirebaseFirestore.instance.collection("Users");
+  String name ="";
+  String email = "";
+
+  void getUserUpdate() async {
+    userCollection.doc(_user.uid).snapshots().listen((event) {
+      name = event.data()['name'];
+      email = event.data()['email'];
+      setState(() {});
+    });
+  }
+  
   void initState() {
     super.initState();
-    GetUsername.currentusername();
+    
     GetEmail.currentEmail();
   }
 
