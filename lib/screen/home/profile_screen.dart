@@ -1,25 +1,15 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
-import 'package:lapangankita_user/components/constant.dart';
-import 'package:lapangankita_user/components/custom_tile.dart';
-import 'package:lapangankita_user/components/heading_text.dart';
-import 'package:lapangankita_user/databaseManager/firebase.dart';
-import 'package:lapangankita_user/screen/authenticate/authenticate.dart';
-import 'package:lapangankita_user/screen/edit_profile_screen.dart';
-import 'package:lapangankita_user/screen/services/auth.dart';
-import 'package:provider/provider.dart';
+part of 'homes.dart';
 
-class profile_screen extends StatefulWidget {
+class ProfileScreen extends StatefulWidget {
   @override
-  _profile_screenState createState() => _profile_screenState();
+  _ProfileScreenState createState() => _ProfileScreenState();
 }
 
-class _profile_screenState extends State<profile_screen> {
+class _ProfileScreenState extends State<ProfileScreen> {
   User _user = FirebaseAuth.instance.currentUser;
   CollectionReference userCollection =
       FirebaseFirestore.instance.collection("Users");
-  String name ="";
+  String name = "";
   String email = "";
 
   void getUserUpdate() async {
@@ -29,11 +19,10 @@ class _profile_screenState extends State<profile_screen> {
       setState(() {});
     });
   }
-  
+
   void initState() {
+    getUserUpdate();
     super.initState();
-    
-    GetEmail.currentEmail();
   }
 
   final AuthService _auth = AuthService();
@@ -96,7 +85,7 @@ class _profile_screenState extends State<profile_screen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        username,
+                        name,
                         style: TextStyle(
                             fontFamily: "Ubuntu",
                             fontSize: 24.0,

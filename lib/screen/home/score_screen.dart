@@ -1,11 +1,11 @@
-import 'package:flutter/material.dart';
+part of 'homes.dart';
 
-class scoreScreen extends StatefulWidget {
+class ScoreScreen extends StatefulWidget {
   @override
-  _scoreScreenState createState() => _scoreScreenState();
+  _ScoreScreenState createState() => _ScoreScreenState();
 }
 
-class _scoreScreenState extends State<scoreScreen> {
+class _ScoreScreenState extends State<ScoreScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

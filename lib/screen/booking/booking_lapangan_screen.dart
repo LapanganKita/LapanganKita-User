@@ -1,13 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:lapangankita_user/components/heading_text.dart';
-import 'package:lapangankita_user/components/constant.dart' show primary_color;
-import 'package:lapangankita_user/databaseManager/firebase.dart';
-import 'package:table_calendar/table_calendar.dart';
+part of 'bookings.dart';
 
+// ignore: must_be_immutable
 class BookingLapangan extends StatefulWidget {
   @override
+  // ignore: override_on_non_overriding_member
   String lapanganid = "";
+
   BookingLapangan({Key key, this.lapanganid}) : super(key: key);
   _BookingLapanganState createState() => _BookingLapanganState();
 }
@@ -16,9 +14,13 @@ class _BookingLapanganState extends State<BookingLapangan> {
   CalendarController _controller = CalendarController();
   String selectedPilihWaktu;
   String selectedNomerLapangan;
+
   @override
+  // ignore: override_on_non_overriding_member
   var isSelected = false;
+
   var icon = Icons.favorite_border;
+
   int _currentIndex = 0;
   List cardList = [Item1(), Item2(), Item3(), Item4()];
   List<T> map<T>(List list, Function handler) {

@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:lapangankita_user/components/constant.dart';
-import 'package:lapangankita_user/databaseManager/firebase.dart';
+part of 'profiles.dart';
 
 class EditProfile extends StatefulWidget {
   @override
@@ -8,10 +6,23 @@ class EditProfile extends StatefulWidget {
 }
 
 class _EditProfileState extends State<EditProfile> {
+  User _user = FirebaseAuth.instance.currentUser;
+  CollectionReference userCollection =
+      FirebaseFirestore.instance.collection("Users");
+  static String name = "";
+  static String email = "";
+
+  void getUserUpdate() async {
+    userCollection.doc(_user.uid).snapshots().listen((event) {
+      name = event.data()['name'];
+      email = event.data()['email'];
+      setState(() {});
+    });
+  }
+
   void initState() {
     super.initState();
-    GetUsername.currentusername();
-    GetEmail.currentEmail();
+    getUserUpdate();
   }
 
   updatData(String name, String email) async {
@@ -19,7 +30,7 @@ class _EditProfileState extends State<EditProfile> {
   }
 
   final TextEditingController nameController = TextEditingController()
-    ..text = username;
+    ..text = name;
   final TextEditingController emailController = TextEditingController()
     ..text = email;
   @override

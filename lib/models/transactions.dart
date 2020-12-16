@@ -1,7 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:equatable/equatable.dart';
+part of 'models.dart';
 
-class Trans extends Equatable{
+// ignore: must_be_immutable
+class Trans extends Equatable {
   String partnerid;
   String fieldid;
   String time;
@@ -11,9 +11,19 @@ class Trans extends Equatable{
   String total;
   String ordertime;
 
-  Trans({this.partnerid, this.fieldid, this.time, this.subtotal, this.status, this.couponid, this.total, this.ordertime});
+  Trans(
+      {this.partnerid,
+      this.fieldid,
+      this.time,
+      this.subtotal,
+      this.status,
+      this.couponid,
+      this.total,
+      this.ordertime});
 
   @override
+  // ignore: todo
   // TODO: implement props
-  List<Object> get props => [partnerid, fieldid, time, subtotal, status, couponid, total, ordertime];
+  List<Object> get props =>
+      [partnerid, fieldid, time, subtotal, status, couponid, total, ordertime];
 }

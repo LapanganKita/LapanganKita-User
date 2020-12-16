@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-
-import 'package:lapangankita_user/screen/authenticate/login_screen.dart';
+part of 'authenticates.dart';
 
 class Authenticate extends StatefulWidget {
   @override
@@ -10,6 +8,6 @@ class Authenticate extends StatefulWidget {
 class _AuthenticateState extends State<Authenticate> {
   @override
   Widget build(BuildContext context) {
-    return Container(child: loginScreen());
+    return Container(child: LoginScreen());
   }
 }

@@ -1,8 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:lapangankita_user/components/heading_text.dart';
-import 'package:lapangankita_user/components/constant.dart' show primary_color;
-import 'package:lapangankita_user/screen/authenticate/login_screen.dart';
-import 'package:lapangankita_user/screen/authenticate/register_screen.dart';
+part of 'onboardings.dart';
 
 class LoginRegisterOnboard extends StatefulWidget {
   @override
@@ -71,7 +67,7 @@ class _LoginRegisterOnboardState extends State<LoginRegisterOnboard> {
                               onPressed: () {
                                 Navigator.push(context,
                                     MaterialPageRoute(builder: (context) {
-                                  return loginScreen();
+                                  return LoginScreen();
                                 }));
                               },
                               child: Text(

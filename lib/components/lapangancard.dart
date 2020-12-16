@@ -1,13 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:lapangankita_user/components/constant.dart';
-import 'package:lapangankita_user/components/heading_text.dart';
-import 'package:lapangankita_user/models/lapangan.dart';
-import 'package:lapangankita_user/screen/detail_lapangan_screen.dart';
+part of 'components.dart';
 
 class Lapangancard extends StatelessWidget {
   final Lapangans lapangan;
   Lapangancard({this.lapangan});
-  
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -16,7 +12,7 @@ class Lapangancard extends StatelessWidget {
         onTap: () {
           Navigator.pushReplacement(context,
               MaterialPageRoute(builder: (context) {
-            return detaillapangan();
+            return DetailLapangan();
           }));
         },
         child: Container(

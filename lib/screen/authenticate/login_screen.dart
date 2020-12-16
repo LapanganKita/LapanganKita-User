@@ -1,18 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:lapangankita_user/screen/authenticate/authenticate.dart';
-import 'package:lapangankita_user/screen/authenticate/register_screen.dart';
-import 'package:lapangankita_user/components/navbar.dart';
-import 'package:lapangankita_user/components/heading_text.dart';
-import 'package:lapangankita_user/components/constant.dart' show primary_color;
-import 'package:lapangankita_user/screen/services/auth.dart';
-import 'package:provider/provider.dart';
+part of 'authenticates.dart';
 
-class loginScreen extends StatefulWidget {
+class LoginScreen extends StatefulWidget {
   @override
-  _loginScreenState createState() => _loginScreenState();
+  _LoginScreenState createState() => _LoginScreenState();
 }
 
-class _loginScreenState extends State<loginScreen> {
+class _LoginScreenState extends State<LoginScreen> {
   bool _showPassword = false;
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();

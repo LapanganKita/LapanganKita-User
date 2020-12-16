@@ -1,4 +1,4 @@
-import 'package:equatable/equatable.dart';
+part of 'models.dart';
 
 class Lapangans extends Equatable {
   final String fieldid;

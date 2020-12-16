@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:lapangankita_user/components/constant.dart';
+part of 'components.dart';
 
 class CustomListTile extends StatelessWidget {
   final IconData icon;

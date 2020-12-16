@@ -1,25 +1,17 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:lapangankita_user/components/constant.dart';
-import 'package:lapangankita_user/components/heading_text.dart';
-import 'package:lapangankita_user/screen/detail_lapangan_screen.dart';
-import 'package:lapangankita_user/screen/list_lapangan_screen.dart';
-import 'package:lapangankita_user/components/constant.dart' show primary_color;
-import 'package:lapangankita_user/databaseManager/firebase.dart';
-import 'package:lapangankita_user/screen/viewmore/viewmore_favorite.dart';
+part of 'homes.dart';
 
-class homeScreen extends StatefulWidget {
+class HomeScreen extends StatefulWidget {
   @override
-  _homeScreenState createState() => _homeScreenState();
+  _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _homeScreenState extends State<homeScreen> {
+class _HomeScreenState extends State<HomeScreen> {
   @override
+  // ignore: override_on_non_overriding_member
   User _auth = FirebaseAuth.instance.currentUser;
   CollectionReference userCollection =
       FirebaseFirestore.instance.collection("Users");
-  String name ="";
+  String name = "";
 
   void getUserUpdate() async {
     userCollection.doc(_auth.uid).snapshots().listen((event) {
@@ -111,7 +103,7 @@ class _homeScreenState extends State<homeScreen> {
                                 onPressed: () {
                                   Navigator.push(context,
                                       MaterialPageRoute(builder: (context) {
-                                    return listLapangan(tipe: "Basket");
+                                    return ListLapangan(tipe: "Basket");
                                   }));
                                 },
                               ),
@@ -146,7 +138,7 @@ class _homeScreenState extends State<homeScreen> {
                                 onPressed: () {
                                   Navigator.push(context,
                                       MaterialPageRoute(builder: (context) {
-                                    return listLapangan(tipe: "Futsal");
+                                    return ListLapangan(tipe: "Futsal");
                                   }));
                                 },
                               ),
@@ -181,7 +173,7 @@ class _homeScreenState extends State<homeScreen> {
                                 onPressed: () {
                                   Navigator.push(context,
                                       MaterialPageRoute(builder: (context) {
-                                    return listLapangan(tipe: "Badminton");
+                                    return ListLapangan(tipe: "Badminton");
                                   }));
                                 },
                               ),
@@ -220,7 +212,7 @@ class _homeScreenState extends State<homeScreen> {
                                 onPressed: () {
                                   Navigator.push(context,
                                       MaterialPageRoute(builder: (context) {
-                                    return listLapangan(tipe: "pingpong");
+                                    return ListLapangan(tipe: "pingpong");
                                   }));
                                 },
                               ),
@@ -276,7 +268,7 @@ class _homeScreenState extends State<homeScreen> {
                                     onTap: () {
                                       Navigator.push(context,
                                           MaterialPageRoute(builder: (context) {
-                                        return viewMoreFavorite();
+                                        return VieMoreFavorites();
                                       }));
                                     },
                                     child: Text("View More"),
@@ -624,7 +616,7 @@ class _homeScreenState extends State<homeScreen> {
                                                 Navigator.pushReplacement(
                                                     context, MaterialPageRoute(
                                                         builder: (context) {
-                                                  return detaillapangan();
+                                                  return DetailLapangan();
                                                 }));
                                               },
                                               child: Container(

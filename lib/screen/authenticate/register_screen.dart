@@ -1,11 +1,4 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
-import 'package:lapangankita_user/components/navbar.dart';
-import 'package:lapangankita_user/components/heading_text.dart';
-import 'package:lapangankita_user/components/constant.dart' show primary_color;
-import 'package:lapangankita_user/databaseManager/firebase.dart';
-import 'package:lapangankita_user/screen/services/auth.dart';
+part of 'authenticates.dart';
 
 class RegisterScreen extends StatefulWidget {
   @override

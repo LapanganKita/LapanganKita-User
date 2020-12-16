@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+part of 'onboardings.dart';
 
 class SliderPage extends StatelessWidget {
   final String title;

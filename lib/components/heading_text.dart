@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
+part of 'components.dart';
 
+// ignore: must_be_immutable
 class HeadingText extends StatelessWidget {
   final _fontFamily = "Ubuntu";
   var _fontSize = 36.0;

@@ -1,19 +1,15 @@
-import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:lapangankita_user/components/heading_text.dart';
-import 'package:lapangankita_user/components/constant.dart' show primary_color;
-import 'package:lapangankita_user/screen/booking_lapangan_screen.dart';
+part of 'bookings.dart';
 
-class detaillapangan extends StatefulWidget {
+class DetailLapangan extends StatefulWidget {
   @override
-  _detaillapanganState createState() => _detaillapanganState();
+  _DetailLapanganState createState() => _DetailLapanganState();
 }
 
-class _detaillapanganState extends State<detaillapangan> {
+class _DetailLapanganState extends State<DetailLapangan> {
   var isSelected = false;
   var icon = Icons.favorite_border;
   int _currentIndex = 0;
-  List cardList = [Item1(), Item2(), Item3(), Item4()];
+  List cardList = [Items1(), Items2(), Items3(), Items4()];
   List<T> map<T>(List list, Function handler) {
     List<T> result = [];
     for (var i = 0; i < list.length; i++) {
@@ -456,8 +452,8 @@ class _detaillapanganState extends State<detaillapangan> {
   }
 }
 
-class Item1 extends StatelessWidget {
-  const Item1({Key key}) : super(key: key);
+class Items1 extends StatelessWidget {
+  const Items1({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -469,8 +465,8 @@ class Item1 extends StatelessWidget {
   }
 }
 
-class Item2 extends StatelessWidget {
-  const Item2({Key key}) : super(key: key);
+class Items2 extends StatelessWidget {
+  const Items2({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -482,8 +478,8 @@ class Item2 extends StatelessWidget {
   }
 }
 
-class Item3 extends StatelessWidget {
-  const Item3({Key key}) : super(key: key);
+class Items3 extends StatelessWidget {
+  const Items3({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -495,8 +491,8 @@ class Item3 extends StatelessWidget {
   }
 }
 
-class Item4 extends StatelessWidget {
-  const Item4({Key key}) : super(key: key);
+class Items4 extends StatelessWidget {
+  const Items4({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(

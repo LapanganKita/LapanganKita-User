@@ -1,8 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:lapangankita_user/screen/detail_lapangan_screen.dart';
-import 'dart:math' as math;
-
-import '../models/lapangan.dart';
+part of 'components.dart';
 
 class CardLapangan extends StatelessWidget {
   final Lapangans lapangan;
@@ -29,7 +25,7 @@ class CardLapangan extends StatelessWidget {
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(builder: (context) {
-                return detaillapangan();
+                return DetailLapangan();
               }),
             );
           },
@@ -136,7 +132,7 @@ class CardContent extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Icon(Icons.location_pin),
+                    Icon(Icons.location_on),
                     Text(
                       location,
                       style: TextStyle(color: Colors.grey),

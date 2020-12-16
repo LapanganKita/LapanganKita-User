@@ -1,23 +1,17 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:lapangankita_user/screen/home/home_screen.dart';
-import 'package:lapangankita_user/screen/home/score_screen.dart';
-import 'package:lapangankita_user/screen/home/profile_screen.dart';
-import 'package:lapangankita_user/screen/home/history_screen.dart';
-import 'package:lapangankita_user/components/constant.dart' show primary_color;
+part of 'components.dart';
 
-class navBar extends StatefulWidget {
+class NavBar extends StatefulWidget {
   @override
-  _navBarState createState() => _navBarState();
+  _NavBarState createState() => _NavBarState();
 }
 
-class _navBarState extends State<navBar> {
+class _NavBarState extends State<NavBar> {
   int _currentindex = 0;
   final List<Widget> _children = [
-    homeScreen(),
-    historyScreen(),
-    scoreScreen(),
-    profile_screen(),
+    HomeScreen(),
+    HistoryScreen(),
+    ScoreScreen(),
+    ProfileScreen(),
   ];
 
   void onTabbedBar(int index) {

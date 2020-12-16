@@ -1,20 +1,15 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:lapangankita_user/components/card_lapangan.dart';
-import 'package:lapangankita_user/components/heading_text.dart';
-import 'package:lapangankita_user/models/lapangan.dart';
-import 'package:lapangankita_user/screen/detail_lapangan_screen.dart';
-import 'package:lapangankita_user/components/constant.dart' show primary_color;
+part of 'bookings.dart';
 
-class listLapangan extends StatefulWidget {
+// ignore: must_be_immutable
+class ListLapangan extends StatefulWidget {
   @override
+  // ignore: override_on_non_overriding_member
   String tipe = "";
-  listLapangan({Key key, this.tipe}) : super(key: key);
-  _listLapanganState createState() => _listLapanganState();
+  ListLapangan({Key key, this.tipe}) : super(key: key);
+  _ListLapanganState createState() => _ListLapanganState();
 }
 
-class _listLapanganState extends State<listLapangan> {
+class _ListLapanganState extends State<ListLapangan> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

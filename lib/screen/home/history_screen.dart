@@ -1,14 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:lapangankita_user/components/constant.dart';
+part of 'homes.dart';
 
-import 'package:lapangankita_user/components/constant.dart' show primary_color;
-
-class historyScreen extends StatefulWidget {
+class HistoryScreen extends StatefulWidget {
   @override
-  _historyScreenState createState() => _historyScreenState();
+  _HistoryScreenState createState() => _HistoryScreenState();
 }
 
-class _historyScreenState extends State<historyScreen> {
+class _HistoryScreenState extends State<HistoryScreen> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

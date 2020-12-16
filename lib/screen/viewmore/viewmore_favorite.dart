@@ -1,16 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:lapangankita_user/components/constant.dart';
-import 'package:lapangankita_user/components/heading_text.dart';
-import 'package:lapangankita_user/components/constant.dart' show primary_color;
+part of 'viewmores.dart';
 
-import 'package:lapangankita_user/screen/detail_lapangan_screen.dart';
-
-class viewMoreFavorite extends StatefulWidget {
+class VieMoreFavorites extends StatefulWidget {
   @override
-  _viewMoreFavoriteState createState() => _viewMoreFavoriteState();
+  _VieMoreFavoritesState createState() => _VieMoreFavoritesState();
 }
 
-class _viewMoreFavoriteState extends State<viewMoreFavorite> {
+class _VieMoreFavoritesState extends State<VieMoreFavorites> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,7 +49,7 @@ class _viewMoreFavoriteState extends State<viewMoreFavorite> {
                                 onTap: () {
                                   Navigator.pushReplacement(context,
                                       MaterialPageRoute(builder: (context) {
-                                    return detaillapangan();
+                                    return DetailLapangan();
                                   }));
                                 },
                                 child: Container(
