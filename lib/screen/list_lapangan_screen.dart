@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:lapangankita_user/components/card_lapangan.dart';
 import 'package:lapangankita_user/components/heading_text.dart';
+import 'package:lapangankita_user/models/lapangan.dart';
 import 'package:lapangankita_user/screen/detail_lapangan_screen.dart';
 import 'package:lapangankita_user/components/constant.dart' show primary_color;
 
@@ -397,113 +399,127 @@ class _listLapanganState extends State<listLapangan> {
                                 return Column(
                                     children: snapshot.data.docs
                                         .map((DocumentSnapshot document) {
-                                  return Center(
-                                    child: Container(
-                                      width: MediaQuery.of(context).size.width -
-                                          72,
-                                      height: 180,
-                                      child: Card(
-                                        child: InkWell(
-                                          splashColor:
-                                              Colors.blue.withAlpha(30),
-                                          onTap: () {
-                                            Navigator.pushReplacement(context,
-                                                MaterialPageRoute(
-                                                    builder: (context) {
-                                              return detaillapangan();
-                                            }));
-                                          },
-                                          child: Container(
-                                              child: Stack(
-                                            fit: StackFit.expand,
-                                            alignment: Alignment.bottomLeft,
-                                            children: [
-                                              Container(
-                                                child: Image.network(
-                                                  "https://images.unsplash.com/photo-1464983308776-3c7215084895?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80",
-                                                  fit: BoxFit.cover,
-                                                ),
-                                              ),
-                                              Positioned(
-                                                bottom: 0,
-                                                left: 0,
-                                                width: MediaQuery.of(context)
-                                                        .size
-                                                        .width -
-                                                    80,
-                                                child: Container(
-                                                  padding: EdgeInsets.all(8),
-                                                  decoration: BoxDecoration(
-                                                    color: Colors.white60,
-                                                    borderRadius:
-                                                        BorderRadius.only(
-                                                            topRight: Radius
-                                                                .circular(8),
-                                                            topLeft:
-                                                                Radius.circular(
-                                                                    8)),
-                                                  ),
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Column(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: <Widget>[
-                                                          HeadingText.withColor(
-                                                            document.data()[
-                                                                "details"],
-                                                            16,
-                                                            primary_color,
-                                                          ),
-                                                          Row(
-                                                            children: [
-                                                              Icon(
-                                                                Icons
-                                                                    .location_on,
-                                                              ),
-                                                              Text(
-                                                                "Location",
-                                                              ),
-                                                            ],
-                                                          )
-                                                        ],
-                                                      ),
-                                                      Column(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .end,
-                                                        children: [
-                                                          Row(
-                                                            children: [
-                                                              Icon(Icons
-                                                                  .star_border),
-                                                              Icon(Icons
-                                                                  .star_border),
-                                                              Icon(Icons
-                                                                  .star_border),
-                                                              Icon(Icons
-                                                                  .star_border),
-                                                            ],
-                                                          ),
-                                                          Text(document
-                                                              .data()["harga"])
-                                                        ],
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          )),
-                                        ),
-                                        elevation: 8,
-                                      ),
-                                    ),
+                                  Lapangans lapangan = Lapangans(
+                                      document.get('fieldid'),
+                                      document.get('jenis'),
+                                      document.get('review'),
+                                      document.get('harga'),
+                                      document.get('details'),
+                                      document.get('jam'),
+                                      document.get('nomerlapangan'),
+                                      document.get('partnerid'));
+                                  return SizedBox(
+                                    height: MediaQuery.of(context).size.height *
+                                        0.25,
+                                    child: CardLapangan(
+                                        lapangan: lapangan, offset: 0),
                                   );
+                                  // child: Container(
+                                  //   width: MediaQuery.of(context).size.width -
+                                  //       72,
+                                  //   height: 180,
+                                  //   child: Card(
+                                  //     child: InkWell(
+                                  //       splashColor:
+                                  //           Colors.blue.withAlpha(30),
+                                  //       onTap: () {
+                                  //         Navigator.pushReplacement(context,
+                                  //             MaterialPageRoute(
+                                  //                 builder: (context) {
+                                  //           return detaillapangan();
+                                  //         }));
+                                  //       },
+                                  //       child: Container(
+                                  //           child: Stack(
+                                  //         fit: StackFit.expand,
+                                  //         alignment: Alignment.bottomLeft,
+                                  //         children: [
+                                  //           Container(
+                                  //             child: Image.network(
+                                  //               "https://images.unsplash.com/photo-1464983308776-3c7215084895?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80",
+                                  //               fit: BoxFit.cover,
+                                  //             ),
+                                  //           ),
+                                  //           Positioned(
+                                  //             bottom: 0,
+                                  //             left: 0,
+                                  //             width: MediaQuery.of(context)
+                                  //                     .size
+                                  //                     .width -
+                                  //                 80,
+                                  //             child: Container(
+                                  //               padding: EdgeInsets.all(8),
+                                  //               decoration: BoxDecoration(
+                                  //                 color: Colors.white60,
+                                  //                 borderRadius:
+                                  //                     BorderRadius.only(
+                                  //                         topRight: Radius
+                                  //                             .circular(8),
+                                  //                         topLeft:
+                                  //                             Radius.circular(
+                                  //                                 8)),
+                                  //               ),
+                                  //               child: Row(
+                                  //                 mainAxisAlignment:
+                                  //                     MainAxisAlignment
+                                  //                         .spaceBetween,
+                                  //                 children: [
+                                  //                   Column(
+                                  //                     crossAxisAlignment:
+                                  //                         CrossAxisAlignment
+                                  //                             .start,
+                                  //                     children: <Widget>[
+                                  //                       HeadingText.withColor(
+                                  //                         document.data()[
+                                  //                             "details"],
+                                  //                         16,
+                                  //                         primary_color,
+                                  //                       ),
+                                  //                       Row(
+                                  //                         children: [
+                                  //                           Icon(
+                                  //                             Icons
+                                  //                                 .location_on,
+                                  //                           ),
+                                  //                           Text(
+                                  //                             "Location",
+                                  //                           ),
+                                  //                         ],
+                                  //                       )
+                                  //                     ],
+                                  //                   ),
+                                  //                   Column(
+                                  //                     crossAxisAlignment:
+                                  //                         CrossAxisAlignment
+                                  //                             .end,
+                                  //                     children: [
+                                  //                       Row(
+                                  //                         children: [
+                                  //                           Icon(Icons
+                                  //                               .star_border),
+                                  //                           Icon(Icons
+                                  //                               .star_border),
+                                  //                           Icon(Icons
+                                  //                               .star_border),
+                                  //                           Icon(Icons
+                                  //                               .star_border),
+                                  //                         ],
+                                  //                       ),
+                                  //                       Text(document
+                                  //                           .data()["harga"])
+                                  //                     ],
+                                  //                   ),
+                                  //                 ],
+                                  //               ),
+                                  //             ),
+                                  //           ),
+                                  //         ],
+                                  //       )),
+                                  //     ),
+                                  //     elevation: 8,
+                                  //   ),
+                                  // ),
+                                  // );
                                 }).toList());
                               })
                         ],
