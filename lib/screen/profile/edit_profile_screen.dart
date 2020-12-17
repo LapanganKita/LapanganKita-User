@@ -11,28 +11,47 @@ class _EditProfileState extends State<EditProfile> {
       FirebaseFirestore.instance.collection("Users");
   static String name = "";
   static String email = "";
+  static String img = "";
+
+  PickedFile imageFile;
+  final ImagePicker imagePicker = ImagePicker();
 
   void getUserUpdate() async {
     userCollection.doc(_user.uid).snapshots().listen((event) {
       name = event.data()['name'];
       email = event.data()['email'];
-      setState(() {});
+      img = event.data()['profilePicture'];
+      if (img == "") {
+        img = null;
+      }
+      setState(() {
+        nameController.text = name;
+        emailController.text = email;
+      });
+    });
+  }
+
+  Future chooseImage() async {
+    final selectedImage = await imagePicker.getImage(
+        source: ImageSource.gallery, imageQuality: 50);
+    setState(() {
+      imageFile = selectedImage;
+      img = selectedImage.path;
     });
   }
 
   void initState() {
-    super.initState();
     getUserUpdate();
+
+    super.initState();
   }
 
-  updatData(String name, String email) async {
-    await updateUserList(name, email);
+  updateData(String name, String email) async {
+    await UserServices.updateUserList(name, email);
   }
 
-  final TextEditingController nameController = TextEditingController()
-    ..text = name;
-  final TextEditingController emailController = TextEditingController()
-    ..text = email;
+  TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,29 +93,29 @@ class _EditProfileState extends State<EditProfile> {
             Center(
               child: Stack(
                 children: [
-                  Container(
-                    width: 120,
-                    height: 120,
-                    decoration: BoxDecoration(
-                        border: Border.all(
-                            width: 4,
-                            color: Theme.of(context).scaffoldBackgroundColor),
-                        boxShadow: [
-                          BoxShadow(
-                              spreadRadius: 2,
-                              blurRadius: 10,
-                              color: Colors.black.withOpacity(
-                                0.1,
-                              ),
-                              offset: Offset(0, 10)),
-                        ],
-                        shape: BoxShape.circle,
-                        image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: NetworkImage(
-                            "https://images.unsplash.com/photo-1464983308776-3c7215084895?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80",
-                          ),
-                        )),
+                  GestureDetector(
+                    onTap: () async {
+                      await chooseImage();
+                    },
+                    child: Container(
+                      width: 120,
+                      height: 120,
+                      decoration: BoxDecoration(
+                          border: Border.all(
+                              width: 4,
+                              color: Theme.of(context).scaffoldBackgroundColor),
+                          boxShadow: [
+                            BoxShadow(
+                                spreadRadius: 2,
+                                blurRadius: 10,
+                                color: Colors.black.withOpacity(
+                                  0.1,
+                                ),
+                                offset: Offset(0, 10)),
+                          ],
+                          shape: BoxShape.circle,
+                          image: buildDecorationImage()),
+                    ),
                   ),
                   Positioned(
                     bottom: 0,
@@ -176,6 +195,7 @@ class _EditProfileState extends State<EditProfile> {
                 ),
                 RaisedButton(
                   onPressed: () {
+                    UserServices.updateProfilePicture(_user.uid, imageFile);
                     submitOption(context);
                     Navigator.pop(context);
                   },
@@ -201,8 +221,24 @@ class _EditProfileState extends State<EditProfile> {
     );
   }
 
+  DecorationImage buildDecorationImage() {
+    if (img == null) {
+      return DecorationImage(
+          fit: BoxFit.cover,
+          image: AssetImage(
+            img ?? "assets/images/blankprofile.png",
+          ));
+    } else {
+      return DecorationImage(
+          fit: BoxFit.cover,
+          image: NetworkImage(
+            img,
+          ));
+    }
+  }
+
   submitOption(BuildContext context) {
-    updatData(nameController.text, emailController.text);
+    updateData(nameController.text, emailController.text);
     nameController.clear();
     emailController.clear();
   }

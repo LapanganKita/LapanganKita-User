@@ -11,11 +11,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
       FirebaseFirestore.instance.collection("Users");
   String name = "";
   String email = "";
+  String img = "";
 
   void getUserUpdate() async {
     userCollection.doc(_user.uid).snapshots().listen((event) {
       name = event.data()['name'];
       email = event.data()['email'];
+      img = event.data()['profilePicture'];
       setState(() {});
     });
   }
@@ -65,7 +67,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     height: 100,
                     width: 100,
                     decoration: BoxDecoration(
-                      color: Colors.red,
+                      color: Colors.white,
                       borderRadius: BorderRadius.circular(50.0),
                       boxShadow: [
                         BoxShadow(
@@ -73,11 +75,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             offset: Offset(0, 4.0),
                             color: Colors.black),
                       ],
-                      image: DecorationImage(
-                          image: NetworkImage(
-                            "https://images.unsplash.com/photo-1464983308776-3c7215084895?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80",
-                          ),
-                          fit: BoxFit.cover),
+                      image: buildDecorationImage(),
                     ),
                   ),
                   SizedBox(width: 20.0),
@@ -250,5 +248,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
       ),
     );
+  }
+
+  DecorationImage buildDecorationImage() {
+    if (img == null) {
+      return DecorationImage(
+          fit: BoxFit.fill,
+          image: AssetImage(
+            "assets/images/blankprofile.png",
+          ));
+    } else {
+      return DecorationImage(
+          fit: BoxFit.cover,
+          image: NetworkImage(
+            img, scale: 40
+          ));
+    }
   }
 }
