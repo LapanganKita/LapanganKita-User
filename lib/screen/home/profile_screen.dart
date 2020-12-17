@@ -141,6 +141,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 height: 20,
               ),
               Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(25.0),
+                ),
                 elevation: 10.0,
                 child: Padding(
                   padding: EdgeInsets.all(16.0),
@@ -209,6 +212,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 height: 10.0,
               ),
               Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(25.0),
+                ),
                 elevation: 10.0,
                 child: Padding(
                   padding: EdgeInsets.all(16.0),
@@ -259,10 +265,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ));
     } else {
       return DecorationImage(
-          fit: BoxFit.cover,
-          image: NetworkImage(
-            img, scale: 40
-          ));
+          fit: BoxFit.cover, image: NetworkImage(img, scale: 40));
     }
   }
 }
