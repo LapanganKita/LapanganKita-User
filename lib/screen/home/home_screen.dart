@@ -58,7 +58,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Container(
-                        margin: EdgeInsets.only(left: 32),
+                        margin: EdgeInsets.only(
+                          left: MediaQuery.of(context).size.width / 14,
+                        ),
                         child: Text(name,
                             style: TextStyle(
                                 fontFamily: 'Ubuntu',
@@ -85,7 +87,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       scrollDirection: Axis.horizontal,
                       child: Row(children: [
                         Container(
-                          margin: EdgeInsets.fromLTRB(32, 16, 32, 0),
+                          margin: EdgeInsets.fromLTRB(
+                              MediaQuery.of(context).size.width / 200,
+                              16,
+                              32,
+                              0),
                           child: Column(
                             children: [
                               RaisedButton(

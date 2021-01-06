@@ -31,6 +31,11 @@ class _BookingLapanganState extends State<BookingLapangan> {
     return result;
   }
 
+  void launchWhatsapp({@required number, @required message}) async {
+    String url = "whatsapp://send?phone=$number&text=$message";
+    await canLaunch(url) ? launch(url) : print("Cant open whatsapp");
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -1249,6 +1254,9 @@ class _BookingLapanganState extends State<BookingLapangan> {
                                   color: primary_color,
                                   textColor: Colors.white,
                                   onPressed: () {
+                                    launchWhatsapp(
+                                        number: "+6281320232068",
+                                        message: "Saya mau booking lapangan");
                                     String tanggal = _controller.selectedDay
                                         .toIso8601String();
                                     String tanggalfix = tanggal.substring(

@@ -48,7 +48,7 @@ class CardLapangan extends StatelessWidget {
               SizedBox(height: 8),
               Expanded(
                 child: CardContent(
-                  name: "Nama Lapangan",
+                  name: lapangan.detail,
                   type: lapangan.jenis,
                   shortDesc: lapangan.detail,
                   priceRange: lapangan.price,
