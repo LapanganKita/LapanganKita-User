@@ -9,3 +9,5 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 part 'auth_services.dart';
 part 'user_services.dart';
 part 'transaction_services.dart';
+part 'lapangan_services.dart';
+part 'partner_services.dart';

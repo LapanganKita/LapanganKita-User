@@ -107,10 +107,19 @@ class _HomeScreenState extends State<HomeScreen> {
                                       "assets/images/basketball.png"),
                                 ),
                                 onPressed: () {
-                                  Navigator.push(context,
-                                      MaterialPageRoute(builder: (context) {
-                                    return ListLapangan(tipe: "Basket");
-                                  }));
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) {
+                                      // return ListLapangan(tipe: "Basket");
+                                      return ChangeNotifierProvider(
+                                        create: (context) =>
+                                            ListLapanganViewModel(),
+                                        child: ListLapangan(
+                                          tipe: "Basket",
+                                        ),
+                                      );
+                                    }),
+                                  );
                                 },
                               ),
                               Container(
@@ -144,7 +153,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                 onPressed: () {
                                   Navigator.push(context,
                                       MaterialPageRoute(builder: (context) {
-                                    return ListLapangan(tipe: "Futsal");
+                                    return ChangeNotifierProvider(
+                                      create: (context) =>
+                                          ListLapanganViewModel(),
+                                      child: ListLapangan(
+                                        tipe: "Futsal",
+                                      ),
+                                    );
                                   }));
                                 },
                               ),
@@ -179,7 +194,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                 onPressed: () {
                                   Navigator.push(context,
                                       MaterialPageRoute(builder: (context) {
-                                    return ListLapangan(tipe: "Badminton");
+                                    return ChangeNotifierProvider(
+                                      create: (context) =>
+                                          ListLapanganViewModel(),
+                                      child: ListLapangan(
+                                        tipe: "Badminton",
+                                      ),
+                                    );
                                   }));
                                 },
                               ),
@@ -218,7 +239,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                 onPressed: () {
                                   Navigator.push(context,
                                       MaterialPageRoute(builder: (context) {
-                                    return ListLapangan(tipe: "pingpong");
+                                    return ChangeNotifierProvider(
+                                      create: (context) =>
+                                          ListLapanganViewModel(),
+                                      child: ListLapangan(
+                                        tipe: "Pingpong",
+                                      ),
+                                    );
                                   }));
                                 },
                               ),
@@ -619,8 +646,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                               splashColor:
                                                   Colors.blue.withAlpha(30),
                                               onTap: () {
-                                                Navigator.pushReplacement(
-                                                    context, MaterialPageRoute(
+                                                Navigator.push(context,
+                                                    MaterialPageRoute(
                                                         builder: (context) {
                                                   return DetailLapangan();
                                                 }));

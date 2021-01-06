@@ -16,4 +16,32 @@ class Lapangans extends Equatable {
   @override
   List<Object> get props =>
       [fieldid, jenis, review, price, detail, jam, nolapangan, partnerid];
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': fieldid,
+      'jenis': jenis,
+      'review': review,
+      'harga': price,
+      'details': detail,
+      'jam': jam,
+      'nomerlapangan': nolapangan,
+      'partnerid': partnerid,
+    };
+  }
+
+  static Lapangans fromMap(Map<String, dynamic> map) {
+    if (map == null) return null;
+
+    return Lapangans(
+      map['fieldid'],
+      map['jenis'],
+      map['review'],
+      map['harga'],
+      map['details'],
+      map['jam'],
+      map['nomerlapangan'],
+      map['partnerid'],
+    );
+  }
 }
