@@ -88,7 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Row(children: [
                         Container(
                           margin: EdgeInsets.fromLTRB(
-                              MediaQuery.of(context).size.width / 200,
+                              MediaQuery.of(context).size.width / 20,
                               16,
                               32,
                               0),
