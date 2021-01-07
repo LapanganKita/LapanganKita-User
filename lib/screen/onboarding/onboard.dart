@@ -79,7 +79,7 @@ class _OnboardingState extends State<Onboarding> {
                         curve: Curves.easeInOutQuint);
                     Navigator.pushReplacement(context,
                         MaterialPageRoute(builder: (context) {
-                      return LoginRegisterOnboard();
+                      return Wrapper();
                     }));
                   },
                   child: AnimatedContainer(
