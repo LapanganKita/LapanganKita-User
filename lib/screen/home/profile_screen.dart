@@ -6,6 +6,7 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  bool isLoading = false;
   User _user = FirebaseAuth.instance.currentUser;
   CollectionReference userCollection =
       FirebaseFirestore.instance.collection("Users");
@@ -181,7 +182,47 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                       GestureDetector(
                         onTap: () async {
-                          await _auth.signOut();
+                          showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: Text("Signout Confirmation"),
+                                  content: Text("Are you sure to signout?"),
+                                  actions: [
+                                    FlatButton(
+                                      onPressed: () async {
+                                        setState(() {
+                                          isLoading = true;
+                                        });
+                                        await AuthService.signOut()
+                                            .then((value) {
+                                          if (value) {
+                                            Navigator.pushReplacement(context,
+                                                MaterialPageRoute(
+                                                    builder: (context) {
+                                              return LoginScreen();
+                                            }));
+                                            setState(() {
+                                              isLoading = false;
+                                            });
+                                          } else {
+                                            setState(() {
+                                              isLoading = false;
+                                            });
+                                          }
+                                        });
+                                      },
+                                      child: Text("Yes"),
+                                    ),
+                                    FlatButton(
+                                      child: Text("No"),
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                    )
+                                  ],
+                                );
+                              });
                         },
                         child: CustomListTile(
                           icon: Icons.exit_to_app,
@@ -249,6 +290,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                 ),
               ),
+              isLoading == true
+                  ? Container(
+                      width: double.infinity,
+                      height: double.infinity,
+                      color: Colors.transparent,
+                      child: SpinKitFadingCircle(
+                        size: 50,
+                        color: Colors.blue,
+                      ),
+                    )
+                  : Container()
             ],
           ),
         ),
