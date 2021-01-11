@@ -4,13 +4,14 @@ part of 'bookings.dart';
 class BookingLapangan extends StatefulWidget {
   @override
   // ignore: override_on_non_overriding_member
-  String lapanganid = "";
-
-  BookingLapangan({Key key, this.lapanganid}) : super(key: key);
-  _BookingLapanganState createState() => _BookingLapanganState();
+  Lap lapangan;
+  BookingLapangan({Key key, this.lapangan}) : super(key: key);
+  _BookingLapanganState createState() => _BookingLapanganState(lapangan);
 }
 
 class _BookingLapanganState extends State<BookingLapangan> {
+  Lap lapangan;
+  _BookingLapanganState(this.lapangan);
   CalendarController _controller = CalendarController();
   String selectedPilihWaktu;
   String selectedNomerLapangan;
@@ -115,12 +116,12 @@ class _BookingLapanganState extends State<BookingLapangan> {
                       Container(
                         margin: EdgeInsets.only(bottom: 8),
                         child: HeadingText.withColor(
-                            "Sport Centre Puncak Permai", 23, Colors.white),
+                            lapangan.parent.nama, 23, Colors.white),
                       ),
                       Container(
                           margin: EdgeInsets.only(bottom: 4),
                           child: Text(
-                            "Surabaya",
+                            lapangan.parent.kota,
                             style: TextStyle(fontSize: 15, color: Colors.white),
                           )),
                       Row(
@@ -1254,13 +1255,16 @@ class _BookingLapanganState extends State<BookingLapangan> {
                                   color: primary_color,
                                   textColor: Colors.white,
                                   onPressed: () {
-                                    launchWhatsapp(
-                                        number: "+6281320232068",
-                                        message: "Saya mau booking lapangan");
                                     String tanggal = _controller.selectedDay
                                         .toIso8601String();
                                     String tanggalfix = tanggal.substring(
                                         0, tanggal.indexOf("T"));
+                                    launchWhatsapp(
+                                        number: "+6281391097676",
+                                        message: "Saya mau booking lapangan" +
+                                            lapangan.parent.nama +
+                                            selectedPilihWaktu +
+                                            tanggalfix);
                                     addTransaction(
                                         "partnerid",
                                         "fieldid",
@@ -1285,32 +1289,132 @@ class _BookingLapanganState extends State<BookingLapangan> {
                             ],
                           )),
                           Container(
-                              margin: EdgeInsets.only(left: 24, top: 16),
+                              padding:
+                                  EdgeInsets.only(top: 8, right: 32, left: 32),
                               child: Column(
                                 children: [
-                                  Container(
-                                    child: Text(
-                                      "Lorem Ipsum is simply dummy text of the printing  and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley ",
-                                      style: TextStyle(
-                                          fontSize: 14, fontFamily: "Ubuntu"),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 16,
-                                  ),
-                                  Container(
-                                    child: Align(
-                                      alignment: Alignment.topLeft,
-                                      child: Text(
-                                        "Location",
-                                        style: TextStyle(
-                                            color: primary_color,
-                                            fontFamily: "Ubuntu",
-                                            fontSize: 32,
-                                            fontWeight: FontWeight.bold),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Container(
+                                        child: Column(
+                                          children: [
+                                            Container(
+                                              width: 40,
+                                              height: 40,
+                                              child: Image.asset(
+                                                "assets/images/11-park.png",
+                                                fit: BoxFit.fill,
+                                              ),
+                                            ),
+                                            Text("Parking")
+                                          ],
+                                        ),
                                       ),
+                                      Container(
+                                        child: Column(
+                                          children: [
+                                            Container(
+                                              width: 40,
+                                              height: 40,
+                                              child: Image.asset(
+                                                "assets/images/11-park.png",
+                                                fit: BoxFit.fill,
+                                              ),
+                                            ),
+                                            Text("Parking")
+                                          ],
+                                        ),
+                                      ),
+                                      Container(
+                                        child: Column(
+                                          children: [
+                                            Container(
+                                              width: 40,
+                                              height: 40,
+                                              child: Image.asset(
+                                                "assets/images/11-park.png",
+                                                fit: BoxFit.fill,
+                                              ),
+                                            ),
+                                            Text("Parking")
+                                          ],
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.only(top: 24),
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                          margin: EdgeInsets.only(right: 16),
+                                          child: Image.asset(
+                                            "assets/images/placeholder.png",
+                                            fit: BoxFit.fill,
+                                          ),
+                                        ),
+                                        Container(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width -
+                                              150,
+                                          child: Text(
+                                            "Jl. Raya Darmo Permai III No.80, Pradahkalikendal, Kec. Dukuhpakis, Kota SBY",
+                                            maxLines: 2,
+                                          ),
+                                        )
+                                      ],
                                     ),
                                   ),
+                                  Container(
+                                    margin: EdgeInsets.only(top: 24),
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                          margin: EdgeInsets.only(right: 16),
+                                          child: Image.asset(
+                                            "assets/images/phone.png",
+                                            fit: BoxFit.fill,
+                                          ),
+                                        ),
+                                        Text("0813-3359-5708"),
+                                      ],
+                                    ),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.only(top: 24),
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                          margin: EdgeInsets.only(right: 16),
+                                          child: Image.asset(
+                                            "assets/images/clock.png",
+                                            fit: BoxFit.fill,
+                                          ),
+                                        ),
+                                        Text("Mon-Sun"),
+                                        Text("06.00 - 23.00"),
+                                      ],
+                                    ),
+                                  ),
+                                  // SizedBox(
+                                  //   height: 16,
+                                  // ),
+                                  // Container(
+                                  //   child: Align(
+                                  //     alignment: Alignment.topLeft,
+                                  //     child: Text(
+                                  //       "Location",
+                                  //       style: TextStyle(
+                                  //           color: primary_color,
+                                  //           fontFamily: "Ubuntu",
+                                  //           fontSize: 32,
+                                  //           fontWeight: FontWeight.bold),
+                                  //     ),
+                                  //   ),
+                                  // ),
                                 ],
                               )),
                           Text("Reviw")

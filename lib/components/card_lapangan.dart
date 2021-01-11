@@ -25,7 +25,7 @@ class CardLapangan extends StatelessWidget {
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(builder: (context) {
-                return DetailLapangan();
+                return BookingLapangan(lapangan: lapangan);
               }),
             );
           },

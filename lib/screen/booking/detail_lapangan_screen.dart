@@ -2,10 +2,14 @@ part of 'bookings.dart';
 
 class DetailLapangan extends StatefulWidget {
   @override
-  _DetailLapanganState createState() => _DetailLapanganState(Lapangan lapangan);
+  Lap lapangan;
+  DetailLapangan({Key key, this.lapangan}) : super(key: key);
+  _DetailLapanganState createState() => _DetailLapanganState(lapangan);
 }
 
 class _DetailLapanganState extends State<DetailLapangan> {
+  Lap lapangan;
+  _DetailLapanganState(this.lapangan);
   var isSelected = false;
   var icon = Icons.favorite_border;
   int _currentIndex = 0;
@@ -94,12 +98,12 @@ class _DetailLapanganState extends State<DetailLapangan> {
                   Container(
                     margin: EdgeInsets.only(bottom: 8),
                     child: HeadingText.withColor(
-                        "Sport Centre Puncak Permai", 23, Colors.white),
+                        lapangan.parent.nama, 23, Colors.white),
                   ),
                   Container(
                       margin: EdgeInsets.only(bottom: 4),
                       child: Text(
-                        "Surabaya",
+                        lapangan.parent.alamat,
                         style: TextStyle(fontSize: 15, color: Colors.white),
                       )),
                   Row(
