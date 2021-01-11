@@ -22,7 +22,18 @@ Future<void> addTransaction(String partnerid, fieldid, date, time, subtotal,
         .doc(uid)
         .collection("transactions")
         .doc(doc.id);
-    user.set({"transactionid": doc.id});
+    user.set({
+      "transactionid": doc.id,
+      'partnerid': partnerid,
+      'fieldid': fieldid,
+      'date': date,
+      'time': time,
+      'subtotal': subtotal,
+      'status': status,
+      'couponid': couponid,
+      'total': total,
+      'ordertime': ordertime,
+    });
   });
 
   return;

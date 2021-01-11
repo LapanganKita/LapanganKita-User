@@ -25,6 +25,10 @@ class _BookingLapanganState extends State<BookingLapangan> {
       setState(() {});
     });
   }
+  void initState() {
+    getUserUpdate();
+    super.initState();
+  }
 
   @override
   // ignore: override_on_non_overriding_member
@@ -1438,8 +1442,8 @@ class _BookingLapanganState extends State<BookingLapangan> {
                                                     message:
                                                         "Saya "+ name +" mau booking lapangan " +
                                                             lapangan
-                                                                .parent.nama +
-                                                            selectedPilihWaktu +
+                                                                .parent.nama + " "+
+                                                            selectedPilihWaktu +  " " +
                                                             tanggalfix);
                                                 addTransaction(
                                                     "partnerid",
@@ -1542,7 +1546,7 @@ class _BookingLapanganState extends State<BookingLapangan> {
                                                                 .width -
                                                             150,
                                                     child: Text(
-                                                      "Jl. Raya Darmo Permai III No.80, Pradahkalikendal, Kec. Dukuhpakis, Kota SBY",
+                                                      lapangan.parent.alamat,
                                                       maxLines: 2,
                                                     ),
                                                   )
@@ -1561,7 +1565,7 @@ class _BookingLapanganState extends State<BookingLapangan> {
                                                       fit: BoxFit.fill,
                                                     ),
                                                   ),
-                                                  Text("0813-3359-5708"),
+                                                  Text(lapangan.parent.telp),
                                                 ],
                                               ),
                                             ),
@@ -1577,8 +1581,7 @@ class _BookingLapanganState extends State<BookingLapangan> {
                                                       fit: BoxFit.fill,
                                                     ),
                                                   ),
-                                                  Text("Mon-Sun"),
-                                                  Text("06.00 - 23.00"),
+                                                  Text(lapangan.parent.open + " - " + lapangan.parent.close),
                                                 ],
                                               ),
                                             ),
