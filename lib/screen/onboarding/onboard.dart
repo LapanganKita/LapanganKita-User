@@ -10,7 +10,7 @@ class _OnboardingState extends State<Onboarding> {
 
   void _onIntroEnd(context) {
     Navigator.of(context).push(
-      MaterialPageRoute(builder: (_) => HomeScreen()),
+      MaterialPageRoute(builder: (_) => LoginScreen()),
     );
   }
 
@@ -38,8 +38,7 @@ class _OnboardingState extends State<Onboarding> {
         pages: [
           PageViewModel(
             title: "Booking Lapangan",
-            body:
-                "Instead of having to buy an entire share, invest any amount you want.",
+            body: "Booking lapangan cepat dan mudah",
             image: _buildImage('img1'),
             decoration: pageDecoration,
           ),
