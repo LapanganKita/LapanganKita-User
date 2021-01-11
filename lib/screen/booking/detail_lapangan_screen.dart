@@ -2,7 +2,7 @@ part of 'bookings.dart';
 
 class DetailLapangan extends StatefulWidget {
   @override
-  _DetailLapanganState createState() => _DetailLapanganState();
+  _DetailLapanganState createState() => _DetailLapanganState(Lapangan lapangan);
 }
 
 class _DetailLapanganState extends State<DetailLapangan> {

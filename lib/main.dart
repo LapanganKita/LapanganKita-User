@@ -45,6 +45,7 @@ class SplashState extends State<Splash> with AfterLayoutMixin<Splash> {
   Future checkFirstSeen() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     bool _seen = (prefs.getBool('seen') ?? false);
+    _seen = false; // change this to true if want to debug splash screen
 
     if (_seen) {
       Navigator.of(context).pushReplacement(
@@ -68,5 +69,3 @@ class SplashState extends State<Splash> with AfterLayoutMixin<Splash> {
     );
   }
 }
-
-

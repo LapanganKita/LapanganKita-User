@@ -18,8 +18,7 @@ class _ListLapanganState extends State<ListLapangan> {
   @override
   void initState() {
     super.initState();
-    Provider.of<ListLapanganViewModel>(context, listen: false)
-        .fetchLapangans(tipe);
+    Provider.of<ListLapanganViewModel>(context, listen: false).fetchLaps(tipe);
   }
 
   @override
@@ -52,9 +51,9 @@ class _ListLapanganState extends State<ListLapangan> {
               child: ListView.builder(
                 physics: NeverScrollableScrollPhysics(),
                 scrollDirection: Axis.vertical,
-                itemCount: vm.lapangans.length,
+                itemCount: vm.laps.length,
                 itemBuilder: (context, index) {
-                  return buildCardLapangan(context, index, vm.lapangans);
+                  return buildCardLapangan(context, index, vm.laps);
                 },
               ),
             )
@@ -64,10 +63,9 @@ class _ListLapanganState extends State<ListLapangan> {
     );
   }
 
-  Widget buildCardLapangan(
-      BuildContext context, int index, List<LapanganViewModel> list) {
+  Widget buildCardLapangan(BuildContext context, int index, List<Lap> list) {
     print("index = " + index.toString());
-    // print(listPartners[0].lapangans.length);
+    print(list[index].parent.nama);
     return SizedBox(
       height: MediaQuery.of(context).size.height * 0.25,
       child: CardLapangan(lapangan: list[index], offset: 0),

@@ -1,7 +1,7 @@
 part of 'components.dart';
 
 class CardLapangan extends StatelessWidget {
-  final LapanganViewModel lapangan;
+  final Lap lapangan;
   final double offset;
 
   const CardLapangan({
@@ -48,13 +48,13 @@ class CardLapangan extends StatelessWidget {
               SizedBox(height: 8),
               Expanded(
                 child: CardContent(
-                  name: lapangan.detail,
+                  name: lapangan.parent.nama,
                   type: lapangan.jenis,
-                  shortDesc: lapangan.detail,
-                  priceRange: lapangan.price,
+                  shortDesc: lapangan.details,
+                  priceRange: lapangan.harga.toString(),
                   offset: gauss,
                   rating: 5,
-                  location: "Location",
+                  location: lapangan.parent.alamat,
                 ),
               ),
             ],
