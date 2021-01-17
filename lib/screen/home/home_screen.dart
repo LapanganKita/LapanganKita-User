@@ -147,8 +147,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                   width: 48,
                                   height: 73,
                                   decoration: BoxDecoration(),
-                                  child: Image.asset(
-                                      "assets/images/basketball.png"),
+                                  child:
+                                      Image.asset("assets/images/football.png"),
                                 ),
                                 onPressed: () {
                                   Navigator.push(context,
@@ -189,7 +189,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   height: 73,
                                   decoration: BoxDecoration(),
                                   child: Image.asset(
-                                      "assets/images/basketball.png"),
+                                      "assets/images/shuttlecock.png"),
                                 ),
                                 onPressed: () {
                                   Navigator.push(context,
@@ -233,7 +233,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       fit: StackFit.expand,
                                       children: [
                                         Image.asset(
-                                            "assets/images/basketball.png"),
+                                            "assets/images/ping-pong.png"),
                                       ],
                                     )),
                                 onPressed: () {
