@@ -5,11 +5,40 @@ class BookingLapangan extends StatefulWidget {
   @override
   // ignore: override_on_non_overriding_member
   Lap lapangan;
-  BookingLapangan({Key key, this.lapangan}) : super(key: key);
+  final ValueChanged<bool> isSelected;
+  BookingLapangan({Key key, this.lapangan, this.isSelected}) : super(key: key);
   _BookingLapanganState createState() => _BookingLapanganState(lapangan);
 }
 
 class _BookingLapanganState extends State<BookingLapangan> {
+  List itemList = [
+    "00:00",
+    "01:00",
+    "02:00",
+    "03:00",
+    "04:00",
+    "05:00",
+    "06:00",
+    "07:00",
+    "08:00",
+    "09:00",
+    "10:00",
+    "11:00",
+    "12:00",
+    "13:00",
+    "14:00",
+    "15:00",
+    "16:00",
+    "17:00",
+    "18:00",
+    "19:00",
+    "20:00",
+    "21:00",
+    "22:00",
+    "23:00"
+  ];
+  List selectedList = [];
+
   Lap lapangan;
   _BookingLapanganState(this.lapangan);
   CalendarController _controller = CalendarController();
@@ -20,19 +49,24 @@ class _BookingLapanganState extends State<BookingLapangan> {
   String name = "";
 
   void getUserUpdate() async {
-    userCollection.doc(FirebaseAuth.instance.currentUser.uid).snapshots().listen((event) {
+    userCollection
+        .doc(FirebaseAuth.instance.currentUser.uid)
+        .snapshots()
+        .listen((event) {
       name = event.data()['name'];
       setState(() {});
     });
   }
+
   void initState() {
     getUserUpdate();
     super.initState();
+    print(itemList);
   }
 
   @override
   // ignore: override_on_non_overriding_member
-  var isSelected = false;
+  bool isSelected = false;
 
   var icon = Icons.favorite_border;
 
@@ -226,1250 +260,346 @@ class _BookingLapanganState extends State<BookingLapangan> {
                             SingleChildScrollView(
                               scrollDirection: Axis.vertical,
                               child: Container(
-                                  height: MediaQuery.of(context).size.height,
+                                  height:
+                                      MediaQuery.of(context).size.height + 40,
                                   child: TabBarView(children: [
-                                    SingleChildScrollView(
-                                      child: Column(
-                                        children: [
-                                          TableCalendar(
-                                            calendarController: _controller,
-                                            initialCalendarFormat:
-                                                CalendarFormat.week,
-                                            headerStyle: HeaderStyle(
-                                                centerHeaderTitle: true,
-                                                formatButtonVisible: false,
-                                                titleTextStyle: TextStyle(
-                                                    color: primary_color,
-                                                    fontSize: 18,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                                leftChevronIcon: Icon(
-                                                  Icons.arrow_back_ios,
+                                    Column(
+                                      children: [
+                                        TableCalendar(
+                                          calendarController: _controller,
+                                          initialCalendarFormat:
+                                              CalendarFormat.week,
+                                          headerStyle: HeaderStyle(
+                                              centerHeaderTitle: true,
+                                              formatButtonVisible: false,
+                                              titleTextStyle: TextStyle(
                                                   color: primary_color,
-                                                  size: 16,
-                                                ),
-                                                rightChevronIcon: Icon(
-                                                  Icons.arrow_forward_ios,
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.bold),
+                                              leftChevronIcon: Icon(
+                                                Icons.arrow_back_ios,
+                                                color: primary_color,
+                                                size: 16,
+                                              ),
+                                              rightChevronIcon: Icon(
+                                                Icons.arrow_forward_ios,
+                                                color: primary_color,
+                                                size: 16,
+                                              ),
+                                              leftChevronMargin:
+                                                  EdgeInsets.only(left: 72),
+                                              rightChevronMargin:
+                                                  EdgeInsets.only(right: 72)),
+                                        ),
+                                        SizedBox(
+                                          height: 30,
+                                        ),
+                                        Container(
+                                          margin: EdgeInsets.only(left: 24),
+                                          child: Align(
+                                            alignment: Alignment.topLeft,
+                                            child: Text(
+                                              "Nomer Lapangan",
+                                              style: TextStyle(
                                                   color: primary_color,
-                                                  size: 16,
-                                                ),
-                                                leftChevronMargin:
-                                                    EdgeInsets.only(left: 72),
-                                                rightChevronMargin:
-                                                    EdgeInsets.only(right: 72)),
-                                          ),
-                                          SizedBox(
-                                            height: 30,
-                                          ),
-                                          Container(
-                                            margin: EdgeInsets.only(left: 24),
-                                            child: Align(
-                                              alignment: Alignment.topLeft,
-                                              child: Text(
-                                                "Nomer Lapangan",
-                                                style: TextStyle(
-                                                    color: primary_color,
-                                                    fontFamily: "Ubuntu",
-                                                    fontSize: 24,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
+                                                  fontFamily: "Ubuntu",
+                                                  fontSize: 24,
+                                                  fontWeight: FontWeight.bold),
                                             ),
                                           ),
-                                          SizedBox(
-                                            height: 20,
-                                          ),
-                                          Row(
-                                            children: [
-                                              InkWell(
-                                                onTap: () {
-                                                  changeNomerLapangan(
-                                                      "lapangan1");
-                                                },
-                                                child: Container(
-                                                  margin:
-                                                      EdgeInsets.only(left: 24),
-                                                  height: 56,
-                                                  width: 56,
-                                                  decoration: (selectedNomerLapangan ==
-                                                          "lapangan1")
-                                                      ? BoxDecoration(
-                                                          color: primary_color,
-                                                          borderRadius:
-                                                              BorderRadius.all(
-                                                                  Radius
-                                                                      .circular(
-                                                                          16)))
-                                                      : BoxDecoration(),
-                                                  child: Center(
-                                                    child: Text(
-                                                      "1",
-                                                      style: TextStyle(
-                                                          color: (selectedNomerLapangan ==
-                                                                  "lapangan1")
-                                                              ? Colors.white
-                                                              : primary_color,
-                                                          fontSize: 18,
-                                                          fontWeight:
-                                                              FontWeight.w500),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                              InkWell(
-                                                onTap: () {
-                                                  changeNomerLapangan(
-                                                      "lapangan2");
-                                                },
-                                                child: Container(
-                                                  margin:
-                                                      EdgeInsets.only(left: 24),
-                                                  height: 56,
-                                                  width: 56,
-                                                  decoration: (selectedNomerLapangan ==
-                                                          "lapangan2")
-                                                      ? BoxDecoration(
-                                                          color: primary_color,
-                                                          borderRadius:
-                                                              BorderRadius.all(
-                                                                  Radius
-                                                                      .circular(
-                                                                          16)))
-                                                      : BoxDecoration(),
-                                                  child: Center(
-                                                    child: Text(
-                                                      "2",
-                                                      style: TextStyle(
-                                                          color: (selectedNomerLapangan ==
-                                                                  "lapangan2")
-                                                              ? Colors.white
-                                                              : primary_color,
-                                                          fontSize: 18,
-                                                          fontWeight:
-                                                              FontWeight.w500),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                              InkWell(
-                                                onTap: () {
-                                                  changeNomerLapangan(
-                                                      "lapangan3");
-                                                },
-                                                child: Container(
-                                                  margin:
-                                                      EdgeInsets.only(left: 24),
-                                                  height: 56,
-                                                  width: 56,
-                                                  decoration: (selectedNomerLapangan ==
-                                                          "lapangan3")
-                                                      ? BoxDecoration(
-                                                          color: primary_color,
-                                                          borderRadius:
-                                                              BorderRadius.all(
-                                                                  Radius
-                                                                      .circular(
-                                                                          16)))
-                                                      : BoxDecoration(),
-                                                  child: Center(
-                                                    child: Text(
-                                                      "3",
-                                                      style: TextStyle(
-                                                          color: (selectedNomerLapangan ==
-                                                                  "lapangan3")
-                                                              ? Colors.white
-                                                              : primary_color,
-                                                          fontSize: 18,
-                                                          fontWeight:
-                                                              FontWeight.w500),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          SizedBox(
-                                            height: 20,
-                                          ),
-                                          Container(
-                                            margin: EdgeInsets.only(left: 24),
-                                            child: Align(
-                                              alignment: Alignment.topLeft,
-                                              child: Text(
-                                                "Pilih Waktu",
-                                                style: TextStyle(
-                                                    color: primary_color,
-                                                    fontFamily: "Ubuntu",
-                                                    fontSize: 24,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                            ),
-                                          ),
-                                          Container(
-                                            child: Column(
-                                              children: [
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceEvenly,
-                                                  children: [
-                                                    InkWell(
-                                                      onTap: () {
-                                                        changePilihWaktu(
-                                                            "00.00");
-                                                      },
-                                                      child: Container(
-                                                        height: 60,
-                                                        width: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .width /
-                                                            5,
-                                                        decoration: (selectedPilihWaktu ==
-                                                                "00.00")
-                                                            ? BoxDecoration(
-                                                                color:
-                                                                    primary_color,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            8.0))
-                                                            : BoxDecoration(),
-                                                        child: Center(
-                                                          child: Text(
-                                                            "00.00",
-                                                            style: TextStyle(
-                                                                color: (selectedPilihWaktu ==
-                                                                        "00.00")
-                                                                    ? Colors
-                                                                        .white
-                                                                    : Colors
-                                                                        .grey
-                                                                        .withOpacity(
-                                                                            0.4),
-                                                                fontSize: 18,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    InkWell(
-                                                      onTap: () {
-                                                        changePilihWaktu(
-                                                            "01.00");
-                                                      },
-                                                      child: Container(
-                                                        height: 60,
-                                                        width: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .width /
-                                                            5,
-                                                        decoration: (selectedPilihWaktu ==
-                                                                "01.00")
-                                                            ? BoxDecoration(
-                                                                color:
-                                                                    primary_color,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            8.0))
-                                                            : BoxDecoration(),
-                                                        child: Center(
-                                                          child: Text(
-                                                            "01.00",
-                                                            style: TextStyle(
-                                                                color: (selectedPilihWaktu ==
-                                                                        "01.00")
-                                                                    ? Colors
-                                                                        .white
-                                                                    : Colors
-                                                                        .grey
-                                                                        .withOpacity(
-                                                                            0.4),
-                                                                fontSize: 18,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    InkWell(
-                                                      onTap: () {
-                                                        changePilihWaktu(
-                                                            "02.00");
-                                                      },
-                                                      child: Container(
-                                                        height: 60,
-                                                        width: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .width /
-                                                            5,
-                                                        decoration: (selectedPilihWaktu ==
-                                                                "02.00")
-                                                            ? BoxDecoration(
-                                                                color:
-                                                                    primary_color,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            8.0))
-                                                            : BoxDecoration(),
-                                                        child: Center(
-                                                          child: Text(
-                                                            "02.00",
-                                                            style: TextStyle(
-                                                                color: (selectedPilihWaktu ==
-                                                                        "02.00")
-                                                                    ? Colors
-                                                                        .white
-                                                                    : Colors
-                                                                        .grey
-                                                                        .withOpacity(
-                                                                            0.4),
-                                                                fontSize: 18,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    InkWell(
-                                                      onTap: () {
-                                                        changePilihWaktu(
-                                                            "03.00");
-                                                      },
-                                                      child: Container(
-                                                        height: 60,
-                                                        width: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .width /
-                                                            5,
-                                                        decoration: (selectedPilihWaktu ==
-                                                                "03.00")
-                                                            ? BoxDecoration(
-                                                                color:
-                                                                    primary_color,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            8.0))
-                                                            : BoxDecoration(),
-                                                        child: Center(
-                                                          child: Text(
-                                                            "03.00",
-                                                            style: TextStyle(
-                                                                color: (selectedPilihWaktu ==
-                                                                        "03.00")
-                                                                    ? Colors
-                                                                        .white
-                                                                    : Colors
-                                                                        .grey
-                                                                        .withOpacity(
-                                                                            0.4),
-                                                                fontSize: 18,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceEvenly,
-                                                  children: [
-                                                    InkWell(
-                                                      onTap: () {
-                                                        changePilihWaktu(
-                                                            "04.00");
-                                                      },
-                                                      child: Container(
-                                                        height: 60,
-                                                        width: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .width /
-                                                            5,
-                                                        decoration: (selectedPilihWaktu ==
-                                                                "04.00")
-                                                            ? BoxDecoration(
-                                                                color:
-                                                                    primary_color,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            8.0))
-                                                            : BoxDecoration(),
-                                                        child: Center(
-                                                          child: Text(
-                                                            "04.00",
-                                                            style: TextStyle(
-                                                                color: (selectedPilihWaktu ==
-                                                                        "04.00")
-                                                                    ? Colors
-                                                                        .white
-                                                                    : Colors
-                                                                        .grey
-                                                                        .withOpacity(
-                                                                            0.4),
-                                                                fontSize: 18,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    InkWell(
-                                                      onTap: () {
-                                                        changePilihWaktu(
-                                                            "05.00");
-                                                      },
-                                                      child: Container(
-                                                        height: 60,
-                                                        width: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .width /
-                                                            5,
-                                                        decoration: (selectedPilihWaktu ==
-                                                                "05.00")
-                                                            ? BoxDecoration(
-                                                                color:
-                                                                    primary_color,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            8.0))
-                                                            : BoxDecoration(),
-                                                        child: Center(
-                                                          child: Text(
-                                                            "05.00",
-                                                            style: TextStyle(
-                                                                color: (selectedPilihWaktu ==
-                                                                        "05.00")
-                                                                    ? Colors
-                                                                        .white
-                                                                    : Colors
-                                                                        .grey
-                                                                        .withOpacity(
-                                                                            0.4),
-                                                                fontSize: 18,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    InkWell(
-                                                      onTap: () {
-                                                        changePilihWaktu(
-                                                            "06.00");
-                                                      },
-                                                      child: Container(
-                                                        height: 60,
-                                                        width: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .width /
-                                                            5,
-                                                        decoration: (selectedPilihWaktu ==
-                                                                "06.00")
-                                                            ? BoxDecoration(
-                                                                color:
-                                                                    primary_color,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            8.0))
-                                                            : BoxDecoration(),
-                                                        child: Center(
-                                                          child: Text(
-                                                            "06.00",
-                                                            style: TextStyle(
-                                                                color: (selectedPilihWaktu ==
-                                                                        "06.00")
-                                                                    ? Colors
-                                                                        .white
-                                                                    : Colors
-                                                                        .grey
-                                                                        .withOpacity(
-                                                                            0.4),
-                                                                fontSize: 18,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    InkWell(
-                                                      onTap: () {
-                                                        changePilihWaktu(
-                                                            "07.00");
-                                                      },
-                                                      child: Container(
-                                                        height: 60,
-                                                        width: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .width /
-                                                            5,
-                                                        decoration: (selectedPilihWaktu ==
-                                                                "07.00")
-                                                            ? BoxDecoration(
-                                                                color:
-                                                                    primary_color,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            8.0))
-                                                            : BoxDecoration(),
-                                                        child: Center(
-                                                          child: Text(
-                                                            "07.00",
-                                                            style: TextStyle(
-                                                                color: (selectedPilihWaktu ==
-                                                                        "07.00")
-                                                                    ? Colors
-                                                                        .white
-                                                                    : Colors
-                                                                        .grey
-                                                                        .withOpacity(
-                                                                            0.4),
-                                                                fontSize: 18,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceEvenly,
-                                                  children: [
-                                                    InkWell(
-                                                      onTap: () {
-                                                        changePilihWaktu(
-                                                            "08.00");
-                                                      },
-                                                      child: Container(
-                                                        height: 60,
-                                                        width: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .width /
-                                                            5,
-                                                        decoration: (selectedPilihWaktu ==
-                                                                "08.00")
-                                                            ? BoxDecoration(
-                                                                color:
-                                                                    primary_color,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            8.0))
-                                                            : BoxDecoration(),
-                                                        child: Center(
-                                                          child: Text(
-                                                            "08.00",
-                                                            style: TextStyle(
-                                                                color: (selectedPilihWaktu ==
-                                                                        "08.00")
-                                                                    ? Colors
-                                                                        .white
-                                                                    : Colors
-                                                                        .grey
-                                                                        .withOpacity(
-                                                                            0.4),
-                                                                fontSize: 18,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    InkWell(
-                                                      onTap: () {
-                                                        changePilihWaktu(
-                                                            "09.00");
-                                                      },
-                                                      child: Container(
-                                                        height: 60,
-                                                        width: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .width /
-                                                            5,
-                                                        decoration: (selectedPilihWaktu ==
-                                                                "09.00")
-                                                            ? BoxDecoration(
-                                                                color:
-                                                                    primary_color,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            8.0))
-                                                            : BoxDecoration(),
-                                                        child: Center(
-                                                          child: Text(
-                                                            "09.00",
-                                                            style: TextStyle(
-                                                                color: (selectedPilihWaktu ==
-                                                                        "09.00")
-                                                                    ? Colors
-                                                                        .white
-                                                                    : Colors
-                                                                        .grey
-                                                                        .withOpacity(
-                                                                            0.4),
-                                                                fontSize: 18,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    InkWell(
-                                                      onTap: () {
-                                                        changePilihWaktu(
-                                                            "10.00");
-                                                      },
-                                                      child: Container(
-                                                        height: 60,
-                                                        width: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .width /
-                                                            5,
-                                                        decoration: (selectedPilihWaktu ==
-                                                                "10.00")
-                                                            ? BoxDecoration(
-                                                                color:
-                                                                    primary_color,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            8.0))
-                                                            : BoxDecoration(),
-                                                        child: Center(
-                                                          child: Text(
-                                                            "10.00",
-                                                            style: TextStyle(
-                                                                color: (selectedPilihWaktu ==
-                                                                        "10.00")
-                                                                    ? Colors
-                                                                        .white
-                                                                    : primary_color,
-                                                                fontSize: 18,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    InkWell(
-                                                      onTap: () {
-                                                        changePilihWaktu(
-                                                            "11.00");
-                                                      },
-                                                      child: Container(
-                                                        height: 60,
-                                                        width: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .width /
-                                                            5,
-                                                        decoration: (selectedPilihWaktu ==
-                                                                "11.00")
-                                                            ? BoxDecoration(
-                                                                color:
-                                                                    primary_color,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            8.0))
-                                                            : BoxDecoration(),
-                                                        child: Center(
-                                                          child: Text(
-                                                            "11.00",
-                                                            style: TextStyle(
-                                                                color: (selectedPilihWaktu ==
-                                                                        "11.00")
-                                                                    ? Colors
-                                                                        .white
-                                                                    : primary_color,
-                                                                fontSize: 18,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceEvenly,
-                                                  children: [
-                                                    InkWell(
-                                                      onTap: () {
-                                                        changePilihWaktu(
-                                                            "12.00");
-                                                      },
-                                                      child: Container(
-                                                        height: 60,
-                                                        width: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .width /
-                                                            5,
-                                                        decoration: (selectedPilihWaktu ==
-                                                                "12.00")
-                                                            ? BoxDecoration(
-                                                                color:
-                                                                    primary_color,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            8.0))
-                                                            : BoxDecoration(),
-                                                        child: Center(
-                                                          child: Text(
-                                                            "12.00",
-                                                            style: TextStyle(
-                                                                color: (selectedPilihWaktu ==
-                                                                        "12.00")
-                                                                    ? Colors
-                                                                        .white
-                                                                    : primary_color,
-                                                                fontSize: 18,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    InkWell(
-                                                      onTap: () {
-                                                        changePilihWaktu(
-                                                            "13.00");
-                                                      },
-                                                      child: Container(
-                                                        height: 60,
-                                                        width: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .width /
-                                                            5,
-                                                        decoration: (selectedPilihWaktu ==
-                                                                "13.00")
-                                                            ? BoxDecoration(
-                                                                color:
-                                                                    primary_color,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            8.0))
-                                                            : BoxDecoration(),
-                                                        child: Center(
-                                                          child: Text(
-                                                            "13.00",
-                                                            style: TextStyle(
-                                                                color: (selectedPilihWaktu ==
-                                                                        "13.00")
-                                                                    ? Colors
-                                                                        .white
-                                                                    : primary_color,
-                                                                fontSize: 18,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    InkWell(
-                                                      onTap: () {
-                                                        changePilihWaktu(
-                                                            "14.00");
-                                                      },
-                                                      child: Container(
-                                                        height: 60,
-                                                        width: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .width /
-                                                            5,
-                                                        decoration: (selectedPilihWaktu ==
-                                                                "14.00")
-                                                            ? BoxDecoration(
-                                                                color:
-                                                                    primary_color,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            8.0))
-                                                            : BoxDecoration(),
-                                                        child: Center(
-                                                          child: Text(
-                                                            "14.00",
-                                                            style: TextStyle(
-                                                                color: (selectedPilihWaktu ==
-                                                                        "14.00")
-                                                                    ? Colors
-                                                                        .white
-                                                                    : primary_color,
-                                                                fontSize: 18,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    InkWell(
-                                                      onTap: () {
-                                                        changePilihWaktu(
-                                                            "15.00");
-                                                      },
-                                                      child: Container(
-                                                        height: 60,
-                                                        width: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .width /
-                                                            5,
-                                                        decoration: (selectedPilihWaktu ==
-                                                                "15.00")
-                                                            ? BoxDecoration(
-                                                                color:
-                                                                    primary_color,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            8.0))
-                                                            : BoxDecoration(),
-                                                        child: Center(
-                                                          child: Text(
-                                                            "15.00",
-                                                            style: TextStyle(
-                                                                color: (selectedPilihWaktu ==
-                                                                        "15.00")
-                                                                    ? Colors
-                                                                        .white
-                                                                    : primary_color,
-                                                                fontSize: 18,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceEvenly,
-                                                  children: [
-                                                    InkWell(
-                                                      onTap: () {
-                                                        changePilihWaktu(
-                                                            "16.00");
-                                                      },
-                                                      child: Container(
-                                                        height: 60,
-                                                        width: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .width /
-                                                            5,
-                                                        decoration: (selectedPilihWaktu ==
-                                                                "16.00")
-                                                            ? BoxDecoration(
-                                                                color:
-                                                                    primary_color,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            8.0))
-                                                            : BoxDecoration(),
-                                                        child: Center(
-                                                          child: Text(
-                                                            "16.00",
-                                                            style: TextStyle(
-                                                                color: (selectedPilihWaktu ==
-                                                                        "16.00")
-                                                                    ? Colors
-                                                                        .white
-                                                                    : primary_color,
-                                                                fontSize: 18,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    InkWell(
-                                                      onTap: () {
-                                                        changePilihWaktu(
-                                                            "17.00");
-                                                      },
-                                                      child: Container(
-                                                        height: 60,
-                                                        width: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .width /
-                                                            5,
-                                                        decoration: (selectedPilihWaktu ==
-                                                                "17.00")
-                                                            ? BoxDecoration(
-                                                                color:
-                                                                    primary_color,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            8.0))
-                                                            : BoxDecoration(),
-                                                        child: Center(
-                                                          child: Text(
-                                                            "17.00",
-                                                            style: TextStyle(
-                                                                color: (selectedPilihWaktu ==
-                                                                        "17.00")
-                                                                    ? Colors
-                                                                        .white
-                                                                    : primary_color,
-                                                                fontSize: 18,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    InkWell(
-                                                      onTap: () {
-                                                        changePilihWaktu(
-                                                            "18.00");
-                                                      },
-                                                      child: Container(
-                                                        height: 60,
-                                                        width: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .width /
-                                                            5,
-                                                        decoration: (selectedPilihWaktu ==
-                                                                "18.00")
-                                                            ? BoxDecoration(
-                                                                color:
-                                                                    primary_color,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            8.0))
-                                                            : BoxDecoration(),
-                                                        child: Center(
-                                                          child: Text(
-                                                            "18.00",
-                                                            style: TextStyle(
-                                                                color: (selectedPilihWaktu ==
-                                                                        "18.00")
-                                                                    ? Colors
-                                                                        .white
-                                                                    : primary_color,
-                                                                fontSize: 18,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    InkWell(
-                                                      onTap: () {
-                                                        changePilihWaktu(
-                                                            "19.00");
-                                                      },
-                                                      child: Container(
-                                                        height: 60,
-                                                        width: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .width /
-                                                            5,
-                                                        decoration: (selectedPilihWaktu ==
-                                                                "19.00")
-                                                            ? BoxDecoration(
-                                                                color:
-                                                                    primary_color,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            8.0))
-                                                            : BoxDecoration(),
-                                                        child: Center(
-                                                          child: Text(
-                                                            "19.00",
-                                                            style: TextStyle(
-                                                                color: (selectedPilihWaktu ==
-                                                                        "19.00")
-                                                                    ? Colors
-                                                                        .white
-                                                                    : primary_color,
-                                                                fontSize: 18,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceEvenly,
-                                                  children: [
-                                                    InkWell(
-                                                      onTap: () {
-                                                        changePilihWaktu(
-                                                            "20.00");
-                                                      },
-                                                      child: Container(
-                                                        height: 60,
-                                                        width: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .width /
-                                                            5,
-                                                        decoration: (selectedPilihWaktu ==
-                                                                "20.00")
-                                                            ? BoxDecoration(
-                                                                color:
-                                                                    primary_color,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            8.0))
-                                                            : BoxDecoration(),
-                                                        child: Center(
-                                                          child: Text(
-                                                            "20.00",
-                                                            style: TextStyle(
-                                                                color: (selectedPilihWaktu ==
-                                                                        "20.00")
-                                                                    ? Colors
-                                                                        .white
-                                                                    : primary_color,
-                                                                fontSize: 18,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    InkWell(
-                                                      onTap: () {
-                                                        changePilihWaktu(
-                                                            "21.00");
-                                                      },
-                                                      child: Container(
-                                                        height: 60,
-                                                        width: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .width /
-                                                            5,
-                                                        decoration: (selectedPilihWaktu ==
-                                                                "21.00")
-                                                            ? BoxDecoration(
-                                                                color:
-                                                                    primary_color,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            8.0))
-                                                            : BoxDecoration(),
-                                                        child: Center(
-                                                          child: Text(
-                                                            "21.00",
-                                                            style: TextStyle(
-                                                                color: (selectedPilihWaktu ==
-                                                                        "21.00")
-                                                                    ? Colors
-                                                                        .white
-                                                                    : primary_color,
-                                                                fontSize: 18,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    InkWell(
-                                                      onTap: () {
-                                                        changePilihWaktu(
-                                                            "22.00");
-                                                      },
-                                                      child: Container(
-                                                        height: 60,
-                                                        width: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .width /
-                                                            5,
-                                                        decoration: (selectedPilihWaktu ==
-                                                                "22.00")
-                                                            ? BoxDecoration(
-                                                                color:
-                                                                    primary_color,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            8.0))
-                                                            : BoxDecoration(),
-                                                        child: Center(
-                                                          child: Text(
-                                                            "22.00",
-                                                            style: TextStyle(
-                                                                color: (selectedPilihWaktu ==
-                                                                        "22.00")
-                                                                    ? Colors
-                                                                        .white
-                                                                    : primary_color,
-                                                                fontSize: 18,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    InkWell(
-                                                      onTap: () {
-                                                        changePilihWaktu(
-                                                            "23.00");
-                                                      },
-                                                      child: Container(
-                                                        height: 60,
-                                                        width: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .width /
-                                                            5,
-                                                        decoration: (selectedPilihWaktu ==
-                                                                "23.00")
-                                                            ? BoxDecoration(
-                                                                color:
-                                                                    primary_color,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            8.0))
-                                                            : BoxDecoration(),
-                                                        child: Center(
-                                                          child: Text(
-                                                            "23.00",
-                                                            style: TextStyle(
-                                                                color: (selectedPilihWaktu ==
-                                                                        "23.00")
-                                                                    ? Colors
-                                                                        .white
-                                                                    : primary_color,
-                                                                fontSize: 18,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          Container(
-                                            margin: EdgeInsets.only(top: 16),
-                                            width: 300,
-                                            child: RaisedButton(
-                                              shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          24.0)),
-                                              color: primary_color,
-                                              textColor: Colors.white,
-                                              onPressed: () {
-                                                String tanggal = _controller
-                                                    .selectedDay
-                                                    .toIso8601String();
-                                                String tanggalfix =
-                                                    tanggal.substring(0,
-                                                        tanggal.indexOf("T"));
-                                                launchWhatsapp(
-                                                    number: "+6281391097676",
-                                                    message:
-                                                        "Saya "+ name +" mau booking lapangan " +
-                                                            lapangan
-                                                                .parent.nama + " "+
-                                                            selectedPilihWaktu +  " " +
-                                                            tanggalfix);
-                                                addTransaction(
-                                                    "partnerid",
-                                                    "fieldid",
-                                                    tanggalfix,
-                                                    selectedPilihWaktu,
-                                                    "subtotal",
-                                                    "status",
-                                                    "couponid",
-                                                    "total",
-                                                    DateTime.now());
+                                        ),
+                                        SizedBox(
+                                          height: 20,
+                                        ),
+                                        Row(
+                                          children: [
+                                            InkWell(
+                                              onTap: () {
+                                                changeNomerLapangan(
+                                                    "lapangan1");
                                               },
-                                              child: Text(
-                                                "Booking Lapangan",
-                                                style: TextStyle(
-                                                    fontFamily: "Ubuntu",
-                                                    fontSize: 18),
+                                              child: Container(
+                                                margin:
+                                                    EdgeInsets.only(left: 24),
+                                                height: 56,
+                                                width: 56,
+                                                decoration:
+                                                    (selectedNomerLapangan ==
+                                                            "lapangan1")
+                                                        ? BoxDecoration(
+                                                            color:
+                                                                primary_color,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .all(Radius
+                                                                        .circular(
+                                                                            16)))
+                                                        : BoxDecoration(),
+                                                child: Center(
+                                                  child: Text(
+                                                    "1",
+                                                    style: TextStyle(
+                                                        color:
+                                                            (selectedNomerLapangan ==
+                                                                    "lapangan1")
+                                                                ? Colors.white
+                                                                : primary_color,
+                                                        fontSize: 18,
+                                                        fontWeight:
+                                                            FontWeight.w500),
+                                                  ),
+                                                ),
                                               ),
                                             ),
+                                            InkWell(
+                                              onTap: () {
+                                                changeNomerLapangan(
+                                                    "lapangan2");
+                                              },
+                                              child: Container(
+                                                margin:
+                                                    EdgeInsets.only(left: 24),
+                                                height: 56,
+                                                width: 56,
+                                                decoration:
+                                                    (selectedNomerLapangan ==
+                                                            "lapangan2")
+                                                        ? BoxDecoration(
+                                                            color:
+                                                                primary_color,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .all(Radius
+                                                                        .circular(
+                                                                            16)))
+                                                        : BoxDecoration(),
+                                                child: Center(
+                                                  child: Text(
+                                                    "2",
+                                                    style: TextStyle(
+                                                        color:
+                                                            (selectedNomerLapangan ==
+                                                                    "lapangan2")
+                                                                ? Colors.white
+                                                                : primary_color,
+                                                        fontSize: 18,
+                                                        fontWeight:
+                                                            FontWeight.w500),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            InkWell(
+                                              onTap: () {
+                                                changeNomerLapangan(
+                                                    "lapangan3");
+                                              },
+                                              child: Container(
+                                                margin:
+                                                    EdgeInsets.only(left: 24),
+                                                height: 56,
+                                                width: 56,
+                                                decoration:
+                                                    (selectedNomerLapangan ==
+                                                            "lapangan3")
+                                                        ? BoxDecoration(
+                                                            color:
+                                                                primary_color,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .all(Radius
+                                                                        .circular(
+                                                                            16)))
+                                                        : BoxDecoration(),
+                                                child: Center(
+                                                  child: Text(
+                                                    "3",
+                                                    style: TextStyle(
+                                                        color:
+                                                            (selectedNomerLapangan ==
+                                                                    "lapangan3")
+                                                                ? Colors.white
+                                                                : primary_color,
+                                                        fontSize: 18,
+                                                        fontWeight:
+                                                            FontWeight.w500),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          height: 20,
+                                        ),
+                                        Container(
+                                          margin: EdgeInsets.only(left: 24),
+                                          child: Align(
+                                            alignment: Alignment.topLeft,
+                                            child: Text(
+                                              "Pilih Waktu",
+                                              style: TextStyle(
+                                                  color: primary_color,
+                                                  fontFamily: "Ubuntu",
+                                                  fontSize: 24,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
                                           ),
-                                          SizedBox(
-                                            height: 40,
-                                          )
-                                        ],
-                                      ),
+                                        ),
+                                        Container(
+                                          padding: EdgeInsets.only(
+                                              right: MediaQuery.of(context)
+                                                      .size
+                                                      .width /
+                                                  15,
+                                              left: MediaQuery.of(context)
+                                                      .size
+                                                      .width /
+                                                  15),
+                                          child: GridView.builder(
+                                              shrinkWrap: true,
+                                              itemCount: itemList.length,
+                                              gridDelegate:
+                                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                                      crossAxisCount: 4,
+                                                      childAspectRatio: 1.5,
+                                                      crossAxisSpacing: 10,
+                                                      mainAxisSpacing: 10),
+                                              itemBuilder: (context, index) {
+                                                return InkWell(
+                                                  onTap: () {
+                                                    if (int.parse(
+                                                            itemList[index]
+                                                                .toString()
+                                                                .substring(
+                                                                    0, 2)) >=
+                                                        int.parse(lapangan
+                                                            .parent.open
+                                                            .substring(0, 2)) && int.parse(
+                                                            itemList[index]
+                                                                .toString()
+                                                                .substring(
+                                                                    0, 2)) <
+                                                        int.parse(lapangan
+                                                            .parent.close
+                                                            .substring(0, 2))) {
+                                                      setState(() {
+                                                        if (selectedList !=
+                                                            null) {
+                                                          if (selectedList
+                                                              .contains(
+                                                                  itemList[
+                                                                      index])) {
+                                                            selectedList.remove(
+                                                                itemList[
+                                                                    index]);
+                                                          } else {
+                                                            selectedList.add(
+                                                                itemList[
+                                                                    index]);
+                                                          }
+                                                        }
+                                                      });
+                                                    }
+                                                  },
+                                                  child: Container(
+                                                    height: 60,
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width /
+                                                            5,
+                                                    decoration: (selectedList !=
+                                                                null &&
+                                                            selectedList
+                                                                .contains(
+                                                                    itemList[
+                                                                        index]))
+                                                        ? BoxDecoration(
+                                                            color:
+                                                                primary_color,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8.0))
+                                                        : BoxDecoration(),
+                                                    child: Center(
+                                                      child: Text(
+                                                        itemList[index],
+                                                        style: TextStyle(
+                                                            color: (selectedList !=
+                                                                        null &&
+                                                                    selectedList.contains(
+                                                                        itemList[
+                                                                            index]))
+                                                                ? Colors.white
+                                                                : Colors.grey
+                                                                    .withOpacity(
+                                                                        0.4),
+                                                            fontSize: 18,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w600),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                );
+                                              }),
+                                        ),
+                                        Container(
+                                          margin: EdgeInsets.only(top: 16),
+                                          width: 300,
+                                          child: RaisedButton(
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                        24.0)),
+                                            color: primary_color,
+                                            textColor: Colors.white,
+                                            onPressed: () {
+                                              selectedList.sort((a,b)=>int.parse(a.toString().substring(0,2)).compareTo(int.parse(b.toString().substring(0,2))));
+                                              String tanggal = _controller
+                                                  .selectedDay
+                                                  .toIso8601String();
+                                              String tanggalfix =
+                                                  tanggal.substring(
+                                                      0, tanggal.indexOf("T"));
+                                              launchWhatsapp(
+                                                  number: "+6281391097676",
+                                                  message: "Saya " +
+                                                      name +
+                                                      " mau booking lapangan " +
+                                                      lapangan.parent.nama +
+                                                      " " +
+                                                      selectedList[0] +
+                                                      " - " + selectedList[selectedList.length-1] + " " + 
+                                                      tanggalfix);
+                                              addTransaction(
+                                                  lapangan.parent.nama,
+                                                  lapangan.no,
+                                                  lapangan.jenis,
+                                                  tanggalfix,
+                                                  selectedList,
+                                                  "subtotal",
+                                                  "In Progress",
+                                                  "couponid",
+                                                  lapangan.harga*selectedList.length,
+                                                  DateTime.now());
+                                            },
+                                            child: Text(
+                                              "Booking Lapangan",
+                                              style: TextStyle(
+                                                  fontFamily: "Ubuntu",
+                                                  fontSize: 18),
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: 40,
+                                        )
+                                      ],
                                     ),
+
                                     Container(
                                         padding: EdgeInsets.only(
                                             top: 8, right: 32, left: 32),
@@ -1581,7 +711,9 @@ class _BookingLapanganState extends State<BookingLapangan> {
                                                       fit: BoxFit.fill,
                                                     ),
                                                   ),
-                                                  Text(lapangan.parent.open + " - " + lapangan.parent.close),
+                                                  Text(lapangan.parent.open +
+                                                      " - " +
+                                                      lapangan.parent.close),
                                                 ],
                                               ),
                                             ),

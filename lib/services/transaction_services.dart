@@ -1,14 +1,15 @@
 part of 'services.dart';
 
-Future<void> addTransaction(String partnerid, fieldid, date, time, subtotal,
+Future<void> addTransaction(String partnerid, fieldid,jenis, date, time, subtotal,
     status, couponid, total, ordertime) async {
   CollectionReference transactions =
       FirebaseFirestore.instance.collection("Transactions");
   transactions.add({
     'partnerid': partnerid,
     'fieldid': fieldid,
+    'jenis' : jenis,
     'date': date,
-    'time': time,
+    'time': FieldValue.arrayUnion(time),
     'subtotal': subtotal,
     'status': status,
     'couponid': couponid,
@@ -26,8 +27,9 @@ Future<void> addTransaction(String partnerid, fieldid, date, time, subtotal,
       "transactionid": doc.id,
       'partnerid': partnerid,
       'fieldid': fieldid,
+      'jenis' : jenis,
       'date': date,
-      'time': time,
+      'time': FieldValue.arrayUnion(time),
       'subtotal': subtotal,
       'status': status,
       'couponid': couponid,
