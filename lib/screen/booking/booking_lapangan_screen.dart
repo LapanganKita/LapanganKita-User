@@ -468,21 +468,19 @@ class _BookingLapanganState extends State<BookingLapangan> {
                                               itemBuilder: (context, index) {
                                                 return InkWell(
                                                   onTap: () {
-                                                    if (int.parse(
-                                                            itemList[index]
+                                                    if (int.parse(itemList[index]
                                                                 .toString()
                                                                 .substring(
                                                                     0, 2)) >=
-                                                        int.parse(lapangan
-                                                            .parent.open
-                                                            .substring(0, 2)) && int.parse(
-                                                            itemList[index]
-                                                                .toString()
+                                                            int.parse(lapangan
+                                                                .parent.open
                                                                 .substring(
-                                                                    0, 2)) <
-                                                        int.parse(lapangan
-                                                            .parent.close
-                                                            .substring(0, 2))) {
+                                                                    0, 2)) &&
+                                                        int.parse(itemList[index].toString().substring(0, 2)) <
+                                                            int.parse(lapangan
+                                                                .parent.close
+                                                                .substring(
+                                                                    0, 2))) {
                                                       setState(() {
                                                         if (selectedList !=
                                                             null) {
@@ -557,34 +555,39 @@ class _BookingLapanganState extends State<BookingLapangan> {
                                             color: primary_color,
                                             textColor: Colors.white,
                                             onPressed: () {
-                                              selectedList.sort((a,b)=>int.parse(a.toString().substring(0,2)).compareTo(int.parse(b.toString().substring(0,2))));
-                                              String tanggal = _controller
-                                                  .selectedDay
-                                                  .toIso8601String();
-                                              String tanggalfix =
-                                                  tanggal.substring(
-                                                      0, tanggal.indexOf("T"));
-                                              launchWhatsapp(
-                                                  number: "+6281391097676",
-                                                  message: "Saya " +
-                                                      name +
-                                                      " mau booking lapangan " + lapangan.jenis + " di " +
-                                                      lapangan.parent.nama +
-                                                      " lapangan nomer: "  + lapangan.no + " jam: " +
-                                                      selectedList[0] +
-                                                      " - " + selectedList[selectedList.length-1] + " pada tanggal : " + 
-                                                      tanggalfix);
-                                              addTransaction(
-                                                  lapangan.parent.nama,
-                                                  lapangan.no,
-                                                  lapangan.jenis,
-                                                  tanggalfix,
-                                                  selectedList,
-                                                  "subtotal",
-                                                  "In Progress",
-                                                  "couponid",
-                                                  lapangan.harga*selectedList.length,
-                                                  DateTime.now());
+                                              Navigator.push(context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) {
+                                                return PaymentDetails();
+                                              }));
+                                              // selectedList.sort((a,b)=>int.parse(a.toString().substring(0,2)).compareTo(int.parse(b.toString().substring(0,2))));
+                                              // String tanggal = _controller
+                                              //     .selectedDay
+                                              //     .toIso8601String();
+                                              // String tanggalfix =
+                                              //     tanggal.substring(
+                                              //         0, tanggal.indexOf("T"));
+                                              // launchWhatsapp(
+                                              //     number: "+6281391097676",
+                                              //     message: "Saya " +
+                                              //         name +
+                                              //         " mau booking lapangan " + lapangan.jenis + " di " +
+                                              //         lapangan.parent.nama +
+                                              //         " lapangan nomer: "  + lapangan.no + " jam: " +
+                                              //         selectedList[0] +
+                                              //         " - " + selectedList[selectedList.length-1] + " pada tanggal : " +
+                                              //         tanggalfix);
+                                              // addTransaction(
+                                              //     lapangan.parent.nama,
+                                              //     lapangan.no,
+                                              //     lapangan.jenis,
+                                              //     tanggalfix,
+                                              //     selectedList,
+                                              //     "subtotal",
+                                              //     "In Progress",
+                                              //     "couponid",
+                                              //     lapangan.harga*selectedList.length,
+                                              //     DateTime.now());
                                             },
                                             child: Text(
                                               "Booking Lapangan",

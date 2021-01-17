@@ -16,3 +16,5 @@ import 'package:url_launcher/url_launcher.dart';
 part 'booking_lapangan_screen.dart';
 part 'detail_lapangan_screen.dart';
 part 'list_lapangan_screen.dart';
+part 'payment_details_screen.dart';
+
