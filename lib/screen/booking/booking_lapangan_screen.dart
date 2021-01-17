@@ -54,7 +54,7 @@ class _BookingLapanganState extends State<BookingLapangan> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3,
+      length: 2,
       child: Scaffold(
         body: Container(
           child: Stack(
@@ -216,9 +216,9 @@ class _BookingLapanganState extends State<BookingLapangan> {
                                     Tab(
                                       text: "Details",
                                     ),
-                                    Tab(
-                                      text: "Review",
-                                    ),
+                                    // Tab(
+                                    //   text: "Review",
+                                    // ),
                                   ],
                                 ),
                               ),
@@ -1603,7 +1603,7 @@ class _BookingLapanganState extends State<BookingLapangan> {
                                             // ),
                                           ],
                                         )),
-                                    Text("review")
+                                    // Text("review")
                                   ])),
                             ),
                           ],
