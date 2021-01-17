@@ -568,11 +568,11 @@ class _BookingLapanganState extends State<BookingLapangan> {
                                                   number: "+6281391097676",
                                                   message: "Saya " +
                                                       name +
-                                                      " mau booking lapangan " +
+                                                      " mau booking lapangan " + lapangan.jenis + " di " +
                                                       lapangan.parent.nama +
-                                                      " " +
+                                                      " lapangan nomer: "  + lapangan.no + " jam: " +
                                                       selectedList[0] +
-                                                      " - " + selectedList[selectedList.length-1] + " " + 
+                                                      " - " + selectedList[selectedList.length-1] + " pada tanggal : " + 
                                                       tanggalfix);
                                               addTransaction(
                                                   lapangan.parent.nama,
