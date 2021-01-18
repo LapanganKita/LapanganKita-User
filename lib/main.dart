@@ -5,6 +5,7 @@ import 'package:lapangankita_user/models/models.dart';
 import 'package:lapangankita_user/screen/authenticate/authenticates.dart';
 import 'package:lapangankita_user/screen/onboarding/onboardings.dart';
 import 'package:lapangankita_user/services/services.dart';
+import 'package:lapangankita_user/viewmodel/favorite_view_model.dart';
 import 'package:lapangankita_user/viewmodel/lapangan_view_model.dart';
 import 'package:lapangankita_user/viewmodel/list_lapangan_view_model.dart';
 import 'package:provider/provider.dart';
@@ -25,6 +26,9 @@ class MyApp extends StatelessWidget {
         providers: [
           ChangeNotifierProvider(
             create: (context) => ListLapanganViewModel(),
+          ),
+          ChangeNotifierProvider(
+            create: (context) => FavoriteViewModel(),
           ),
         ],
         child: MaterialApp(

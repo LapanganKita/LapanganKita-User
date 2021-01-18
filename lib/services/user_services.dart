@@ -51,6 +51,45 @@ class UserServices {
         .catchError((onError) => false);
   }
 
+  static Future<List<Lap>> getFavorite() async {
+    // Untuk testing struktur database baru
+
+    FirebaseAuth auth = FirebaseAuth.instance;
+    String uid = auth.currentUser.uid.toString();
+    CollectionReference favorite = FirebaseFirestore.instance
+        .collection("Users")
+        .doc(uid)
+        .collection("Favorites");
+
+    List<Lap> lapList = await LapanganService.getTest();
+    List<dynamic> favlist = [];
+    List<Lap> lapFavlist = [];
+
+    favorite.get().then((value) {
+      print("fav length : " + value.docs.length.toString());
+      if (value.docs.isNotEmpty) {
+        favlist = value.docs.toList();
+      }
+    });
+
+    print("fav list length : " + favlist.length.toString());
+
+    favlist.forEach((fav) {
+      print("Nama : " + fav["nama"]);
+      lapList.forEach((lapangan) {
+        if (lapangan.parent.nama == fav["nama"] &&
+            lapangan.jenis == fav["jenis"] &&
+            lapangan.no == fav["no"]) {
+          lapFavlist.add(lapangan);
+        }
+      });
+    });
+
+    print("filtered fav : " + lapFavlist.length.toString());
+
+    return lapFavlist;
+  }
+
   static Future<bool> checkIfFavorite(Lap lapangan) async {
     FirebaseAuth auth = FirebaseAuth.instance;
     String uid = auth.currentUser.uid.toString();
@@ -149,6 +188,7 @@ class UserServices {
     // }
   }
 }
+
 
 // String username = "";
 // String email = "";
