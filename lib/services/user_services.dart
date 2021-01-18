@@ -50,6 +50,104 @@ class UserServices {
         .then((value) => true)
         .catchError((onError) => false);
   }
+
+  static Future<bool> checkIfFavorite(Lap lapangan) async {
+    FirebaseAuth auth = FirebaseAuth.instance;
+    String uid = auth.currentUser.uid.toString();
+    CollectionReference favorite = FirebaseFirestore.instance
+        .collection("Users")
+        .doc(uid)
+        .collection("Favorites");
+
+    favorite
+        .where("nama", isEqualTo: lapangan.parent.nama)
+        .where("no", isEqualTo: lapangan.no)
+        .where("jenis", isEqualTo: lapangan.jenis)
+        .get()
+        .then((value) {
+      if (value.docs.isEmpty) {
+        return false;
+      } else {
+        print("Is Favorite");
+        return true;
+      }
+    });
+    return false;
+  }
+
+  static Future<bool> addToFavorite(Lap lapangan) async {
+    FirebaseAuth auth = FirebaseAuth.instance;
+    String uid = auth.currentUser.uid.toString();
+    CollectionReference favorite = FirebaseFirestore.instance
+        .collection("Users")
+        .doc(uid)
+        .collection("Favorites");
+
+    favorite
+        .where("nama", isEqualTo: lapangan.parent.nama)
+        .where("no", isEqualTo: lapangan.no)
+        .where("jenis", isEqualTo: lapangan.jenis)
+        .get()
+        .then((value) {
+      if (value.docs.isEmpty) {
+        try {
+          favorite.add({
+            "nama": lapangan.parent.nama,
+            "jenis": lapangan.jenis,
+            "no": lapangan.no,
+            "date": DateTime.now()
+          });
+
+          print("tyring to add to favorite");
+
+          return true;
+        } catch (e) {
+          print("Error while add lapangan to favorite : " + e.toString());
+          return false;
+        }
+      } else {
+        favorite
+            .doc(value.docs.first.id)
+            .get()
+            .then((value) => print(value.data()));
+
+        // try {
+        //   favorite.doc(value.docs.first.id).set({
+        //     "nama": lapangan.parent.nama,
+        //     "jenis": lapangan.jenis,
+        //     "no": lapangan.no,
+        //     "date": DateTime.now()
+        //   });
+
+        //   print("tyring to add to favorite");
+
+        //   return true;
+        // } catch (e) {
+        //   print("Error while add lapangan to favorite : " + e.toString());
+        //   return false;
+        // }
+
+        return false;
+      }
+    });
+    return false;
+
+    // try {
+    //   favorite.add({
+    //     "nama": lapangan.parent.nama,
+    //     "jenis": lapangan.jenis,
+    //     "no": lapangan.no,
+    //     "date": DateTime.now()
+    //   });
+
+    //   print("tyring to add to favorite");
+
+    //   return true;
+    // } catch (e) {
+    //   print("Error while add lapangan to favorite : " + e.toString());
+    //   return false;
+    // }
+  }
 }
 
 // String username = "";

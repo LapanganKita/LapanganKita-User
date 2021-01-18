@@ -58,11 +58,19 @@ class _BookingLapanganState extends State<BookingLapangan> {
     });
   }
 
+  void checkIfFavorite() async {
+    bool isFavorite = await UserServices.checkIfFavorite(lapangan);
+    print("Favorite ? " + isSelected.toString());
+    setState(() {
+      isSelected = isFavorite;
+    });
+  }
+
   void initState() {
     getUserUpdate();
+    checkIfFavorite();
     super.initState();
     print(itemList);
-    
   }
 
   @override
@@ -556,7 +564,14 @@ class _BookingLapanganState extends State<BookingLapangan> {
                                             color: primary_color,
                                             textColor: Colors.white,
                                             onPressed: () {
-                                              selectedList.sort((a,b)=>int.parse(a.toString().substring(0,2)).compareTo(int.parse(b.toString().substring(0,2))));
+                                              selectedList.sort((a, b) =>
+                                                  int.parse(
+                                                          a
+                                                              .toString()
+                                                              .substring(0, 2))
+                                                      .compareTo(int.parse(b
+                                                          .toString()
+                                                          .substring(0, 2))));
                                               String tanggal = _controller
                                                   .selectedDay
                                                   .toIso8601String();
@@ -566,7 +581,15 @@ class _BookingLapanganState extends State<BookingLapangan> {
                                               Navigator.push(context,
                                                   MaterialPageRoute(
                                                       builder: (context) {
-                                                return PaymentDetails(lapangan: lapangan,date:tanggalfix ,time: selectedList, subtotal: "subtotal", status: "In Progress", couponid: "couponid", total: "total", ordertime: "ordertime" );
+                                                return PaymentDetails(
+                                                    lapangan: lapangan,
+                                                    date: tanggalfix,
+                                                    time: selectedList,
+                                                    subtotal: "subtotal",
+                                                    status: "In Progress",
+                                                    couponid: "couponid",
+                                                    total: "total",
+                                                    ordertime: "ordertime");
                                               }));
                                               // selectedList.sort((a,b)=>int.parse(a.toString().substring(0,2)).compareTo(int.parse(b.toString().substring(0,2))));
                                               // String tanggal = _controller

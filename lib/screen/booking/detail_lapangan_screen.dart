@@ -125,14 +125,29 @@ class _DetailLapanganState extends State<DetailLapangan> {
                             size: 30,
                           ),
                           color: Colors.white,
-                          onPressed: () {
+                          onPressed: () async {
                             // Respond to icon toggle
-                            setState(() {
-                              isSelected = !isSelected;
-                              icon = isSelected
-                                  ? Icons.favorite
-                                  : Icons.favorite_border;
-                            });
+
+                            // Favorite function
+                            Lap favorite = lapangan;
+                            bool result =
+                                await UserServices.addToFavorite(favorite);
+
+                            if (result) {
+                              setState(() {
+                                isSelected = true;
+                                icon = isSelected
+                                    ? Icons.favorite
+                                    : Icons.favorite_border;
+                              });
+                            }
+
+                            // setState(() {
+                            //   isSelected = !isSelected;
+                            //   icon = isSelected
+                            //       ? Icons.favorite
+                            //       : Icons.favorite_border;
+                            // });
                           },
                         ),
                       )
