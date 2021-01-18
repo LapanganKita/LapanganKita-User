@@ -14,3 +14,4 @@ part 'custom_tile.dart';
 part 'heading_text.dart';
 part 'lapangancard.dart';
 part 'navbar.dart';
+part 'card_transaction.dart';

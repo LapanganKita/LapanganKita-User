@@ -5,6 +5,12 @@ class HistoryScreen extends StatefulWidget {
   _HistoryScreenState createState() => _HistoryScreenState();
 }
 
+String uid = FirebaseAuth.instance.currentUser.uid.toString();
+CollectionReference transactionCollection = FirebaseFirestore.instance
+    .collection("Users")
+    .doc(uid)
+    .collection("transactions");
+
 class _HistoryScreenState extends State<HistoryScreen> {
   @override
   Widget build(BuildContext context) {
@@ -38,181 +44,71 @@ class _HistoryScreenState extends State<HistoryScreen> {
           ),
           body: TabBarView(
             children: [
-              ListView(
-                children: [
-                  SingleChildScrollView(
-                    scrollDirection: Axis.vertical,
-                    child: Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Container(
-                        width: MediaQuery.of(context).size.width,
-                        height: 120,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(20),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.grey,
-                                  offset: Offset(3, 5),
-                                  blurRadius: 30)
-                            ]),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(20),
-                              child: Image.network(
-                                "https://images.unsplash.com/photo-1464983308776-3c7215084895?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80",
-                                height: 120,
-                                width: 120,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                            Container(
-                              child: Padding(
-                                padding: EdgeInsets.only(left: 8),
-                                child: Container(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Container(
-                                          margin: EdgeInsets.only(top: 8),
-                                          child: Text(
-                                            "Sport Centre Puncak Permai",
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 16,
-                                              fontFamily: "Ubuntu",
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          )),
-                                      Container(
-                                          margin: EdgeInsets.only(top: 8),
-                                          child: Text(
-                                            "2020/08/20 - 18.00",
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 12,
-                                              fontFamily: "Ubuntu",
-                                            ),
-                                          )),
-                                      Container(
-                                        margin: EdgeInsets.only(top: 8),
-                                        child: Text("Status:"),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            )
-                            // RichText(
-                            //   text: TextSpan(children: [
-                            //     TextSpan(
-                            //       text: "2020/08/20 - 18.00",
-                            //       style: TextStyle(
-                            //         color: Colors.black,
-                            //         fontSize: 16,
-                            //         fontFamily: "Ubuntu",
-                            //       ),
-                            //     ),
-
-                            //   ]),
-                            // ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+              Container(
+                child: StreamBuilder<QuerySnapshot>(
+                    stream: transactionCollection.where('status', isEqualTo: "In Progress").snapshots(),
+                    builder: (BuildContext context,
+                        AsyncSnapshot<QuerySnapshot> snapshot) {
+                      if (snapshot.hasError) {
+                        return Text("Failed to get products data!");
+                      }
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return SpinKitFadingCircle(
+                          size: 50,
+                          color: Colors.blue,
+                        );
+                      }
+                      return ListView(
+                        children: snapshot.data.docs.map((DocumentSnapshot doc) {
+                          print(doc.data()[FieldValue.arrayUnion]);
+                          return Cardtransaction(
+                            transaction: Trans(
+                                doc.data()['partnerid'],
+                                doc.data()['fieldid'],
+                                doc.data()['date'],
+                                List.from(doc['time']),
+                                doc.data()['subtotal'],
+                                doc.data()['status'],
+                                doc.data()['couponid'],
+                                doc.data()['total'].toString(),
+                                doc.data()['datetime']),
+                          );
+                        }).toList(),
+                      );
+                    }),
               ),
-              ListView(
-                children: [
-                  SingleChildScrollView(
-                    scrollDirection: Axis.vertical,
-                    child: Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Container(
-                        width: MediaQuery.of(context).size.width,
-                        height: 120,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(20),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.grey,
-                                  offset: Offset(3, 5),
-                                  blurRadius: 30)
-                            ]),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(20),
-                              child: Image.network(
-                                "https://images.unsplash.com/photo-1464983308776-3c7215084895?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80",
-                                height: 120,
-                                width: 120,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                            Container(
-                              child: Padding(
-                                padding: EdgeInsets.only(left: 8),
-                                child: Container(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Container(
-                                          margin: EdgeInsets.only(top: 8),
-                                          child: Text(
-                                            "Sport Centre Puncak Permai",
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 16,
-                                              fontFamily: "Ubuntu",
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          )),
-                                      Container(
-                                          margin: EdgeInsets.only(top: 8),
-                                          child: Text(
-                                            "2020/08/20 - 18.00",
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 12,
-                                              fontFamily: "Ubuntu",
-                                            ),
-                                          )),
-                                      Container(
-                                        margin: EdgeInsets.only(top: 8),
-                                        child: Text("Status:"),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            )
-                            // RichText(
-                            //   text: TextSpan(children: [
-                            //     TextSpan(
-                            //       text: "2020/08/20 - 18.00",
-                            //       style: TextStyle(
-                            //         color: Colors.black,
-                            //         fontSize: 16,
-                            //         fontFamily: "Ubuntu",
-                            //       ),
-                            //     ),
-
-                            //   ]),
-                            // ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+              Container(
+                child: StreamBuilder<QuerySnapshot>(
+                    stream: transactionCollection.where('status', isEqualTo: "Done").snapshots(),
+                    builder: (BuildContext context,
+                        AsyncSnapshot<QuerySnapshot> snapshot) {
+                      if (snapshot.hasError) {
+                        return Text("Failed to get products data!");
+                      }
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return SpinKitFadingCircle(
+                          size: 50,
+                          color: Colors.blue,
+                        );
+                      }
+                      return ListView(
+                        children: snapshot.data.docs.map((DocumentSnapshot doc) {
+                          print(doc.data()[FieldValue.arrayUnion]);
+                          return Cardtransaction(
+                            transaction: Trans(
+                                doc.data()['partnerid'],
+                                doc.data()['fieldid'],
+                                doc.data()['date'],
+                                List.from(doc['time']),
+                                doc.data()['subtotal'],
+                                doc.data()['status'],
+                                doc.data()['couponid'],
+                                doc.data()['total'].toString(),
+                                doc.data()['datetime']),
+                          );
+                        }).toList(),
+                      );
+                    }),
               ),
             ],
           ),

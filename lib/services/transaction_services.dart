@@ -1,4 +1,7 @@
 part of 'services.dart';
+String uid = FirebaseAuth.instance.currentUser.uid.toString();
+ CollectionReference transaction =
+      FirebaseFirestore.instance.collection("Users").doc(uid).collection("transactions");
 
 Future<void> addTransaction(String partnerid, fieldid,jenis, date, time, subtotal,
     status, couponid, total, ordertime) async {
@@ -39,4 +42,10 @@ Future<void> addTransaction(String partnerid, fieldid,jenis, date, time, subtota
   });
 
   return;
+}
+
+
+Future<void> getallusertransaction() async {
+      
+
 }

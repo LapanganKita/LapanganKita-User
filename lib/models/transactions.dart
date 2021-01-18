@@ -4,7 +4,8 @@ part of 'models.dart';
 class Trans extends Equatable {
   String partnerid;
   String fieldid;
-  String time;
+  String date;
+  List time;
   String subtotal;
   String status;
   String couponid;
@@ -12,18 +13,19 @@ class Trans extends Equatable {
   String ordertime;
 
   Trans(
-      {this.partnerid,
+      this.partnerid,
       this.fieldid,
+      this.date,
       this.time,
       this.subtotal,
       this.status,
       this.couponid,
       this.total,
-      this.ordertime});
+      this.ordertime);
 
   @override
   // ignore: todo
   // TODO: implement props
   List<Object> get props =>
-      [partnerid, fieldid, time, subtotal, status, couponid, total, ordertime];
+      [partnerid, fieldid, date, time, subtotal, status, couponid, total, ordertime];
 }

@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:lapangankita_user/components/components.dart';
+import 'package:lapangankita_user/models/models.dart';
 import 'package:lapangankita_user/screen/authenticate/authenticates.dart';
 import 'package:lapangankita_user/screen/booking/bookings.dart';
 import 'package:lapangankita_user/screen/profile/profiles.dart';
