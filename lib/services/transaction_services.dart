@@ -18,6 +18,7 @@ Future<void> addTransaction(String partnerid, fieldid,jenis, date, time, subtota
     'couponid': couponid,
     'total': total,
     'ordertime': ordertime,
+    'userid': uid
   }).then((doc) {
     FirebaseAuth auth = FirebaseAuth.instance;
     String uid = auth.currentUser.uid.toString();
@@ -38,6 +39,7 @@ Future<void> addTransaction(String partnerid, fieldid,jenis, date, time, subtota
       'couponid': couponid,
       'total': total,
       'ordertime': ordertime,
+      'userid': uid
     });
   });
 
@@ -46,6 +48,6 @@ Future<void> addTransaction(String partnerid, fieldid,jenis, date, time, subtota
 
 
 Future<void> getallusertransaction() async {
-      
+
 
 }
