@@ -64,7 +64,7 @@ class SplashState extends State<Splash> with AfterLayoutMixin<Splash> {
   Widget build(BuildContext context) {
     return new Scaffold(
       body: new Center(
-        child: new Text('Loading...'),
+        child: new Text('Loading....'),
       ),
     );
   }
