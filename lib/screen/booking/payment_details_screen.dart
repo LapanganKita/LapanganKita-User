@@ -3,13 +3,70 @@ part of 'bookings.dart';
 // ignore: must_be_immutable
 class PaymentDetails extends StatefulWidget {
   Lap lapangan;
+  String partnerid;
+  String fieldid;
+  String date;
+  List time;
+  String subtotal;
+  String status;
+  String couponid;
+  String total;
+  String ordertime;
+
   final ValueChanged<bool> isSelected;
-  PaymentDetails({Key key, this.lapangan, this.isSelected}) : super(key: key);
+  PaymentDetails(
+      {Key key,
+      this.lapangan,
+      this.isSelected,
+      this.partnerid,
+      this.fieldid,
+      this.date,
+      this.time,
+      this.subtotal,
+      this.status,
+      this.couponid,
+      this.total,
+      this.ordertime})
+      : super(key: key);
   @override
-  _PaymentDetailsState createState() => _PaymentDetailsState();
+  _PaymentDetailsState createState() => _PaymentDetailsState(
+      lapangan, date, time, subtotal, status, couponid, total, ordertime);
 }
 
 class _PaymentDetailsState extends State<PaymentDetails> {
+  Lap lapangan;
+  String date;
+  List time;
+  String subtotal;
+  String status;
+  String couponid;
+  String total;
+  String ordertime;
+  _PaymentDetailsState(this.lapangan, this.date, this.time, this.subtotal,
+      this.status, this.couponid, this.total, this.ordertime);
+
+  CollectionReference userCollection =
+      FirebaseFirestore.instance.collection("Users");
+  String name = "";
+  User _auth = FirebaseAuth.instance.currentUser;
+
+  void getUserUpdate() async {
+    userCollection.doc(_auth.uid).snapshots().listen((event) {
+      name = event.data()['name'];
+      setState(() {});
+    });
+  }
+
+  void initState() {
+    getUserUpdate();
+    super.initState();
+  }
+
+  void launchWhatsapp({@required number, @required message}) async {
+    String url = "whatsapp://send?phone=$number&text=$message";
+    await canLaunch(url) ? launch(url) : print("Cant open whatsapp");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,7 +136,7 @@ class _PaymentDetailsState extends State<PaymentDetails> {
                               Container(
                                   margin: EdgeInsets.only(top: 16),
                                   child: Text(
-                                    "Sport Centre Puncak Permai",
+                                    lapangan.parent.nama,
                                     style: TextStyle(
                                       fontSize: 23,
                                       color: Colors.black,
@@ -131,7 +188,7 @@ class _PaymentDetailsState extends State<PaymentDetails> {
                                 margin: EdgeInsets.only(
                                     left:
                                         MediaQuery.of(context).size.width / 5),
-                                child: Text("LapanganKita",
+                                child: Text(name,
                                     style: TextStyle(
                                         fontSize: 16,
                                         color: Colors.white,
@@ -152,7 +209,7 @@ class _PaymentDetailsState extends State<PaymentDetails> {
                             Container(
                               margin: EdgeInsets.only(
                                   left: MediaQuery.of(context).size.width / 5),
-                              child: Text("1 Oktober 2021",
+                              child: Text(date,
                                   style: TextStyle(
                                       fontSize: 16,
                                       color: Colors.white,
@@ -172,7 +229,8 @@ class _PaymentDetailsState extends State<PaymentDetails> {
                             Container(
                               margin: EdgeInsets.only(
                                   left: MediaQuery.of(context).size.width / 5),
-                              child: Text("Jl. Raya Darmo Permai III no 80",
+                              child: Text(lapangan.parent.alamat,
+                                  maxLines: 3,
                                   style: TextStyle(
                                       fontSize: 16,
                                       color: Colors.white,
@@ -180,6 +238,7 @@ class _PaymentDetailsState extends State<PaymentDetails> {
                             )
                           ],
                         ),
+                        SizedBox(height: 24),
                         SizedBox(height: 24),
                         Row(
                           children: [
@@ -192,7 +251,8 @@ class _PaymentDetailsState extends State<PaymentDetails> {
                             Container(
                               margin: EdgeInsets.only(
                                   left: MediaQuery.of(context).size.width / 5),
-                              child: Text("10.00 - 12.00",
+                              child: Text(
+                                  time[0] + " - " + time[time.length - 1],
                                   style: TextStyle(
                                       fontSize: 16,
                                       color: Colors.white,
@@ -212,7 +272,9 @@ class _PaymentDetailsState extends State<PaymentDetails> {
                             Container(
                               margin: EdgeInsets.only(
                                   left: MediaQuery.of(context).size.width / 5),
-                              child: Text("Rp 200.000",
+                              child: Text(
+                                  "Rp. " +
+                                      (time.length * lapangan.harga).toString(),
                                   style: TextStyle(
                                       fontSize: 16,
                                       color: Colors.white,
@@ -225,7 +287,7 @@ class _PaymentDetailsState extends State<PaymentDetails> {
                             width: 300,
                             height: 56,
                             child: RaisedButton(
-                                color: primary_color,
+                                color: Colors.white,
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(24.0)),
                                 child: Text(
@@ -233,9 +295,43 @@ class _PaymentDetailsState extends State<PaymentDetails> {
                                   style: TextStyle(
                                       fontFamily: "Ubuntu",
                                       fontSize: 18,
-                                      color: Colors.white),
+                                      color: primary_color),
                                 ),
-                                onPressed: null))
+                                onPressed: () {
+                                  launchWhatsapp(
+                                      number: "+6281391097676",
+                                      message: "Saya " +
+                                          name +
+                                          " mau booking lapangan " +
+                                          lapangan.jenis +
+                                          " di " +
+                                          lapangan.parent.nama +
+                                          " lapangan nomer: " +
+                                          lapangan.no +
+                                          " jam: " +
+                                          time[0] +
+                                          " - " +
+                                          time[time.length - 1] +
+                                          " pada tanggal : " +
+                                          date);
+                                  addTransaction(
+                                      lapangan.parent.nama,
+                                      lapangan.no,
+                                      lapangan.jenis,
+                                      date,
+                                      time,
+                                      "subtotal",
+                                      "In Progress",
+                                      "couponid",
+                                      lapangan.harga * time.length,
+                                      DateTime.now());
+                                  Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(builder: (context) {
+                                      return NavBar();
+                                    }),
+                                  );
+                                }))
                       ],
                     ),
                   ],

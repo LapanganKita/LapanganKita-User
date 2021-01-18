@@ -62,6 +62,7 @@ class _BookingLapanganState extends State<BookingLapangan> {
     getUserUpdate();
     super.initState();
     print(itemList);
+    
   }
 
   @override
@@ -555,10 +556,17 @@ class _BookingLapanganState extends State<BookingLapangan> {
                                             color: primary_color,
                                             textColor: Colors.white,
                                             onPressed: () {
+                                              selectedList.sort((a,b)=>int.parse(a.toString().substring(0,2)).compareTo(int.parse(b.toString().substring(0,2))));
+                                              String tanggal = _controller
+                                                  .selectedDay
+                                                  .toIso8601String();
+                                              String tanggalfix =
+                                                  tanggal.substring(
+                                                      0, tanggal.indexOf("T"));
                                               Navigator.push(context,
                                                   MaterialPageRoute(
                                                       builder: (context) {
-                                                return PaymentDetails();
+                                                return PaymentDetails(lapangan: lapangan,date:tanggalfix ,time: selectedList, subtotal: "subtotal", status: "In Progress", couponid: "couponid", total: "total", ordertime: "ordertime" );
                                               }));
                                               // selectedList.sort((a,b)=>int.parse(a.toString().substring(0,2)).compareTo(int.parse(b.toString().substring(0,2))));
                                               // String tanggal = _controller
