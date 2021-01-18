@@ -22,7 +22,7 @@ class CardLapangan extends StatelessWidget {
         child: InkWell(
           splashColor: Colors.blue.withAlpha(30),
           onTap: () {
-            Navigator.pushReplacement(
+            Navigator.push(
               context,
               MaterialPageRoute(builder: (context) {
                 return BookingLapangan(lapangan: lapangan);
@@ -32,8 +32,9 @@ class CardLapangan extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              Container(
-                height: MediaQuery.of(context).size.height * 0.1,
+              Flexible(
+                // height: MediaQuery.of(context).size.height * 0.1,
+                flex: 1,
                 child: ClipRRect(
                   borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
                   child: Image.asset(
@@ -100,7 +101,7 @@ class CardContent extends StatelessWidget {
                 child: Text(
                   name,
                   style: TextStyle(
-                    fontSize: 20,
+                    fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -125,36 +126,67 @@ class CardContent extends StatelessWidget {
           ),
           SizedBox(height: 8),
           Row(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Transform.translate(
-                // Lokasi Lapangan
-                offset: Offset(24 * offset, 0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Icon(Icons.location_on),
-                    Text(
-                      location,
-                      style: TextStyle(color: Colors.grey),
-                    ),
-                  ],
-                ),
-              ),
-              Spacer(),
-              Transform.translate(
-                offset: Offset(-16 * offset, 0),
-                child: Text(
-                  priceRange,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontStyle: FontStyle.italic,
-                    fontSize: 18,
+              Expanded(
+                flex: 4,
+                child: Transform.translate(
+                  // Lokasi Lapangan
+                  offset: Offset(24 * offset, 0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Icon(Icons.location_on),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Expanded(
+                        child: Text(
+                          location,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(color: Colors.grey, fontSize: 12),
+                        ),
+                      )
+                    ],
                   ),
                 ),
               ),
               // SizedBox(width: 16),
             ],
           ),
+          SizedBox(
+            height: 10,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Transform.translate(
+                offset: Offset(-16 * offset, 0),
+                child: Text(
+                  "Open 10:00 - 23:00",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 12,
+                  ),
+                ),
+              ),
+              Spacer(),
+              Transform.translate(
+                offset: Offset(-16 * offset, 0),
+                child: Text(
+                  NumberFormat.currency(
+                          locale: "id", symbol: "Rp ", decimalDigits: 0)
+                      .format(int.parse(priceRange.toString())),
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontStyle: FontStyle.italic,
+                    fontSize: 16,
+                  ),
+                ),
+              ),
+            ],
+          )
           // Spacer(),
           // Row(
           //   children: <Widget>[

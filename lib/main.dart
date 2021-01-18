@@ -21,15 +21,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return StreamProvider<TheUser>.value(
       value: AuthService().user,
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: MultiProvider(
-          providers: [
-            ChangeNotifierProvider(
-              create: (_) => ListLapanganViewModel(),
-            ),
-          ],
-          child: Splash(),
+      child: MultiProvider(
+        providers: [
+          ChangeNotifierProvider(
+            create: (context) => ListLapanganViewModel(),
+          ),
+        ],
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          home: Splash(),
         ),
       ),
     );
