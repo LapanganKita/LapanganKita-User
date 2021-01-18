@@ -23,9 +23,17 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     getUserUpdate();
     super.initState();
+    Provider.of<ListLapanganViewModel>(context, listen: false).fetchLapangan();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   Widget build(BuildContext context) {
+    final vm = Provider.of<ListLapanganViewModel>(context);
+
     return Scaffold(
       body: Container(
           child: Stack(
@@ -281,6 +289,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: SingleChildScrollView(
                   controller: scrollController,
                   child: Container(
+                    height: MediaQuery.of(context).size.height,
+                    width: MediaQuery.of(context).size.width,
                     padding: EdgeInsets.fromLTRB(32, 0, 32, 0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -290,7 +300,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         Container(
                             child: HeadingText.withColor(
-                                "Favorite", 36, primary_color)),
+                                "Favorite", 28, primary_color)),
                         Container(
                           child: Column(
                             children: [
@@ -304,455 +314,349 @@ class _HomeScreenState extends State<HomeScreen> {
                                         return VieMoreFavorites();
                                       }));
                                     },
-                                    child: Text("View More"),
+                                    child: Text(
+                                      "View More",
+                                      style: TextStyle(color: Colors.grey),
+                                    ),
                                   ),
                                 ),
                               ),
-                              SingleChildScrollView(
-                                scrollDirection: Axis.horizontal,
-                                child: Row(
-                                  children: [
-                                    Container(
-                                      width: MediaQuery.of(context).size.width -
-                                          72,
-                                      height: 180,
-                                      child: Card(
-                                        child: InkWell(
-                                          splashColor:
-                                              Colors.blue.withAlpha(50),
-                                          onTap: () {},
-                                          child: Container(
-                                              child: Stack(
-                                            fit: StackFit.expand,
-                                            alignment: Alignment.bottomLeft,
-                                            children: [
-                                              Container(
-                                                child: Image.network(
-                                                  "https://images.unsplash.com/photo-1464983308776-3c7215084895?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80",
-                                                  fit: BoxFit.cover,
-                                                ),
-                                              ),
-                                              Positioned(
-                                                bottom: 0,
-                                                left: 0,
-                                                width: MediaQuery.of(context)
-                                                        .size
-                                                        .width -
-                                                    80,
-                                                child: Container(
-                                                  padding: EdgeInsets.all(8),
-                                                  decoration: BoxDecoration(
-                                                    color: Colors.white60,
-                                                    borderRadius:
-                                                        BorderRadius.only(
-                                                            topRight: Radius
-                                                                .circular(8),
-                                                            topLeft:
-                                                                Radius.circular(
-                                                                    8)),
-                                                  ),
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Column(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: <Widget>[
-                                                          HeadingText.withColor(
-                                                            "Lapangan ASD",
-                                                            16,
-                                                            primary_color,
-                                                          ),
-                                                          Row(
-                                                            children: [
-                                                              Icon(
-                                                                Icons
-                                                                    .location_on,
-                                                              ),
-                                                              Text(
-                                                                "Location",
-                                                              ),
-                                                            ],
-                                                          )
-                                                        ],
-                                                      ),
-                                                      Column(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .end,
-                                                        children: [
-                                                          Row(
-                                                            children: [
-                                                              Icon(Icons
-                                                                  .star_border),
-                                                              Icon(Icons
-                                                                  .star_border),
-                                                              Icon(Icons
-                                                                  .star_border),
-                                                              Icon(Icons
-                                                                  .star_border),
-                                                            ],
-                                                          ),
-                                                          Text("30k - 40k")
-                                                        ],
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          )),
-                                        ),
-                                        elevation: 8,
-                                      ),
-                                    ),
-                                    Container(
-                                      width: MediaQuery.of(context).size.width -
-                                          72,
-                                      height: 180,
-                                      child: Card(
-                                        child: InkWell(
-                                          splashColor:
-                                              Colors.blue.withAlpha(30),
-                                          onTap: () {},
-                                          child: Container(
-                                              child: Stack(
-                                            fit: StackFit.expand,
-                                            alignment: Alignment.bottomLeft,
-                                            children: [
-                                              Container(
-                                                child: Image.network(
-                                                  "https://images.unsplash.com/photo-1464983308776-3c7215084895?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80",
-                                                  fit: BoxFit.cover,
-                                                ),
-                                              ),
-                                              Positioned(
-                                                bottom: 0,
-                                                left: 0,
-                                                width: MediaQuery.of(context)
-                                                        .size
-                                                        .width -
-                                                    80,
-                                                child: Container(
-                                                  padding: EdgeInsets.all(8),
-                                                  decoration: BoxDecoration(
-                                                    color: Colors.white60,
-                                                    borderRadius:
-                                                        BorderRadius.only(
-                                                            topRight: Radius
-                                                                .circular(8),
-                                                            topLeft:
-                                                                Radius.circular(
-                                                                    8)),
-                                                  ),
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Column(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: <Widget>[
-                                                          HeadingText.withColor(
-                                                            "Lapangan ASD",
-                                                            16,
-                                                            primary_color,
-                                                          ),
-                                                          Row(
-                                                            children: [
-                                                              Icon(
-                                                                Icons
-                                                                    .location_on,
-                                                              ),
-                                                              Text(
-                                                                "Location",
-                                                              ),
-                                                            ],
-                                                          )
-                                                        ],
-                                                      ),
-                                                      Column(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .end,
-                                                        children: [
-                                                          Row(
-                                                            children: [
-                                                              Icon(Icons
-                                                                  .star_border),
-                                                              Icon(Icons
-                                                                  .star_border),
-                                                              Icon(Icons
-                                                                  .star_border),
-                                                              Icon(Icons
-                                                                  .star_border),
-                                                            ],
-                                                          ),
-                                                          Text("30k - 40k")
-                                                        ],
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          )),
-                                        ),
-                                        elevation: 8,
-                                      ),
-                                    ),
-                                    Container(
-                                      width: MediaQuery.of(context).size.width -
-                                          72,
-                                      height: 180,
-                                      child: Card(
-                                        child: InkWell(
-                                          splashColor:
-                                              Colors.blue.withAlpha(30),
-                                          onTap: () {},
-                                          child: Container(
-                                              child: Stack(
-                                            fit: StackFit.expand,
-                                            alignment: Alignment.bottomLeft,
-                                            children: [
-                                              Container(
-                                                child: Image.network(
-                                                  "https://images.unsplash.com/photo-1464983308776-3c7215084895?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80",
-                                                  fit: BoxFit.cover,
-                                                ),
-                                              ),
-                                              Positioned(
-                                                bottom: 0,
-                                                left: 0,
-                                                width: MediaQuery.of(context)
-                                                        .size
-                                                        .width -
-                                                    80,
-                                                child: Container(
-                                                  padding: EdgeInsets.all(8),
-                                                  decoration: BoxDecoration(
-                                                    color: Colors.white60,
-                                                    borderRadius:
-                                                        BorderRadius.only(
-                                                            topRight: Radius
-                                                                .circular(8),
-                                                            topLeft:
-                                                                Radius.circular(
-                                                                    8)),
-                                                  ),
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Column(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: <Widget>[
-                                                          HeadingText.withColor(
-                                                            "Lapangan ASD",
-                                                            16,
-                                                            primary_color,
-                                                          ),
-                                                          Row(
-                                                            children: [
-                                                              Icon(
-                                                                Icons
-                                                                    .location_on,
-                                                              ),
-                                                              Text(
-                                                                "Location",
-                                                              ),
-                                                            ],
-                                                          )
-                                                        ],
-                                                      ),
-                                                      Column(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .end,
-                                                        children: [
-                                                          Row(
-                                                            children: [
-                                                              Icon(Icons
-                                                                  .star_border),
-                                                              Icon(Icons
-                                                                  .star_border),
-                                                              Icon(Icons
-                                                                  .star_border),
-                                                              Icon(Icons
-                                                                  .star_border),
-                                                            ],
-                                                          ),
-                                                          Text("30k - 40k")
-                                                        ],
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          )),
-                                        ),
-                                        elevation: 8,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              )
+                              //       // SingleChildScrollView(
+                              //       //   scrollDirection: Axis.horizontal,
+                              //       //   child: Row(
+                              //       //     children: [
+                              //       //       Container(
+                              //       //         width: MediaQuery.of(context).size.width -
+                              //       //             72,
+                              //       //         height: 180,
+                              //       //         child: Card(
+                              //       //           child: InkWell(
+                              //       //             splashColor:
+                              //       //                 Colors.blue.withAlpha(50),
+                              //       //             onTap: () {},
+                              //       //             child: Container(
+                              //       //                 child: Stack(
+                              //       //               fit: StackFit.expand,
+                              //       //               alignment: Alignment.bottomLeft,
+                              //       //               children: [
+                              //       //                 Container(
+                              //       //                   child: Image.network(
+                              //       //                     "https://images.unsplash.com/photo-1464983308776-3c7215084895?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80",
+                              //       //                     fit: BoxFit.cover,
+                              //       //                   ),
+                              //       //                 ),
+                              //       //                 Positioned(
+                              //       //                   bottom: 0,
+                              //       //                   left: 0,
+                              //       //                   width: MediaQuery.of(context)
+                              //       //                           .size
+                              //       //                           .width -
+                              //       //                       80,
+                              //       //                   child: Container(
+                              //       //                     padding: EdgeInsets.all(8),
+                              //       //                     decoration: BoxDecoration(
+                              //       //                       color: Colors.white60,
+                              //       //                       borderRadius:
+                              //       //                           BorderRadius.only(
+                              //       //                               topRight: Radius
+                              //       //                                   .circular(8),
+                              //       //                               topLeft:
+                              //       //                                   Radius.circular(
+                              //       //                                       8)),
+                              //       //                     ),
+                              //       //                     child: Row(
+                              //       //                       mainAxisAlignment:
+                              //       //                           MainAxisAlignment
+                              //       //                               .spaceBetween,
+                              //       //                       children: [
+                              //       //                         Column(
+                              //       //                           crossAxisAlignment:
+                              //       //                               CrossAxisAlignment
+                              //       //                                   .start,
+                              //       //                           children: <Widget>[
+                              //       //                             HeadingText.withColor(
+                              //       //                               "Lapangan ASD",
+                              //       //                               16,
+                              //       //                               primary_color,
+                              //       //                             ),
+                              //       //                             Row(
+                              //       //                               children: [
+                              //       //                                 Icon(
+                              //       //                                   Icons
+                              //       //                                       .location_on,
+                              //       //                                 ),
+                              //       //                                 Text(
+                              //       //                                   "Location",
+                              //       //                                 ),
+                              //       //                               ],
+                              //       //                             )
+                              //       //                           ],
+                              //       //                         ),
+                              //       //                         Column(
+                              //       //                           crossAxisAlignment:
+                              //       //                               CrossAxisAlignment
+                              //       //                                   .end,
+                              //       //                           children: [
+                              //       //                             Row(
+                              //       //                               children: [
+                              //       //                                 Icon(Icons
+                              //       //                                     .star_border),
+                              //       //                                 Icon(Icons
+                              //       //                                     .star_border),
+                              //       //                                 Icon(Icons
+                              //       //                                     .star_border),
+                              //       //                                 Icon(Icons
+                              //       //                                     .star_border),
+                              //       //                               ],
+                              //       //                             ),
+                              //       //                             Text("30k - 40k")
+                              //       //                           ],
+                              //       //                         ),
+                              //       //                       ],
+                              //       //                     ),
+                              //       //                   ),
+                              //       //                 ),
+                              //       //               ],
+                              //       //             )),
+                              //       //           ),
+                              //       //           elevation: 8,
+                              //       //         ),
+                              //       //       ),
+                              //       //       Container(
+                              //       //         width: MediaQuery.of(context).size.width -
+                              //       //             72,
+                              //       //         height: 180,
+                              //       //         child: Card(
+                              //       //           child: InkWell(
+                              //       //             splashColor:
+                              //       //                 Colors.blue.withAlpha(30),
+                              //       //             onTap: () {},
+                              //       //             child: Container(
+                              //       //                 child: Stack(
+                              //       //               fit: StackFit.expand,
+                              //       //               alignment: Alignment.bottomLeft,
+                              //       //               children: [
+                              //       //                 Container(
+                              //       //                   child: Image.network(
+                              //       //                     "https://images.unsplash.com/photo-1464983308776-3c7215084895?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80",
+                              //       //                     fit: BoxFit.cover,
+                              //       //                   ),
+                              //       //                 ),
+                              //       //                 Positioned(
+                              //       //                   bottom: 0,
+                              //       //                   left: 0,
+                              //       //                   width: MediaQuery.of(context)
+                              //       //                           .size
+                              //       //                           .width -
+                              //       //                       80,
+                              //       //                   child: Container(
+                              //       //                     padding: EdgeInsets.all(8),
+                              //       //                     decoration: BoxDecoration(
+                              //       //                       color: Colors.white60,
+                              //       //                       borderRadius:
+                              //       //                           BorderRadius.only(
+                              //       //                               topRight: Radius
+                              //       //                                   .circular(8),
+                              //       //                               topLeft:
+                              //       //                                   Radius.circular(
+                              //       //                                       8)),
+                              //       //                     ),
+                              //       //                     child: Row(
+                              //       //                       mainAxisAlignment:
+                              //       //                           MainAxisAlignment
+                              //       //                               .spaceBetween,
+                              //       //                       children: [
+                              //       //                         Column(
+                              //       //                           crossAxisAlignment:
+                              //       //                               CrossAxisAlignment
+                              //       //                                   .start,
+                              //       //                           children: <Widget>[
+                              //       //                             HeadingText.withColor(
+                              //       //                               "Lapangan ASD",
+                              //       //                               16,
+                              //       //                               primary_color,
+                              //       //                             ),
+                              //       //                             Row(
+                              //       //                               children: [
+                              //       //                                 Icon(
+                              //       //                                   Icons
+                              //       //                                       .location_on,
+                              //       //                                 ),
+                              //       //                                 Text(
+                              //       //                                   "Location",
+                              //       //                                 ),
+                              //       //                               ],
+                              //       //                             )
+                              //       //                           ],
+                              //       //                         ),
+                              //       //                         Column(
+                              //       //                           crossAxisAlignment:
+                              //       //                               CrossAxisAlignment
+                              //       //                                   .end,
+                              //       //                           children: [
+                              //       //                             Row(
+                              //       //                               children: [
+                              //       //                                 Icon(Icons
+                              //       //                                     .star_border),
+                              //       //                                 Icon(Icons
+                              //       //                                     .star_border),
+                              //       //                                 Icon(Icons
+                              //       //                                     .star_border),
+                              //       //                                 Icon(Icons
+                              //       //                                     .star_border),
+                              //       //                               ],
+                              //       //                             ),
+                              //       //                             Text("30k - 40k")
+                              //       //                           ],
+                              //       //                         ),
+                              //       //                       ],
+                              //       //                     ),
+                              //       //                   ),
+                              //       //                 ),
+                              //       //               ],
+                              //       //             )),
+                              //       //           ),
+                              //       //           elevation: 8,
+                              //       //         ),
+                              //       //       ),
+                              //       //       Container(
+                              //       //         width: MediaQuery.of(context).size.width -
+                              //       //             72,
+                              //       //         height: 180,
+                              //       //         child: Card(
+                              //       //           child: InkWell(
+                              //       //             splashColor:
+                              //       //                 Colors.blue.withAlpha(30),
+                              //       //             onTap: () {},
+                              //       //             child: Container(
+                              //       //                 child: Stack(
+                              //       //               fit: StackFit.expand,
+                              //       //               alignment: Alignment.bottomLeft,
+                              //       //               children: [
+                              //       //                 Container(
+                              //       //                   child: Image.network(
+                              //       //                     "https://images.unsplash.com/photo-1464983308776-3c7215084895?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80",
+                              //       //                     fit: BoxFit.cover,
+                              //       //                   ),
+                              //       //                 ),
+                              //       //                 Positioned(
+                              //       //                   bottom: 0,
+                              //       //                   left: 0,
+                              //       //                   width: MediaQuery.of(context)
+                              //       //                           .size
+                              //       //                           .width -
+                              //       //                       80,
+                              //       //                   child: Container(
+                              //       //                     padding: EdgeInsets.all(8),
+                              //       //                     decoration: BoxDecoration(
+                              //       //                       color: Colors.white60,
+                              //       //                       borderRadius:
+                              //       //                           BorderRadius.only(
+                              //       //                               topRight: Radius
+                              //       //                                   .circular(8),
+                              //       //                               topLeft:
+                              //       //                                   Radius.circular(
+                              //       //                                       8)),
+                              //       //                     ),
+                              //       //                     child: Row(
+                              //       //                       mainAxisAlignment:
+                              //       //                           MainAxisAlignment
+                              //       //                               .spaceBetween,
+                              //       //                       children: [
+                              //       //                         Column(
+                              //       //                           crossAxisAlignment:
+                              //       //                               CrossAxisAlignment
+                              //       //                                   .start,
+                              //       //                           children: <Widget>[
+                              //       //                             HeadingText.withColor(
+                              //       //                               "Lapangan ASD",
+                              //       //                               16,
+                              //       //                               primary_color,
+                              //       //                             ),
+                              //       //                             Row(
+                              //       //                               children: [
+                              //       //                                 Icon(
+                              //       //                                   Icons
+                              //       //                                       .location_on,
+                              //       //                                 ),
+                              //       //                                 Text(
+                              //       //                                   "Location",
+                              //       //                                 ),
+                              //       //                               ],
+                              //       //                             )
+                              //       //                           ],
+                              //       //                         ),
+                              //       //                         Column(
+                              //       //                           crossAxisAlignment:
+                              //       //                               CrossAxisAlignment
+                              //       //                                   .end,
+                              //       //                           children: [
+                              //       //                             Row(
+                              //       //                               children: [
+                              //       //                                 Icon(Icons
+                              //       //                                     .star_border),
+                              //       //                                 Icon(Icons
+                              //       //                                     .star_border),
+                              //       //                                 Icon(Icons
+                              //       //                                     .star_border),
+                              //       //                                 Icon(Icons
+                              //       //                                     .star_border),
+                              //       //                               ],
+                              //       //                             ),
+                              //       //                             Text("30k - 40k")
+                              //       //                           ],
+                              //       //                         ),
+                              //       //                       ],
+                              //       //                     ),
+                              //       //                   ),
+                              //       //                 ),
+                              //       //               ],
+                              //       //             )),
+                              //       //           ),
+                              //       //           elevation: 8,
+                              //       //         ),
+                              //       //       ),
+                              //       //     ],
+                              //       //   ),
+                              //       // )
                             ],
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.only(top: 24, bottom: 24),
+                          margin: EdgeInsets.only(top: 24),
                           child: HeadingText.withColor(
-                              "Lapangan", 36, primary_color),
+                              "Lapangan", 28, primary_color),
                         ),
-                        SingleChildScrollView(
-                          scrollDirection: Axis.vertical,
-                          child: Column(
-                            children: [
-                              StreamBuilder(
-                                  stream: FirebaseFirestore.instance
-                                      .collection('Lapangan')
-                                      .snapshots(),
-                                  builder: (BuildContext context,
-                                      AsyncSnapshot<QuerySnapshot> snapshot) {
-                                    if (!snapshot.hasData) {
-                                      return Center(
-                                        child: CircularProgressIndicator(),
-                                      );
-                                    } else {
-                                      print(snapshot);
-                                    }
-                                    return Column(
-                                        children: snapshot.data.docs
-                                            .map((DocumentSnapshot document) {
-                                      return Center(
-                                        child: Container(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width -
-                                              72,
-                                          height: 180,
-                                          child: Card(
-                                            child: InkWell(
-                                              splashColor:
-                                                  Colors.blue.withAlpha(30),
-                                              onTap: () {
-                                                Navigator.push(context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) {
-                                                  return DetailLapangan();
-                                                }));
-                                              },
-                                              child: Container(
-                                                  child: Stack(
-                                                fit: StackFit.expand,
-                                                alignment: Alignment.bottomLeft,
-                                                children: [
-                                                  Container(
-                                                    child: Image.network(
-                                                      "https://images.unsplash.com/photo-1464983308776-3c7215084895?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80",
-                                                      fit: BoxFit.cover,
-                                                    ),
-                                                  ),
-                                                  Positioned(
-                                                    bottom: 0,
-                                                    left: 0,
-                                                    width:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .width -
-                                                            80,
-                                                    child: Container(
-                                                      padding:
-                                                          EdgeInsets.all(8),
-                                                      decoration: BoxDecoration(
-                                                        color: Colors.white60,
-                                                        borderRadius:
-                                                            BorderRadius.only(
-                                                                topRight: Radius
-                                                                    .circular(
-                                                                        8),
-                                                                topLeft: Radius
-                                                                    .circular(
-                                                                        8)),
-                                                      ),
-                                                      child: Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
-                                                        children: [
-                                                          Column(
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
-                                                            children: <Widget>[
-                                                              HeadingText
-                                                                  .withColor(
-                                                                document.data()[
-                                                                    "details"],
-                                                                16,
-                                                                primary_color,
-                                                              ),
-                                                              Row(
-                                                                children: [
-                                                                  Icon(
-                                                                    Icons
-                                                                        .location_on,
-                                                                  ),
-                                                                  Text(
-                                                                    "Location",
-                                                                  ),
-                                                                ],
-                                                              )
-                                                            ],
-                                                          ),
-                                                          Column(
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .end,
-                                                            children: [
-                                                              Row(
-                                                                children: [
-                                                                  Icon(Icons
-                                                                      .star_border),
-                                                                  Icon(Icons
-                                                                      .star_border),
-                                                                  Icon(Icons
-                                                                      .star_border),
-                                                                  Icon(Icons
-                                                                      .star_border),
-                                                                ],
-                                                              ),
-                                                              Text(document
-                                                                      .data()[
-                                                                  "harga"])
-                                                            ],
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              )),
-                                            ),
-                                            elevation: 8,
-                                          ),
-                                        ),
-                                      );
-                                    }).toList());
-                                  })
-                            ],
+                        Expanded(
+                          child: ListView.builder(
+                            physics: NeverScrollableScrollPhysics(),
+                            scrollDirection: Axis.vertical,
+                            itemCount: vm.laps.length,
+                            itemBuilder: (context, index) {
+                              return AspectRatio(
+                                aspectRatio: 6 / 5,
+                                child: CardLapangan(
+                                    lapangan: vm.laps[index], offset: 0),
+                              );
+                            },
                           ),
                         )
+
+                        // Container(
+                        //   child: SingleChildScrollView(
+                        //     scrollDirection: Axis.vertical,
+                        //     child: ListView.builder(
+                        //       shrinkWrap: true,
+                        //       physics: NeverScrollableScrollPhysics(),
+                        //       scrollDirection: Axis.vertical,
+                        //       itemCount: vm.laps.length,
+                        //       itemBuilder: (context, index) {
+                        //         return CardLapangan(
+                        //             lapangan: vm.laps[index], offset: 0);
+                        //       },
+                        //     ),
+                        //   ),
+                        // )
                       ],
                     ),
                   ),

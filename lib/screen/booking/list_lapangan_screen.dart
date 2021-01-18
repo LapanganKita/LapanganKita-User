@@ -18,7 +18,8 @@ class _ListLapanganState extends State<ListLapangan> {
   @override
   void initState() {
     super.initState();
-    Provider.of<ListLapanganViewModel>(context, listen: false).fetchLaps(tipe);
+    Provider.of<ListLapanganViewModel>(context, listen: false)
+        .fetchLapanganByType(tipe);
   }
 
   @override
@@ -47,10 +48,22 @@ class _ListLapanganState extends State<ListLapangan> {
                 ),
               ),
             ),
+            // Expanded(
+            //   child: ListView.builder(
+            //     physics: NeverScrollableScrollPhysics(),
+            //     scrollDirection: Axis.vertical,
+            //     itemCount: vm.laps.length,
+            //     itemBuilder: (context, index) {
+            //       return buildCardLapangan(context, index, vm.laps);
+            //     },
+            //   ),
+            // )
+
             Expanded(
               child: ListView.builder(
                 physics: NeverScrollableScrollPhysics(),
                 scrollDirection: Axis.vertical,
+                shrinkWrap: true,
                 itemCount: vm.laps.length,
                 itemBuilder: (context, index) {
                   return buildCardLapangan(context, index, vm.laps);
@@ -66,11 +79,15 @@ class _ListLapanganState extends State<ListLapangan> {
   Widget buildCardLapangan(BuildContext context, int index, List<Lap> list) {
     print("index = " + index.toString());
     print(list[index].parent.nama);
-    return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.25,
+    // return SizedBox(
+    //   height: MediaQuery.of(context).size.height * 0.25,
+    //   child: CardLapangan(lapangan: list[index], offset: 0),
+    // );
+
+    return AspectRatio(
+      aspectRatio: 4 / 3,
       child: CardLapangan(lapangan: list[index], offset: 0),
     );
-
     // listPartners.forEach((partner) {
     //   if (partner.lapangans.length != 0) {
     //     partner.lapangans.forEach((lapangan) {

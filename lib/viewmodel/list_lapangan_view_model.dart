@@ -8,28 +8,28 @@ class ListLapanganViewModel extends ChangeNotifier {
   List<LapanganViewModel> lapangans = List<LapanganViewModel>();
   List<Lap> laps = List<Lap>();
 
-  Future<void> fetchLapangans(String keyword) async {
+  // Future<void> fetchLapangans(String keyword) async {
+  //   print(keyword);
+  //   final lapangans = await LapanganService.getLapangans();
+
+  //   List<Lapangans> filtered = List<Lapangans>();
+  //   lapangans.forEach((l) {
+  //     print(l.jenis == keyword);
+  //     if (l.jenis == keyword) filtered.add(l);
+  //   });
+
+  //   print("filtered = " + filtered.length.toString());
+
+  //   this.lapangans =
+  //       filtered.map((item) => LapanganViewModel(lapangan: item)).toList();
+
+  //   print(this.lapangans);
+  //   notifyListeners();
+  // }
+
+  Future<void> fetchLapanganByType(String keyword) async {
     print(keyword);
-    final lapangans = await LapanganService.getLapangans();
-
-    List<Lapangans> filtered = List<Lapangans>();
-    lapangans.forEach((l) {
-      print(l.jenis == keyword);
-      if (l.jenis == keyword) filtered.add(l);
-    });
-
-    print("filtered = " + filtered.length.toString());
-
-    this.lapangans =
-        filtered.map((item) => LapanganViewModel(lapangan: item)).toList();
-
-    print(this.lapangans);
-    notifyListeners();
-  }
-
-  Future<void> fetchLaps(String keyword) async {
-    print(keyword);
-    var laps = await LapanganService.getTest() ;
+    var laps = await LapanganService.getTest();
 
     print("print lapangan");
     print(lapangans);
@@ -44,7 +44,19 @@ class ListLapanganViewModel extends ChangeNotifier {
 
     this.laps = filtered;
 
-    print(this.laps);
+    notifyListeners();
+  }
+
+  Future<void> fetchLapangan() async {
+    var laps = await LapanganService.getTest();
+
+    print("print lapangan");
+    print(lapangans);
+
+    print("filtered = " + laps.length.toString());
+
+    this.laps = laps;
+
     notifyListeners();
   }
 }
