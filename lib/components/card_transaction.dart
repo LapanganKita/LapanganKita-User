@@ -8,21 +8,21 @@ class Cardtransaction extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(bottom: 8),
       width: MediaQuery.of(context).size.width,
-      height: 120,
+      height: MediaQuery.of(context).size.height - 720,
       decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(15),
           boxShadow: [
-            BoxShadow(color: Colors.grey, offset: Offset(3, 5), blurRadius: 30)
+            BoxShadow(color: Colors.grey, offset: Offset(3, 3), blurRadius: 3)
           ]),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           ClipRRect(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(15),
             child: Image.network(
               "https://images.unsplash.com/photo-1464983308776-3c7215084895?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80",
-              height: 120,
+              height: 150,
               width: 120,
               fit: BoxFit.cover,
             ),
@@ -58,7 +58,9 @@ class Cardtransaction extends StatelessWidget {
                     Container(
                         margin: EdgeInsets.only(top: 8),
                         child: Text(
-                           transaction.time[0] + " - " + transaction.time[transaction.time.length-1],
+                          transaction.time[0] +
+                              " - " +
+                              transaction.time[transaction.time.length - 1],
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 12,
@@ -81,7 +83,5 @@ class Cardtransaction extends StatelessWidget {
         ],
       ),
     );
-    
-          
   }
 }

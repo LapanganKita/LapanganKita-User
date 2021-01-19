@@ -70,12 +70,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(50.0),
-                      boxShadow: [
-                        BoxShadow(
-                            blurRadius: 3.0,
-                            offset: Offset(0, 4.0),
-                            color: Colors.black),
-                      ],
+                      // boxShadow: [
+                      //   BoxShadow(
+                      //       blurRadius: 2.0,
+                      //       offset: Offset(0, 2.0),
+                      //       color: Colors.black),
+                      // ],
                       image: buildDecorationImage(),
                     ),
                   ),

@@ -17,7 +17,7 @@ class CardLapangan extends StatelessWidget {
       offset: Offset(-16 * gauss * offset.sign, 0),
       child: Card(
         margin: EdgeInsets.only(left: 8, right: 8, bottom: 24),
-        elevation: 8,
+        elevation: 2,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
         child: InkWell(
           splashColor: Colors.blue.withAlpha(30),
