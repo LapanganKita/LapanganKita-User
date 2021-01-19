@@ -266,18 +266,24 @@ class _BookingLapanganState extends State<BookingLapangan> {
                                 ),
                               ),
                             ),
+                            SizedBox(
+                              height: 16,
+                            ),
                             SingleChildScrollView(
                               scrollDirection: Axis.vertical,
                               child: Container(
                                   height:
-                                      MediaQuery.of(context).size.height + 40,
+                                      MediaQuery.of(context).size.height + 10,
                                   child: TabBarView(children: [
                                     Column(
                                       children: [
                                         TableCalendar(
                                           calendarController: _controller,
+                                          availableCalendarFormats: const {
+                                            CalendarFormat.twoWeeks: '',
+                                          },
                                           initialCalendarFormat:
-                                              CalendarFormat.week,
+                                              CalendarFormat.twoWeeks,
                                           headerStyle: HeaderStyle(
                                               centerHeaderTitle: true,
                                               formatButtonVisible: false,
@@ -506,6 +512,26 @@ class _BookingLapanganState extends State<BookingLapangan> {
                                                                     index]);
                                                           }
                                                         }
+                                                        if (selectedList.contains(
+                                                                itemList[
+                                                                    index]) ==
+                                                            0) {
+                                                          Fluttertoast.showToast(
+                                                              msg:
+                                                                  "This is Center Short Toast",
+                                                              toastLength: Toast
+                                                                  .LENGTH_SHORT,
+                                                              gravity:
+                                                                  ToastGravity
+                                                                      .CENTER,
+                                                              timeInSecForIosWeb:
+                                                                  1,
+                                                              backgroundColor:
+                                                                  Colors.red,
+                                                              textColor:
+                                                                  Colors.white,
+                                                              fontSize: 16.0);
+                                                        }
                                                       });
                                                     }
                                                   },
@@ -578,6 +604,7 @@ class _BookingLapanganState extends State<BookingLapangan> {
                                               String tanggalfix =
                                                   tanggal.substring(
                                                       0, tanggal.indexOf("T"));
+
                                               Navigator.push(context,
                                                   MaterialPageRoute(
                                                       builder: (context) {
@@ -628,9 +655,9 @@ class _BookingLapanganState extends State<BookingLapangan> {
                                             ),
                                           ),
                                         ),
-                                        SizedBox(
-                                          height: 40,
-                                        )
+                                        // SizedBox(
+                                        //   height: 20,
+                                        // )
                                       ],
                                     ),
 
@@ -780,7 +807,7 @@ class _BookingLapanganState extends State<BookingLapangan> {
                 },
                 initialChildSize: 0.55,
                 minChildSize: 0.55,
-                maxChildSize: 0.8,
+                maxChildSize: 0.74,
               ),
               Container(
                 margin: EdgeInsets.only(top: 32),
