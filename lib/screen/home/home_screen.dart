@@ -351,7 +351,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         Container(
                           margin: EdgeInsets.only(top: 24),
                           child: HeadingText.withColor(
-                              "Lapangan", 28, primary_color),
+                              "Cari Lapangan", 28, primary_color),
                         ),
                         Expanded(
                           child: ListView.builder(
