@@ -281,6 +281,7 @@ class _BookingLapanganState extends State<BookingLapangan> {
                                           calendarController: _controller,
                                           availableCalendarFormats: const {
                                             CalendarFormat.twoWeeks: '',
+                                            CalendarFormat.month: ""
                                           },
                                           initialCalendarFormat:
                                               CalendarFormat.twoWeeks,
@@ -309,141 +310,141 @@ class _BookingLapanganState extends State<BookingLapangan> {
                                         SizedBox(
                                           height: 30,
                                         ),
-                                        Container(
-                                          margin: EdgeInsets.only(left: 24),
-                                          child: Align(
-                                            alignment: Alignment.topLeft,
-                                            child: Text(
-                                              "Nomer Lapangan",
-                                              style: TextStyle(
-                                                  color: primary_color,
-                                                  fontFamily: "Ubuntu",
-                                                  fontSize: 24,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: 20,
-                                        ),
-                                        Row(
-                                          children: [
-                                            InkWell(
-                                              onTap: () {
-                                                changeNomerLapangan(
-                                                    "lapangan1");
-                                              },
-                                              child: Container(
-                                                margin:
-                                                    EdgeInsets.only(left: 24),
-                                                height: 56,
-                                                width: 56,
-                                                decoration:
-                                                    (selectedNomerLapangan ==
-                                                            "lapangan1")
-                                                        ? BoxDecoration(
-                                                            color:
-                                                                primary_color,
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .all(Radius
-                                                                        .circular(
-                                                                            16)))
-                                                        : BoxDecoration(),
-                                                child: Center(
-                                                  child: Text(
-                                                    "1",
-                                                    style: TextStyle(
-                                                        color:
-                                                            (selectedNomerLapangan ==
-                                                                    "lapangan1")
-                                                                ? Colors.white
-                                                                : primary_color,
-                                                        fontSize: 18,
-                                                        fontWeight:
-                                                            FontWeight.w500),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            InkWell(
-                                              onTap: () {
-                                                changeNomerLapangan(
-                                                    "lapangan2");
-                                              },
-                                              child: Container(
-                                                margin:
-                                                    EdgeInsets.only(left: 24),
-                                                height: 56,
-                                                width: 56,
-                                                decoration:
-                                                    (selectedNomerLapangan ==
-                                                            "lapangan2")
-                                                        ? BoxDecoration(
-                                                            color:
-                                                                primary_color,
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .all(Radius
-                                                                        .circular(
-                                                                            16)))
-                                                        : BoxDecoration(),
-                                                child: Center(
-                                                  child: Text(
-                                                    "2",
-                                                    style: TextStyle(
-                                                        color:
-                                                            (selectedNomerLapangan ==
-                                                                    "lapangan2")
-                                                                ? Colors.white
-                                                                : primary_color,
-                                                        fontSize: 18,
-                                                        fontWeight:
-                                                            FontWeight.w500),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            InkWell(
-                                              onTap: () {
-                                                changeNomerLapangan(
-                                                    "lapangan3");
-                                              },
-                                              child: Container(
-                                                margin:
-                                                    EdgeInsets.only(left: 24),
-                                                height: 56,
-                                                width: 56,
-                                                decoration:
-                                                    (selectedNomerLapangan ==
-                                                            "lapangan3")
-                                                        ? BoxDecoration(
-                                                            color:
-                                                                primary_color,
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .all(Radius
-                                                                        .circular(
-                                                                            16)))
-                                                        : BoxDecoration(),
-                                                child: Center(
-                                                  child: Text(
-                                                    "3",
-                                                    style: TextStyle(
-                                                        color:
-                                                            (selectedNomerLapangan ==
-                                                                    "lapangan3")
-                                                                ? Colors.white
-                                                                : primary_color,
-                                                        fontSize: 18,
-                                                        fontWeight:
-                                                            FontWeight.w500),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
+                                        // Container(
+                                        //   margin: EdgeInsets.only(left: 24),
+                                        //   child: Align(
+                                        //     alignment: Alignment.topLeft,
+                                        //     child: Text(
+                                        //       "Nomer Lapangan",
+                                        //       style: TextStyle(
+                                        //           color: primary_color,
+                                        //           fontFamily: "Ubuntu",
+                                        //           fontSize: 24,
+                                        //           fontWeight: FontWeight.bold),
+                                        //     ),
+                                        //   ),
+                                        // ),
+                                        // SizedBox(
+                                        //   height: 20,
+                                        // ),
+                                        // Row(
+                                        //   children: [
+                                        //     InkWell(
+                                        //       onTap: () {
+                                        //         changeNomerLapangan(
+                                        //             "lapangan1");
+                                        //       },
+                                        //       child: Container(
+                                        //         margin:
+                                        //             EdgeInsets.only(left: 24),
+                                        //         height: 56,
+                                        //         width: 56,
+                                        //         decoration:
+                                        //             (selectedNomerLapangan ==
+                                        //                     "lapangan1")
+                                        //                 ? BoxDecoration(
+                                        //                     color:
+                                        //                         primary_color,
+                                        //                     borderRadius:
+                                        //                         BorderRadius
+                                        //                             .all(Radius
+                                        //                                 .circular(
+                                        //                                     16)))
+                                        //                 : BoxDecoration(),
+                                        //         child: Center(
+                                        //           child: Text(
+                                        //             "1",
+                                        //             style: TextStyle(
+                                        //                 color:
+                                        //                     (selectedNomerLapangan ==
+                                        //                             "lapangan1")
+                                        //                         ? Colors.white
+                                        //                         : primary_color,
+                                        //                 fontSize: 18,
+                                        //                 fontWeight:
+                                        //                     FontWeight.w500),
+                                        //           ),
+                                        //         ),
+                                        //       ),
+                                        //     ),
+                                        //     InkWell(
+                                        //       onTap: () {
+                                        //         changeNomerLapangan(
+                                        //             "lapangan2");
+                                        //       },
+                                        //       child: Container(
+                                        //         margin:
+                                        //             EdgeInsets.only(left: 24),
+                                        //         height: 56,
+                                        //         width: 56,
+                                        //         decoration:
+                                        //             (selectedNomerLapangan ==
+                                        //                     "lapangan2")
+                                        //                 ? BoxDecoration(
+                                        //                     color:
+                                        //                         primary_color,
+                                        //                     borderRadius:
+                                        //                         BorderRadius
+                                        //                             .all(Radius
+                                        //                                 .circular(
+                                        //                                     16)))
+                                        //                 : BoxDecoration(),
+                                        //         child: Center(
+                                        //           child: Text(
+                                        //             "2",
+                                        //             style: TextStyle(
+                                        //                 color:
+                                        //                     (selectedNomerLapangan ==
+                                        //                             "lapangan2")
+                                        //                         ? Colors.white
+                                        //                         : primary_color,
+                                        //                 fontSize: 18,
+                                        //                 fontWeight:
+                                        //                     FontWeight.w500),
+                                        //           ),
+                                        //         ),
+                                        //       ),
+                                        //     ),
+                                        //     InkWell(
+                                        //       onTap: () {
+                                        //         changeNomerLapangan(
+                                        //             "lapangan3");
+                                        //       },
+                                        //       child: Container(
+                                        //         margin:
+                                        //             EdgeInsets.only(left: 24),
+                                        //         height: 56,
+                                        //         width: 56,
+                                        //         decoration:
+                                        //             (selectedNomerLapangan ==
+                                        //                     "lapangan3")
+                                        //                 ? BoxDecoration(
+                                        //                     color:
+                                        //                         primary_color,
+                                        //                     borderRadius:
+                                        //                         BorderRadius
+                                        //                             .all(Radius
+                                        //                                 .circular(
+                                        //                                     16)))
+                                        //                 : BoxDecoration(),
+                                        //         child: Center(
+                                        //           child: Text(
+                                        //             "3",
+                                        //             style: TextStyle(
+                                        //                 color:
+                                        //                     (selectedNomerLapangan ==
+                                        //                             "lapangan3")
+                                        //                         ? Colors.white
+                                        //                         : primary_color,
+                                        //                 fontSize: 18,
+                                        //                 fontWeight:
+                                        //                     FontWeight.w500),
+                                        //           ),
+                                        //         ),
+                                        //       ),
+                                        //     ),
+                                        //   ],
+                                        // ),
                                         SizedBox(
                                           height: 20,
                                         ),
@@ -572,19 +573,33 @@ class _BookingLapanganState extends State<BookingLapangan> {
                                                   tanggal.substring(
                                                       0, tanggal.indexOf("T"));
 
-                                              Navigator.push(context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) {
-                                                return PaymentDetails(
-                                                    lapangan: lapangan,
-                                                    date: tanggalfix,
-                                                    time: selectedList,
-                                                    subtotal: "subtotal",
-                                                    status: "In Progress",
-                                                    couponid: "couponid",
-                                                    total: "total",
-                                                    ordertime: "ordertime");
-                                              }));
+                                              if (selectedList.length > 0) {
+                                                Navigator.push(context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) {
+                                                  return PaymentDetails(
+                                                      lapangan: lapangan,
+                                                      date: tanggalfix,
+                                                      time: selectedList,
+                                                      subtotal: "subtotal",
+                                                      status: "In Progress",
+                                                      couponid: "couponid",
+                                                      total: "total",
+                                                      ordertime: "ordertime");
+                                                }));
+                                              } else {
+                                                Fluttertoast.showToast(
+                                                  msg:
+                                                      "Pilih Jam Terlebih Dahulu",
+                                                  toastLength:
+                                                      Toast.LENGTH_LONG,
+                                                  gravity: ToastGravity.BOTTOM,
+                                                  backgroundColor: Colors.red,
+                                                  textColor: Colors.white,
+                                                  fontSize: 20.0,
+                                                );
+                                              }
+
                                               // selectedList.sort((a,b)=>int.parse(a.toString().substring(0,2)).compareTo(int.parse(b.toString().substring(0,2))));
                                               // String tanggal = _controller
                                               //     .selectedDay
