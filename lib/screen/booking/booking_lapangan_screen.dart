@@ -539,20 +539,7 @@ class _BookingLapanganState extends State<BookingLapangan> {
                                                     child: Center(
                                                       child: Text(
                                                         itemList[index],
-                                                        style: TextStyle(
-                                                            color: (selectedList !=
-                                                                        null &&
-                                                                    selectedList.contains(
-                                                                        itemList[
-                                                                            index]))
-                                                                ? Colors.white
-                                                                : Colors.grey
-                                                                    .withOpacity(
-                                                                        0.4),
-                                                            fontSize: 18,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .w600),
+                                                        style: checkTime(index),
                                                       ),
                                                     ),
                                                   ),
@@ -814,6 +801,29 @@ class _BookingLapanganState extends State<BookingLapangan> {
   void changePilihWaktu(String pilihWaktu) {
     selectedPilihWaktu = pilihWaktu;
     setState(() {});
+  }
+
+  TextStyle checkTime(int index) {
+    if (int.parse(itemList[index].toString().substring(0, 2)) >=
+            int.parse(lapangan.parent.open.substring(0, 2)) &&
+        int.parse(itemList[index].toString().substring(0, 2)) <
+            int.parse(lapangan.parent.close.substring(0, 2))) {
+      return TextStyle(
+          color:
+              (selectedList != null && selectedList.contains(itemList[index]))
+                  ? Colors.white
+                  : Colors.black,
+          fontSize: 18,
+          fontWeight: FontWeight.w600);
+    } else {
+      return TextStyle(
+          color:
+              (selectedList != null && selectedList.contains(itemList[index]))
+                  ? Colors.white
+                  : Colors.grey.withOpacity(0.4),
+          fontSize: 18,
+          fontWeight: FontWeight.w600);
+    }
   }
 }
 
