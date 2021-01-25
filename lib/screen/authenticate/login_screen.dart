@@ -119,6 +119,11 @@ class _LoginScreenState extends State<LoginScreen> {
                             if (result == null) {
                               setState(
                                   () => error = 'Please enter a valid account');
+                            } else {
+                              Navigator.pushReplacement(context,
+                                  MaterialPageRoute(builder: (context) {
+                                return NavBar();
+                              }));
                             }
                           }
                         },

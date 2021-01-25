@@ -166,10 +166,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   onPressed: () async {
                     if (_formkey.currentState.validate()) {
                       dynamic result = await _auth.register(email, password);
-                      UserServices.createUser(nameController.text, emailController.text,
-                          passwordController.text);
+                      UserServices.createUser(nameController.text,
+                          emailController.text, passwordController.text);
                       if (result == null) {
                         setState(() => error = 'Please enter a valid email');
+                      } else {
+                        Navigator.pushReplacement(context,
+                            MaterialPageRoute(builder: (context) {
+                          return NavBar();
+                        }));
                       }
                     }
                   },
