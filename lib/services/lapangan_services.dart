@@ -159,6 +159,7 @@ class Test extends Equatable {
 
 class Lap extends Equatable {
   final String details;
+  final String fieldid;
   final int harga;
   final String jenis;
   final String no;
@@ -166,6 +167,7 @@ class Lap extends Equatable {
 
   Lap(
     this.details,
+    this.fieldid,
     this.harga,
     this.jenis,
     this.no, {
@@ -175,6 +177,7 @@ class Lap extends Equatable {
   @override
   List<Object> get props => [
         details,
+        fieldid,
         harga,
         jenis,
         no,
@@ -184,6 +187,7 @@ class Lap extends Equatable {
   Map<String, dynamic> toMap() {
     return {
       'details': details,
+      'fieldid' : fieldid,
       'harga': harga,
       'jenis': jenis,
       'no': no,
@@ -192,8 +196,9 @@ class Lap extends Equatable {
 
   static Lap fromMap(Map<String, dynamic> map, Test parent) {
     if (map == null) return null;
+    print(map);
 
-    return Lap(map['details'], map['harga'], map['jenis'], map['no'],
+    return Lap(map['details'] ,map['lapanganid'],map['harga'], map['jenis'], map['no'],
         parent: parent);
   }
 }

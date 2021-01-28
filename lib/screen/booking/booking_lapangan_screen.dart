@@ -40,6 +40,8 @@ class _BookingLapanganState extends State<BookingLapangan> {
   List selectedList = [];
 
   Lap lapangan;
+  CollectionReference trans =
+      FirebaseFirestore.instance.collection("Transactions");
   _BookingLapanganState(this.lapangan);
   CalendarController _controller = CalendarController();
   String selectedPilihWaktu;
@@ -47,6 +49,7 @@ class _BookingLapanganState extends State<BookingLapangan> {
   CollectionReference userCollection =
       FirebaseFirestore.instance.collection("Users");
   String name = "";
+  List time = [];
 
   void getUserUpdate() async {
     userCollection
@@ -70,7 +73,22 @@ class _BookingLapanganState extends State<BookingLapangan> {
     getUserUpdate();
     checkIfFavorite();
     super.initState();
+    gettransactions();
     print(itemList);
+  }
+
+  Future gettransactions() async {
+    await trans
+        .where("fieldid", isEqualTo: lapangan.fieldid)
+        .get()
+        .then((QuerySnapshot snapshot) => {
+              snapshot.docs.forEach((element) {
+                List temp = element.get("time");
+                temp.forEach((element2) {
+                  time.add(element2);
+                });
+              })
+            });
   }
 
   @override
@@ -496,7 +514,10 @@ class _BookingLapanganState extends State<BookingLapangan> {
                                                             int.parse(lapangan
                                                                 .parent.close
                                                                 .substring(
-                                                                    0, 2))) {
+                                                                    0, 2)) &&
+                                                        //cek transaksi
+                                                        !time
+                                                            .contains(itemList[index])) {
                                                       setState(() {
                                                         if (selectedList !=
                                                             null) {
@@ -823,13 +844,24 @@ class _BookingLapanganState extends State<BookingLapangan> {
             int.parse(lapangan.parent.open.substring(0, 2)) &&
         int.parse(itemList[index].toString().substring(0, 2)) <
             int.parse(lapangan.parent.close.substring(0, 2))) {
-      return TextStyle(
-          color:
-              (selectedList != null && selectedList.contains(itemList[index]))
-                  ? Colors.white
-                  : Colors.black,
-          fontSize: 18,
-          fontWeight: FontWeight.w600);
+      if ( //cek transaksi
+          time.contains(itemList[index])) {
+        return TextStyle(
+            color:
+                (selectedList != null && selectedList.contains(itemList[index]))
+                    ? Colors.white
+                    : Colors.red,
+            fontSize: 18,
+            fontWeight: FontWeight.w600);
+      } else {
+        return TextStyle(
+            color:
+                (selectedList != null && selectedList.contains(itemList[index]))
+                    ? Colors.white
+                    : Colors.blue,
+            fontSize: 18,
+            fontWeight: FontWeight.w600);
+      }
     } else {
       return TextStyle(
           color:
