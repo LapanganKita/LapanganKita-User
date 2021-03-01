@@ -69,17 +69,29 @@ class _BookingLapanganState extends State<BookingLapangan> {
     });
   }
 
+  @override
   void initState() {
+    super.initState();
     getUserUpdate();
     checkIfFavorite();
-    super.initState();
+
     gettransactions();
     print(itemList);
   }
 
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   Future gettransactions() async {
+    String tanggal = _controller.selectedDay.toIso8601String();
+    String tanggalfix = tanggal.substring(0, tanggal.indexOf("T"));
+
     await trans
         .where("fieldid", isEqualTo: lapangan.fieldid)
+        // .where("date", isEqualTo: tanggalfix)
         .get()
         .then((QuerySnapshot snapshot) => {
               snapshot.docs.forEach((element) {
@@ -89,6 +101,7 @@ class _BookingLapanganState extends State<BookingLapangan> {
                 });
               })
             });
+    print(tanggalfix);
   }
 
   @override
@@ -297,6 +310,11 @@ class _BookingLapanganState extends State<BookingLapangan> {
                                       children: [
                                         TableCalendar(
                                           calendarController: _controller,
+                                          initialSelectedDay: DateTime.now(),
+                                          onDaySelected:
+                                              (day, events, holidays) {
+                                            gettransactions();
+                                          },
                                           availableCalendarFormats: const {
                                             CalendarFormat.twoWeeks: '',
                                             CalendarFormat.month: ""
