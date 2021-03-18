@@ -163,16 +163,20 @@ class Lap extends Equatable {
   final int harga;
   final String jenis;
   final String no;
+  final String id;
   final Test parent;
+  
 
   Lap(
     this.details,
     this.fieldid,
     this.harga,
     this.jenis,
-    this.no, {
+    this.no,
+    this.id, {
     this.parent,
-  });
+  }
+  );
 
   @override
   List<Object> get props => [
@@ -181,6 +185,7 @@ class Lap extends Equatable {
         harga,
         jenis,
         no,
+        id,
         parent,
       ];
 
@@ -191,6 +196,7 @@ class Lap extends Equatable {
       'harga': harga,
       'jenis': jenis,
       'no': no,
+      'lapanganid' : id
     };
   }
 
@@ -198,7 +204,7 @@ class Lap extends Equatable {
     if (map == null) return null;
     print(map);
 
-    return Lap(map['details'] ,map['lapanganid'],map['harga'], map['jenis'], map['no'],
+    return Lap(map['details'] ,map['lapanganid'],map['harga'], map['jenis'], map['no'], map['lapanganid'],
         parent: parent);
   }
 }

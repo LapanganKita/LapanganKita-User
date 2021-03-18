@@ -316,7 +316,7 @@ class _PaymentDetailsState extends State<PaymentDetails> {
                                           date);
                                   addTransaction(
                                       lapangan.parent.nama,
-                                      lapangan.no,
+                                      lapangan.id,
                                       lapangan.jenis,
                                       date,
                                       time,

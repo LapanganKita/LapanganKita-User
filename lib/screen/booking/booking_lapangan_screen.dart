@@ -50,6 +50,7 @@ class _BookingLapanganState extends State<BookingLapangan> {
       FirebaseFirestore.instance.collection("Users");
   String name = "";
   List time = [];
+  String tanggall;
 
   void getUserUpdate() async {
     userCollection
@@ -73,16 +74,30 @@ class _BookingLapanganState extends State<BookingLapangan> {
     getUserUpdate();
     checkIfFavorite();
     super.initState();
-    gettransactions();
+    tanggall = DateTime.now().toIso8601String();
+    tanggall = tanggall.substring(0, tanggall.indexOf("T"));
+    gettransactions(tanggall);
     print(itemList);
   }
 
-  Future gettransactions() async {
+  void gettanggal() {
+    String tanggal = _controller.selectedDay.toIso8601String();
+    String tanggalfix = tanggal.substring(0, tanggal.indexOf("T"));
+    tanggall = tanggalfix;
+    setState(() {});
+  }
+
+  Future gettransactions(String tanggal) async {
+    print(tanggal);
+    //String tanggal = gettanggal();
     await trans
         .where("fieldid", isEqualTo: lapangan.fieldid)
+        .where("date", isEqualTo: tanggal)
         .get()
         .then((QuerySnapshot snapshot) => {
+              print(snapshot.size),
               snapshot.docs.forEach((element) {
+                print(element);
                 List temp = element.get("time");
                 temp.forEach((element2) {
                   time.add(element2);
@@ -300,6 +315,18 @@ class _BookingLapanganState extends State<BookingLapangan> {
                                           availableCalendarFormats: const {
                                             CalendarFormat.twoWeeks: '',
                                             CalendarFormat.month: ""
+                                          },
+                                          onDaySelected:
+                                              (day, events, holidays) {
+                                            setState(() {
+                                              String tanggal = _controller
+                                                  .selectedDay
+                                                  .toIso8601String();
+                                              String tanggalfix =
+                                                  tanggal.substring(
+                                                      0, tanggal.indexOf("T"));
+                                              gettransactions(tanggalfix);
+                                            });
                                           },
                                           initialCalendarFormat:
                                               CalendarFormat.twoWeeks,
