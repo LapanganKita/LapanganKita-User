@@ -89,6 +89,7 @@ class _BookingLapanganState extends State<BookingLapangan> {
 
   Future gettransactions(String tanggal) async {
     print(tanggal);
+    time.clear();
     //String tanggal = gettanggal();
     await trans
         .where("fieldid", isEqualTo: lapangan.fieldid)
@@ -132,6 +133,7 @@ class _BookingLapanganState extends State<BookingLapangan> {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: Container(
           child: Stack(
             children: [
@@ -268,6 +270,7 @@ class _BookingLapanganState extends State<BookingLapangan> {
                       color: Colors.white,
                     ),
                     child: SingleChildScrollView(
+                      scrollDirection: Axis.vertical,
                       controller: scrollController,
                       child: Container(
                         child: Column(
@@ -303,531 +306,551 @@ class _BookingLapanganState extends State<BookingLapangan> {
                               height: 16,
                             ),
                             SingleChildScrollView(
+                              physics: NeverScrollableScrollPhysics(),
                               scrollDirection: Axis.vertical,
                               child: Container(
-                                  height:
-                                      MediaQuery.of(context).size.height + 10,
-                                  child: TabBarView(children: [
-                                    Column(
+                                  width: MediaQuery.of(context).size.width,
+                                  height: 760,
+                                  child: TabBarView(
+                                      dragStartBehavior: DragStartBehavior.down,
+                                      physics: NeverScrollableScrollPhysics(),
                                       children: [
-                                        TableCalendar(
-                                          calendarController: _controller,
-                                          availableCalendarFormats: const {
-                                            CalendarFormat.twoWeeks: '',
-                                            CalendarFormat.month: ""
-                                          },
-                                          onDaySelected:
-                                              (day, events, holidays) {
-                                            setState(() {
-                                              String tanggal = _controller
-                                                  .selectedDay
-                                                  .toIso8601String();
-                                              String tanggalfix =
-                                                  tanggal.substring(
-                                                      0, tanggal.indexOf("T"));
-                                              gettransactions(tanggalfix);
-                                            });
-                                          },
-                                          initialCalendarFormat:
-                                              CalendarFormat.twoWeeks,
-                                          headerStyle: HeaderStyle(
-                                              centerHeaderTitle: true,
-                                              formatButtonVisible: false,
-                                              titleTextStyle: TextStyle(
-                                                  color: primary_color,
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.bold),
-                                              leftChevronIcon: Icon(
-                                                Icons.arrow_back_ios,
-                                                color: primary_color,
-                                                size: 16,
-                                              ),
-                                              rightChevronIcon: Icon(
-                                                Icons.arrow_forward_ios,
-                                                color: primary_color,
-                                                size: 16,
-                                              ),
-                                              leftChevronMargin:
-                                                  EdgeInsets.only(left: 72),
-                                              rightChevronMargin:
-                                                  EdgeInsets.only(right: 72)),
-                                        ),
-                                        SizedBox(
-                                          height: 30,
-                                        ),
-                                        // Container(
-                                        //   margin: EdgeInsets.only(left: 24),
-                                        //   child: Align(
-                                        //     alignment: Alignment.topLeft,
-                                        //     child: Text(
-                                        //       "Nomer Lapangan",
-                                        //       style: TextStyle(
-                                        //           color: primary_color,
-                                        //           fontFamily: "Ubuntu",
-                                        //           fontSize: 24,
-                                        //           fontWeight: FontWeight.bold),
-                                        //     ),
-                                        //   ),
-                                        // ),
-                                        // SizedBox(
-                                        //   height: 20,
-                                        // ),
-                                        // Row(
-                                        //   children: [
-                                        //     InkWell(
-                                        //       onTap: () {
-                                        //         changeNomerLapangan(
-                                        //             "lapangan1");
-                                        //       },
-                                        //       child: Container(
-                                        //         margin:
-                                        //             EdgeInsets.only(left: 24),
-                                        //         height: 56,
-                                        //         width: 56,
-                                        //         decoration:
-                                        //             (selectedNomerLapangan ==
-                                        //                     "lapangan1")
-                                        //                 ? BoxDecoration(
-                                        //                     color:
-                                        //                         primary_color,
-                                        //                     borderRadius:
-                                        //                         BorderRadius
-                                        //                             .all(Radius
-                                        //                                 .circular(
-                                        //                                     16)))
-                                        //                 : BoxDecoration(),
-                                        //         child: Center(
-                                        //           child: Text(
-                                        //             "1",
-                                        //             style: TextStyle(
-                                        //                 color:
-                                        //                     (selectedNomerLapangan ==
-                                        //                             "lapangan1")
-                                        //                         ? Colors.white
-                                        //                         : primary_color,
-                                        //                 fontSize: 18,
-                                        //                 fontWeight:
-                                        //                     FontWeight.w500),
-                                        //           ),
-                                        //         ),
-                                        //       ),
-                                        //     ),
-                                        //     InkWell(
-                                        //       onTap: () {
-                                        //         changeNomerLapangan(
-                                        //             "lapangan2");
-                                        //       },
-                                        //       child: Container(
-                                        //         margin:
-                                        //             EdgeInsets.only(left: 24),
-                                        //         height: 56,
-                                        //         width: 56,
-                                        //         decoration:
-                                        //             (selectedNomerLapangan ==
-                                        //                     "lapangan2")
-                                        //                 ? BoxDecoration(
-                                        //                     color:
-                                        //                         primary_color,
-                                        //                     borderRadius:
-                                        //                         BorderRadius
-                                        //                             .all(Radius
-                                        //                                 .circular(
-                                        //                                     16)))
-                                        //                 : BoxDecoration(),
-                                        //         child: Center(
-                                        //           child: Text(
-                                        //             "2",
-                                        //             style: TextStyle(
-                                        //                 color:
-                                        //                     (selectedNomerLapangan ==
-                                        //                             "lapangan2")
-                                        //                         ? Colors.white
-                                        //                         : primary_color,
-                                        //                 fontSize: 18,
-                                        //                 fontWeight:
-                                        //                     FontWeight.w500),
-                                        //           ),
-                                        //         ),
-                                        //       ),
-                                        //     ),
-                                        //     InkWell(
-                                        //       onTap: () {
-                                        //         changeNomerLapangan(
-                                        //             "lapangan3");
-                                        //       },
-                                        //       child: Container(
-                                        //         margin:
-                                        //             EdgeInsets.only(left: 24),
-                                        //         height: 56,
-                                        //         width: 56,
-                                        //         decoration:
-                                        //             (selectedNomerLapangan ==
-                                        //                     "lapangan3")
-                                        //                 ? BoxDecoration(
-                                        //                     color:
-                                        //                         primary_color,
-                                        //                     borderRadius:
-                                        //                         BorderRadius
-                                        //                             .all(Radius
-                                        //                                 .circular(
-                                        //                                     16)))
-                                        //                 : BoxDecoration(),
-                                        //         child: Center(
-                                        //           child: Text(
-                                        //             "3",
-                                        //             style: TextStyle(
-                                        //                 color:
-                                        //                     (selectedNomerLapangan ==
-                                        //                             "lapangan3")
-                                        //                         ? Colors.white
-                                        //                         : primary_color,
-                                        //                 fontSize: 18,
-                                        //                 fontWeight:
-                                        //                     FontWeight.w500),
-                                        //           ),
-                                        //         ),
-                                        //       ),
-                                        //     ),
-                                        //   ],
-                                        // ),
-                                        SizedBox(
-                                          height: 20,
-                                        ),
-                                        Container(
-                                          margin: EdgeInsets.only(left: 24),
-                                          child: Align(
-                                            alignment: Alignment.topLeft,
-                                            child: Text(
-                                              "Pilih Waktu",
-                                              style: TextStyle(
-                                                  color: primary_color,
-                                                  fontFamily: "Ubuntu",
-                                                  fontSize: 24,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                          ),
-                                        ),
-                                        Container(
-                                          padding: EdgeInsets.only(
-                                              right: MediaQuery.of(context)
-                                                      .size
-                                                      .width /
-                                                  15,
-                                              left: MediaQuery.of(context)
-                                                      .size
-                                                      .width /
-                                                  15),
-                                          child: GridView.builder(
-                                              shrinkWrap: true,
-                                              itemCount: itemList.length,
-                                              gridDelegate:
-                                                  SliverGridDelegateWithFixedCrossAxisCount(
-                                                      crossAxisCount: 4,
-                                                      childAspectRatio: 1.5,
-                                                      crossAxisSpacing: 10,
-                                                      mainAxisSpacing: 10),
-                                              itemBuilder: (context, index) {
-                                                return InkWell(
-                                                  onTap: () {
-                                                    if (int.parse(itemList[index]
-                                                                .toString()
-                                                                .substring(
-                                                                    0, 2)) >=
-                                                            int.parse(lapangan
-                                                                .parent.open
-                                                                .substring(
-                                                                    0, 2)) &&
-                                                        int.parse(itemList[index].toString().substring(0, 2)) <
-                                                            int.parse(lapangan
-                                                                .parent.close
-                                                                .substring(
-                                                                    0, 2)) &&
-                                                        //cek transaksi
-                                                        !time
-                                                            .contains(itemList[index])) {
-                                                      setState(() {
-                                                        if (selectedList !=
-                                                            null) {
-                                                          if (selectedList
-                                                              .contains(
-                                                                  itemList[
-                                                                      index])) {
-                                                            selectedList.remove(
-                                                                itemList[
-                                                                    index]);
-                                                          } else {
-                                                            selectedList.add(
-                                                                itemList[
-                                                                    index]);
-                                                          }
-                                                        }
-                                                      });
-                                                    }
-                                                  },
-                                                  child: Container(
-                                                    height: 60,
-                                                    width:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .width /
-                                                            5,
-                                                    decoration: (selectedList !=
-                                                                null &&
-                                                            selectedList
-                                                                .contains(
-                                                                    itemList[
-                                                                        index]))
-                                                        ? BoxDecoration(
-                                                            color:
-                                                                primary_color,
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        8.0))
-                                                        : BoxDecoration(),
-                                                    child: Center(
-                                                      child: Text(
-                                                        itemList[index],
-                                                        style: checkTime(index),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                );
-                                              }),
-                                        ),
-                                        Container(
-                                          margin: EdgeInsets.only(top: 16),
-                                          width: 300,
-                                          child: RaisedButton(
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(
-                                                        24.0)),
-                                            color: primary_color,
-                                            textColor: Colors.white,
-                                            onPressed: () {
-                                              selectedList.sort((a, b) =>
-                                                  int.parse(
-                                                          a
-                                                              .toString()
-                                                              .substring(0, 2))
-                                                      .compareTo(int.parse(b
-                                                          .toString()
-                                                          .substring(0, 2))));
-                                              String tanggal = _controller
-                                                  .selectedDay
-                                                  .toIso8601String();
-                                              String tanggalfix =
-                                                  tanggal.substring(
-                                                      0, tanggal.indexOf("T"));
-
-                                              if (selectedList.length > 0) {
-                                                Navigator.push(context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) {
-                                                  return PaymentDetails(
-                                                      lapangan: lapangan,
-                                                      date: tanggalfix,
-                                                      time: selectedList,
-                                                      subtotal: "subtotal",
-                                                      status: "In Progress",
-                                                      couponid: "couponid",
-                                                      total: "total",
-                                                      ordertime: "ordertime");
-                                                }));
-                                              } else {
-                                                Fluttertoast.showToast(
-                                                  msg:
-                                                      "Pilih Jam Terlebih Dahulu",
-                                                  toastLength:
-                                                      Toast.LENGTH_LONG,
-                                                  gravity: ToastGravity.BOTTOM,
-                                                  backgroundColor: Colors.red,
-                                                  textColor: Colors.white,
-                                                  fontSize: 20.0,
-                                                );
-                                              }
-
-                                              // selectedList.sort((a,b)=>int.parse(a.toString().substring(0,2)).compareTo(int.parse(b.toString().substring(0,2))));
-                                              // String tanggal = _controller
-                                              //     .selectedDay
-                                              //     .toIso8601String();
-                                              // String tanggalfix =
-                                              //     tanggal.substring(
-                                              //         0, tanggal.indexOf("T"));
-                                              // launchWhatsapp(
-                                              //     number: "+6281391097676",
-                                              //     message: "Saya " +
-                                              //         name +
-                                              //         " mau booking lapangan " + lapangan.jenis + " di " +
-                                              //         lapangan.parent.nama +
-                                              //         " lapangan nomer: "  + lapangan.no + " jam: " +
-                                              //         selectedList[0] +
-                                              //         " - " + selectedList[selectedList.length-1] + " pada tanggal : " +
-                                              //         tanggalfix);
-                                              // addTransaction(
-                                              //     lapangan.parent.nama,
-                                              //     lapangan.no,
-                                              //     lapangan.jenis,
-                                              //     tanggalfix,
-                                              //     selectedList,
-                                              //     "subtotal",
-                                              //     "In Progress",
-                                              //     "couponid",
-                                              //     lapangan.harga*selectedList.length,
-                                              //     DateTime.now());
-                                            },
-                                            child: Text(
-                                              "Booking Lapangan",
-                                              style: TextStyle(
-                                                  fontFamily: "Ubuntu",
-                                                  fontSize: 18),
-                                            ),
-                                          ),
-                                        ),
-                                        // SizedBox(
-                                        //   height: 20,
-                                        // )
-                                      ],
-                                    ),
-
-                                    Container(
-                                        padding: EdgeInsets.only(
-                                            top: 8, right: 32, left: 32),
-                                        child: Column(
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.stretch,
                                           children: [
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Container(
-                                                  child: Column(
-                                                    children: [
-                                                      Container(
-                                                        width: 40,
-                                                        height: 40,
-                                                        child: Image.asset(
-                                                          "assets/images/11-park.png",
-                                                          fit: BoxFit.fill,
-                                                        ),
-                                                      ),
-                                                      Text("Parking")
-                                                    ],
+                                            TableCalendar(
+                                              calendarController: _controller,
+                                              availableCalendarFormats: const {
+                                                CalendarFormat.twoWeeks: '',
+                                                CalendarFormat.month: ""
+                                              },
+                                              onDaySelected:
+                                                  (day, events, holidays) {
+                                                setState(() {
+                                                  String tanggal = _controller
+                                                      .selectedDay
+                                                      .toIso8601String();
+                                                  String tanggalfix =
+                                                      tanggal.substring(0,
+                                                          tanggal.indexOf("T"));
+                                                  gettransactions(tanggalfix);
+                                                });
+                                              },
+                                              initialCalendarFormat:
+                                                  CalendarFormat.twoWeeks,
+                                              headerStyle: HeaderStyle(
+                                                  centerHeaderTitle: true,
+                                                  formatButtonVisible: false,
+                                                  titleTextStyle: TextStyle(
+                                                      color: primary_color,
+                                                      fontSize: 18,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                  leftChevronIcon: Icon(
+                                                    Icons.arrow_back_ios,
+                                                    color: primary_color,
+                                                    size: 16,
                                                   ),
-                                                ),
-                                                Container(
-                                                  child: Column(
-                                                    children: [
-                                                      Container(
-                                                        width: 40,
-                                                        height: 40,
-                                                        child: Image.asset(
-                                                          "assets/images/11-park.png",
-                                                          fit: BoxFit.fill,
-                                                        ),
-                                                      ),
-                                                      Text("Parking")
-                                                    ],
+                                                  rightChevronIcon: Icon(
+                                                    Icons.arrow_forward_ios,
+                                                    color: primary_color,
+                                                    size: 16,
                                                   ),
-                                                ),
-                                                Container(
-                                                  child: Column(
-                                                    children: [
-                                                      Container(
-                                                        width: 40,
-                                                        height: 40,
-                                                        child: Image.asset(
-                                                          "assets/images/11-park.png",
-                                                          fit: BoxFit.fill,
-                                                        ),
-                                                      ),
-                                                      Text("Parking")
-                                                    ],
-                                                  ),
-                                                )
-                                              ],
+                                                  leftChevronMargin:
+                                                      EdgeInsets.only(left: 72),
+                                                  rightChevronMargin:
+                                                      EdgeInsets.only(
+                                                          right: 72)),
                                             ),
-                                            Container(
-                                              margin: EdgeInsets.only(top: 24),
-                                              child: Row(
-                                                children: [
-                                                  Container(
-                                                    margin: EdgeInsets.only(
-                                                        right: 16),
-                                                    child: Image.asset(
-                                                      "assets/images/placeholder.png",
-                                                      fit: BoxFit.fill,
-                                                    ),
-                                                  ),
-                                                  Container(
-                                                    width:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .width -
-                                                            150,
-                                                    child: Text(
-                                                      lapangan.parent.alamat,
-                                                      maxLines: 2,
-                                                    ),
-                                                  )
-                                                ],
-                                              ),
+                                            SizedBox(
+                                              height: 30,
                                             ),
-                                            Container(
-                                              margin: EdgeInsets.only(top: 24),
-                                              child: Row(
-                                                children: [
-                                                  Container(
-                                                    margin: EdgeInsets.only(
-                                                        right: 16),
-                                                    child: Image.asset(
-                                                      "assets/images/phone.png",
-                                                      fit: BoxFit.fill,
-                                                    ),
-                                                  ),
-                                                  Text(lapangan.parent.telp),
-                                                ],
-                                              ),
-                                            ),
-                                            Container(
-                                              margin: EdgeInsets.only(top: 24),
-                                              child: Row(
-                                                children: [
-                                                  Container(
-                                                    margin: EdgeInsets.only(
-                                                        right: 16),
-                                                    child: Image.asset(
-                                                      "assets/images/clock.png",
-                                                      fit: BoxFit.fill,
-                                                    ),
-                                                  ),
-                                                  Text(lapangan.parent.open +
-                                                      " - " +
-                                                      lapangan.parent.close),
-                                                ],
-                                              ),
-                                            ),
-                                            // SizedBox(
-                                            //   height: 16,
-                                            // ),
                                             // Container(
+                                            //   margin: EdgeInsets.only(left: 24),
                                             //   child: Align(
                                             //     alignment: Alignment.topLeft,
                                             //     child: Text(
-                                            //       "Location",
+                                            //       "Nomer Lapangan",
                                             //       style: TextStyle(
                                             //           color: primary_color,
                                             //           fontFamily: "Ubuntu",
-                                            //           fontSize: 32,
+                                            //           fontSize: 24,
                                             //           fontWeight: FontWeight.bold),
                                             //     ),
                                             //   ),
                                             // ),
+                                            // SizedBox(
+                                            //   height: 20,
+                                            // ),
+                                            // Row(
+                                            //   children: [
+                                            //     InkWell(
+                                            //       onTap: () {
+                                            //         changeNomerLapangan(
+                                            //             "lapangan1");
+                                            //       },
+                                            //       child: Container(
+                                            //         margin:
+                                            //             EdgeInsets.only(left: 24),
+                                            //         height: 56,
+                                            //         width: 56,
+                                            //         decoration:
+                                            //             (selectedNomerLapangan ==
+                                            //                     "lapangan1")
+                                            //                 ? BoxDecoration(
+                                            //                     color:
+                                            //                         primary_color,
+                                            //                     borderRadius:
+                                            //                         BorderRadius
+                                            //                             .all(Radius
+                                            //                                 .circular(
+                                            //                                     16)))
+                                            //                 : BoxDecoration(),
+                                            //         child: Center(
+                                            //           child: Text(
+                                            //             "1",
+                                            //             style: TextStyle(
+                                            //                 color:
+                                            //                     (selectedNomerLapangan ==
+                                            //                             "lapangan1")
+                                            //                         ? Colors.white
+                                            //                         : primary_color,
+                                            //                 fontSize: 18,
+                                            //                 fontWeight:
+                                            //                     FontWeight.w500),
+                                            //           ),
+                                            //         ),
+                                            //       ),
+                                            //     ),
+                                            //     InkWell(
+                                            //       onTap: () {
+                                            //         changeNomerLapangan(
+                                            //             "lapangan2");
+                                            //       },
+                                            //       child: Container(
+                                            //         margin:
+                                            //             EdgeInsets.only(left: 24),
+                                            //         height: 56,
+                                            //         width: 56,
+                                            //         decoration:
+                                            //             (selectedNomerLapangan ==
+                                            //                     "lapangan2")
+                                            //                 ? BoxDecoration(
+                                            //                     color:
+                                            //                         primary_color,
+                                            //                     borderRadius:
+                                            //                         BorderRadius
+                                            //                             .all(Radius
+                                            //                                 .circular(
+                                            //                                     16)))
+                                            //                 : BoxDecoration(),
+                                            //         child: Center(
+                                            //           child: Text(
+                                            //             "2",
+                                            //             style: TextStyle(
+                                            //                 color:
+                                            //                     (selectedNomerLapangan ==
+                                            //                             "lapangan2")
+                                            //                         ? Colors.white
+                                            //                         : primary_color,
+                                            //                 fontSize: 18,
+                                            //                 fontWeight:
+                                            //                     FontWeight.w500),
+                                            //           ),
+                                            //         ),
+                                            //       ),
+                                            //     ),
+                                            //     InkWell(
+                                            //       onTap: () {
+                                            //         changeNomerLapangan(
+                                            //             "lapangan3");
+                                            //       },
+                                            //       child: Container(
+                                            //         margin:
+                                            //             EdgeInsets.only(left: 24),
+                                            //         height: 56,
+                                            //         width: 56,
+                                            //         decoration:
+                                            //             (selectedNomerLapangan ==
+                                            //                     "lapangan3")
+                                            //                 ? BoxDecoration(
+                                            //                     color:
+                                            //                         primary_color,
+                                            //                     borderRadius:
+                                            //                         BorderRadius
+                                            //                             .all(Radius
+                                            //                                 .circular(
+                                            //                                     16)))
+                                            //                 : BoxDecoration(),
+                                            //         child: Center(
+                                            //           child: Text(
+                                            //             "3",
+                                            //             style: TextStyle(
+                                            //                 color:
+                                            //                     (selectedNomerLapangan ==
+                                            //                             "lapangan3")
+                                            //                         ? Colors.white
+                                            //                         : primary_color,
+                                            //                 fontSize: 18,
+                                            //                 fontWeight:
+                                            //                     FontWeight.w500),
+                                            //           ),
+                                            //         ),
+                                            //       ),
+                                            //     ),
+                                            //   ],
+                                            // ),
+                                            SizedBox(
+                                              height: 20,
+                                            ),
+                                            Container(
+                                              margin: EdgeInsets.only(left: 24),
+                                              child: Align(
+                                                alignment: Alignment.topLeft,
+                                                child: Text(
+                                                  "Pilih Waktu",
+                                                  style: TextStyle(
+                                                      color: primary_color,
+                                                      fontFamily: "Ubuntu",
+                                                      fontSize: 24,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                              ),
+                                            ),
+                                            Container(
+                                              padding: EdgeInsets.only(
+                                                  right: MediaQuery.of(context)
+                                                          .size
+                                                          .width /
+                                                      15,
+                                                  left: MediaQuery.of(context)
+                                                          .size
+                                                          .width /
+                                                      15),
+                                              child: GridView.builder(
+                                                  physics:
+                                                      NeverScrollableScrollPhysics(),
+                                                  scrollDirection:
+                                                      Axis.vertical,
+                                                  shrinkWrap: true,
+                                                  itemCount: itemList.length,
+                                                  gridDelegate:
+                                                      SliverGridDelegateWithFixedCrossAxisCount(
+                                                          crossAxisCount: 4,
+                                                          childAspectRatio: 1.5,
+                                                          crossAxisSpacing: 10,
+                                                          mainAxisSpacing: 10),
+                                                  itemBuilder:
+                                                      (context, index) {
+                                                    return InkWell(
+                                                      onTap: () {
+                                                        if (int.parse(itemList[index].toString().substring(0, 2)) >=
+                                                                int.parse(lapangan
+                                                                    .parent.open
+                                                                    .substring(
+                                                                        0, 2)) &&
+                                                            int.parse(itemList[index]
+                                                                    .toString()
+                                                                    .substring(
+                                                                        0, 2)) <
+                                                                int.parse(lapangan
+                                                                    .parent
+                                                                    .close
+                                                                    .substring(
+                                                                        0, 2)) &&
+                                                            //cek transaksi
+                                                            !time.contains(itemList[index])) {
+                                                          setState(() {
+                                                            if (selectedList !=
+                                                                null) {
+                                                              if (selectedList
+                                                                  .contains(
+                                                                      itemList[
+                                                                          index])) {
+                                                                selectedList.remove(
+                                                                    itemList[
+                                                                        index]);
+                                                              } else {
+                                                                selectedList.add(
+                                                                    itemList[
+                                                                        index]);
+                                                              }
+                                                            }
+                                                          });
+                                                        }
+                                                      },
+                                                      child: Container(
+                                                        height: 60,
+                                                        width: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .width /
+                                                            5,
+                                                        decoration: (selectedList !=
+                                                                    null &&
+                                                                selectedList
+                                                                    .contains(
+                                                                        itemList[
+                                                                            index]))
+                                                            ? BoxDecoration(
+                                                                color:
+                                                                    primary_color,
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            8.0))
+                                                            : BoxDecoration(),
+                                                        child: Center(
+                                                          child: Text(
+                                                            itemList[index],
+                                                            style: checkTime(
+                                                                index),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    );
+                                                  }),
+                                            ),
+
+                                            RaisedButton(
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          24.0)),
+                                              color: primary_color,
+                                              textColor: Colors.white,
+                                              onPressed: () {
+                                                selectedList.sort((a, b) =>
+                                                    int.parse(a
+                                                            .toString()
+                                                            .substring(0, 2))
+                                                        .compareTo(int.parse(b
+                                                            .toString()
+                                                            .substring(0, 2))));
+                                                String tanggal = _controller
+                                                    .selectedDay
+                                                    .toIso8601String();
+                                                String tanggalfix =
+                                                    tanggal.substring(0,
+                                                        tanggal.indexOf("T"));
+
+                                                if (selectedList.length > 0) {
+                                                  Navigator.push(context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) {
+                                                    return PaymentDetails(
+                                                        lapangan: lapangan,
+                                                        date: tanggalfix,
+                                                        time: selectedList,
+                                                        subtotal: "subtotal",
+                                                        status: "In Progress",
+                                                        couponid: "couponid",
+                                                        total: "total",
+                                                        ordertime: "ordertime");
+                                                  }));
+                                                } else {
+                                                  Fluttertoast.showToast(
+                                                    msg:
+                                                        "Pilih Jam Terlebih Dahulu",
+                                                    toastLength:
+                                                        Toast.LENGTH_LONG,
+                                                    gravity:
+                                                        ToastGravity.BOTTOM,
+                                                    backgroundColor: Colors.red,
+                                                    textColor: Colors.white,
+                                                    fontSize: 20.0,
+                                                  );
+                                                }
+
+                                                // selectedList.sort((a,b)=>int.parse(a.toString().substring(0,2)).compareTo(int.parse(b.toString().substring(0,2))));
+                                                // String tanggal = _controller
+                                                //     .selectedDay
+                                                //     .toIso8601String();
+                                                // String tanggalfix =
+                                                //     tanggal.substring(
+                                                //         0, tanggal.indexOf("T"));
+                                                // launchWhatsapp(
+                                                //     number: "+6281391097676",
+                                                //     message: "Saya " +
+                                                //         name +
+                                                //         " mau booking lapangan " + lapangan.jenis + " di " +
+                                                //         lapangan.parent.nama +
+                                                //         " lapangan nomer: "  + lapangan.no + " jam: " +
+                                                //         selectedList[0] +
+                                                //         " - " + selectedList[selectedList.length-1] + " pada tanggal : " +
+                                                //         tanggalfix);
+                                                // addTransaction(
+                                                //     lapangan.parent.nama,
+                                                //     lapangan.no,
+                                                //     lapangan.jenis,
+                                                //     tanggalfix,
+                                                //     selectedList,
+                                                //     "subtotal",
+                                                //     "In Progress",
+                                                //     "couponid",
+                                                //     lapangan.harga*selectedList.length,
+                                                //     DateTime.now());
+                                              },
+                                              child: Text(
+                                                "Booking Lapangan",
+                                                style: TextStyle(
+                                                    fontFamily: "Ubuntu",
+                                                    fontSize: 18),
+                                              ),
+                                            ),
+
+                                            // SizedBox(
+                                            //   height: 20,
+                                            // )
                                           ],
-                                        )),
-                                    // Text("review")
-                                  ])),
+                                        ),
+
+                                        Container(
+                                            padding: EdgeInsets.only(
+                                                top: 8, right: 32, left: 32),
+                                            child: Column(
+                                              children: [
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Container(
+                                                      child: Column(
+                                                        children: [
+                                                          Container(
+                                                            width: 40,
+                                                            height: 40,
+                                                            child: Image.asset(
+                                                              "assets/images/11-park.png",
+                                                              fit: BoxFit.fill,
+                                                            ),
+                                                          ),
+                                                          Text("Parking")
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Container(
+                                                      child: Column(
+                                                        children: [
+                                                          Container(
+                                                            width: 40,
+                                                            height: 40,
+                                                            child: Image.asset(
+                                                              "assets/images/11-park.png",
+                                                              fit: BoxFit.fill,
+                                                            ),
+                                                          ),
+                                                          Text("Parking")
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Container(
+                                                      child: Column(
+                                                        children: [
+                                                          Container(
+                                                            width: 40,
+                                                            height: 40,
+                                                            child: Image.asset(
+                                                              "assets/images/11-park.png",
+                                                              fit: BoxFit.fill,
+                                                            ),
+                                                          ),
+                                                          Text("Parking")
+                                                        ],
+                                                      ),
+                                                    )
+                                                  ],
+                                                ),
+                                                Container(
+                                                  margin:
+                                                      EdgeInsets.only(top: 24),
+                                                  child: Row(
+                                                    children: [
+                                                      Container(
+                                                        margin: EdgeInsets.only(
+                                                            right: 16),
+                                                        child: Image.asset(
+                                                          "assets/images/placeholder.png",
+                                                          fit: BoxFit.fill,
+                                                        ),
+                                                      ),
+                                                      Container(
+                                                        width: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .width -
+                                                            150,
+                                                        child: Text(
+                                                          lapangan
+                                                              .parent.alamat,
+                                                          maxLines: 2,
+                                                        ),
+                                                      )
+                                                    ],
+                                                  ),
+                                                ),
+                                                Container(
+                                                  margin:
+                                                      EdgeInsets.only(top: 24),
+                                                  child: Row(
+                                                    children: [
+                                                      Container(
+                                                        margin: EdgeInsets.only(
+                                                            right: 16),
+                                                        child: Image.asset(
+                                                          "assets/images/phone.png",
+                                                          fit: BoxFit.fill,
+                                                        ),
+                                                      ),
+                                                      Text(
+                                                          lapangan.parent.telp),
+                                                    ],
+                                                  ),
+                                                ),
+                                                Container(
+                                                  margin:
+                                                      EdgeInsets.only(top: 24),
+                                                  child: Row(
+                                                    children: [
+                                                      Container(
+                                                        margin: EdgeInsets.only(
+                                                            right: 16),
+                                                        child: Image.asset(
+                                                          "assets/images/clock.png",
+                                                          fit: BoxFit.fill,
+                                                        ),
+                                                      ),
+                                                      Text(
+                                                          lapangan.parent.open +
+                                                              " - " +
+                                                              lapangan.parent
+                                                                  .close),
+                                                    ],
+                                                  ),
+                                                ),
+                                                // SizedBox(
+                                                //   height: 16,
+                                                // ),
+                                                // Container(
+                                                //   child: Align(
+                                                //     alignment: Alignment.topLeft,
+                                                //     child: Text(
+                                                //       "Location",
+                                                //       style: TextStyle(
+                                                //           color: primary_color,
+                                                //           fontFamily: "Ubuntu",
+                                                //           fontSize: 32,
+                                                //           fontWeight: FontWeight.bold),
+                                                //     ),
+                                                //   ),
+                                                // ),
+                                              ],
+                                            )),
+                                        // Text("review")
+                                      ])),
                             ),
                           ],
                         ),
