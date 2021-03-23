@@ -171,10 +171,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         height: 10.0,
                         color: Colors.grey,
                       ),
-                      CustomListTile(
-                        icon: Icons.shopping_cart,
-                        text: "Shipping",
-                      ),
+                      // CustomListTile(
+                      //   icon: Icons.shopping_cart,
+                      //   text: "Shipping",
+                      // ),
                       Divider(
                         thickness: 0.4,
                         height: 10.0,

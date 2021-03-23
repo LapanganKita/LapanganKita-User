@@ -223,12 +223,12 @@ class _BookingLapanganState extends State<BookingLapangan> {
                           Icon(Icons.star_border),
                           Icon(Icons.star_border),
                           Icon(Icons.star_border),
-                          Text(
-                            "(22 Reviews)",
-                            style: TextStyle(color: Colors.white),
-                          ),
+                          // Text(
+                          //   "(22 Reviews)",
+                          //   style: TextStyle(color: Colors.white),
+                          // ),
                           Container(
-                            margin: EdgeInsets.only(left: 92),
+                            margin: EdgeInsets.only(left: 180),
                             child: IconButton(
                               icon: Icon(
                                 icon,
