@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -12,3 +13,4 @@ part 'user_services.dart';
 part 'transaction_services.dart';
 part 'lapangan_services.dart';
 part 'partner_services.dart';
+part 'firebaseupload_services.dart';

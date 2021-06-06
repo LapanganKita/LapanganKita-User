@@ -46,6 +46,11 @@ Future<void> addTransaction(String partnerid, fieldid,jenis, date, time, subtota
   return;
 }
 
+Future<String> uploadImage(File imageFile) async {
+  String filename = imageFile.path;
+
+} 
+
 
 Future<void> getallusertransaction() async {
 
