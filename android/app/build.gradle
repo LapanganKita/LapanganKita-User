@@ -52,21 +52,42 @@ android {
         multiDexEnabled true
     }
 
-    signingConfigs {
-        release {
-            keyAlias keystoreProperties['keyAlias']
-            keyPassword keystoreProperties['keyPassword']
-            storeFile file(keystoreProperties['storeFile'])
-            storePassword keystoreProperties['storePassword']
+    // signingConfigs {
+    //     release {
+    //         keyAlias keystoreProperties['keyAlias']
+    //         keyPassword keystoreProperties['keyPassword']
+    //         storeFile file(keystoreProperties['storeFile'])
+    //         storePassword keystoreProperties['storePassword']
+    //     }
+    // }
+
+    // buildTypes {
+    //     release {
+    //         signingConfig signingConfigs.release
+    //     }
+    // }
+
+    flavorDimensions "mode"
+    productFlavors {
+//      mode pengembang
+        sandbox {
+            dimension = "mode"
+            // applicationId "com.lapangankita.mobile"
+            // resValue "string", "app_name", "Lapangankita SandBox"
+            buildConfigField "String", "MERCHANT_BASE_URL", "\"https://94dfa09e7aba.ap.ngrok.io/payment_gateway.php/\""
+            buildConfigField "String", "MERCHANT_CLIENT_KEY", "\"SB-Mid-client-TMZkY3A2NLejYeZN\""
         }
+
+// //      mode produksi
+//         production {
+//             dimension = "mode"
+//             applicationId "com.lapangankita.mobile"
+//             resValue "string", "app_name", "Kiostr Production"
+//             buildConfigField "String", "MERCHANT_BASE_URL", "YOUR_URL_SERVER"
+//             buildConfigField "String", "MERCHANT_CLIENT_KEY", "YOUR_CLIENT_KEY"
+//         }
     }
 
-    buildTypes {
-        release {
-            signingConfig signingConfigs.release
-        }
-    }
-   
 }
 
 flutter {
@@ -76,6 +97,11 @@ flutter {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.android.support:multidex:1.0.3'
+    // implementation 'com.midtrans:uikit:1.28.0-SANDBOX' // change the number to the latest version
+    // productionImplementation 'com.midtrans:uikit:1.21.2'
+    implementation 'com.midtrans:uikit:1.28.0-SANDBOX' // change the number to the latest version
+
+
 }
 
 apply plugin: 'com.google.gms.google-services'

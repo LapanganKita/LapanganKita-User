@@ -327,6 +327,9 @@ class _BookingLapanganState extends State<BookingLapangan> {
                                               },
                                               onDaySelected:
                                                   (day, events, holidays) {
+                                                print("TESTING");
+                                                final stopwatch = Stopwatch()
+                                                  ..start();
                                                 setState(() {
                                                   String tanggal = _controller
                                                       .selectedDay
@@ -336,6 +339,9 @@ class _BookingLapanganState extends State<BookingLapangan> {
                                                           tanggal.indexOf("T"));
                                                   gettransactions(tanggalfix);
                                                 });
+                                                stopwatch.stop();
+                                                print(
+                                                    'Ambil Jadwal executed in ${stopwatch.elapsed}');
                                               },
                                               initialCalendarFormat:
                                                   CalendarFormat.twoWeeks,

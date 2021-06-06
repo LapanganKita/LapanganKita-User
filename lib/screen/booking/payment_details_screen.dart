@@ -1,5 +1,8 @@
 part of 'bookings.dart';
 
+const CHANNEL = "com.lapangankita.mobile";
+const KEY_NATIVE = "showPAYMENTLAPANGANKITA";
+
 // ignore: must_be_immutable
 class PaymentDetails extends StatefulWidget {
   Lap lapangan;
@@ -34,6 +37,8 @@ class PaymentDetails extends StatefulWidget {
 }
 
 class _PaymentDetailsState extends State<PaymentDetails> {
+  static const platform = const MethodChannel(CHANNEL);
+
   Lap lapangan;
   String date;
   List time;
@@ -49,6 +54,8 @@ class _PaymentDetailsState extends State<PaymentDetails> {
       FirebaseFirestore.instance.collection("Users");
   String name = "";
   User _auth = FirebaseAuth.instance.currentUser;
+  // voucherController
+  TextEditingController voucherController = TextEditingController();
 
   void getUserUpdate() async {
     userCollection.doc(_auth.uid).snapshots().listen((event) {
@@ -282,6 +289,21 @@ class _PaymentDetailsState extends State<PaymentDetails> {
                             )
                           ],
                         ),
+                        SizedBox(height: 24),
+                        TextFormField(
+                          obscureText: false,
+                          controller: voucherController,
+                          cursorColor: Colors.white,
+                          decoration: InputDecoration(
+                            prefixIcon: Icon(Icons.account_circle,
+                                color: primary_color),
+                            labelText: 'Kode Diskon',
+                            labelStyle: TextStyle(color: Colors.white),
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color: Colors.white),
+                            ),
+                          ),
+                        ),
                         Container(
                             margin: EdgeInsets.only(top: 56),
                             width: 300,
@@ -298,22 +320,49 @@ class _PaymentDetailsState extends State<PaymentDetails> {
                                       color: primary_color),
                                 ),
                                 onPressed: () {
-                                  launchWhatsapp(
-                                      number: "+6281391097676",
-                                      message: "Saya " +
-                                          name +
-                                          " mau booking lapangan " +
-                                          lapangan.jenis +
-                                          " di " +
-                                          lapangan.parent.nama +
-                                          " lapangan nomer: " +
-                                          lapangan.no +
-                                          " jam: " +
-                                          time[0] +
-                                          " - " +
-                                          time[time.length - 1] +
-                                          " pada tanggal : " +
-                                          date);
+                                  _showNativeView();
+                                  // if (time.isEmpty) {
+                                  //   // final stopwatch = Stopwatch()..start();
+
+                                  //   Fluttertoast.showToast(
+                                  //     msg: "Error data tidak sesuai.",
+                                  //     toastLength: Toast.LENGTH_LONG,
+                                  //     gravity: ToastGravity.BOTTOM,
+                                  //     backgroundColor: Colors.red,
+                                  //     textColor: Colors.white,
+                                  //     fontSize: 20.0,
+                                  //   );
+                                  //   // stopwatch.stop();
+                                  //   // print(
+                                  //   //     'Kode Diskon executed in ${stopwatch.elapsed}');
+                                  // } else {
+                                  //   final stopwatch = Stopwatch()..start();
+                                  //   Timer(Duration(milliseconds: 32), () {
+                                  //     print(
+                                  //         "Yeah, this line is printed after 3 second");
+                                  //   });
+                                  //   stopwatch.stop();
+                                  //   print(
+                                  //       'Kode Diskon executed in ${stopwatch.elapsed}');
+
+                                  //   stopwatch.start();
+
+                                  //   launchWhatsapp(
+                                  //       number: "+6281391097676",
+                                  //       message: "Saya " +
+                                  //           name +
+                                  //           " mau booking lapangan " +
+                                  //           lapangan.jenis +
+                                  //           " di " +
+                                  //           lapangan.parent.nama +
+                                  //           " lapangan nomer: " +
+                                  //           lapangan.no +
+                                  //           " jam: " +
+                                  //           time[0] +
+                                  //           " - " +
+                                  //           time[time.length - 1] +
+                                  //           " pada tanggal : " +
+                                  //           date);
                                   addTransaction(
                                       lapangan.parent.nama,
                                       lapangan.id,
@@ -331,7 +380,35 @@ class _PaymentDetailsState extends State<PaymentDetails> {
                                       return NavBar();
                                     }),
                                   );
-                                }))
+                                  //   stopwatch.stop();
+
+                                  //   print(
+                                  //       'Review Booking executed in ${stopwatch.elapsed}');
+                                  // }
+                                })),
+                        Container(
+                            margin: EdgeInsets.only(top: 24),
+                            width: 300,
+                            height: 56,
+                            child: RaisedButton(
+                                color: Colors.red,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(24.0)),
+                                child: Text(
+                                  "Batalkan",
+                                  style: TextStyle(
+                                      fontFamily: "Ubuntu",
+                                      fontSize: 18,
+                                      color: Colors.white),
+                                ),
+                                onPressed: () {
+                                  // Scaffold.of(context)
+                                  //     .showSnackBar(new SnackBar(
+                                  //   content: new Text('Hello!'),
+                                  // ));
+                                  Navigator.pop(context);
+                                })),
+                        SizedBox(height: 24),
                       ],
                     ),
                   ],
@@ -342,5 +419,14 @@ class _PaymentDetailsState extends State<PaymentDetails> {
         ],
       )),
     );
+  }
+
+  Future<Null> _showNativeView() async {
+    // print(widget.lapangan.parent.nama + " - " + widget.date);
+    await platform.invokeMethod(KEY_NATIVE, {
+      "name": widget.lapangan.parent.nama + " - " + widget.date,
+      "price": (widget.lapangan.harga * widget.time.length) + 1500,
+      "quantity": 1,
+    });
   }
 }

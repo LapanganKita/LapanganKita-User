@@ -195,9 +195,26 @@ class _EditProfileState extends State<EditProfile> {
                 ),
                 RaisedButton(
                   onPressed: () {
-                    UserServices.updateProfilePicture(_user.uid, imageFile);
-                    submitOption(context);
-                    Navigator.pop(context);
+                    final stopwatch = Stopwatch()..start();
+
+                    if (nameController.text == null ||
+                        nameController.text == '') {
+                      Fluttertoast.showToast(
+                        msg: "Data tidak tersimpan. Nama tidak boleh ksoong!",
+                        toastLength: Toast.LENGTH_LONG,
+                        gravity: ToastGravity.BOTTOM,
+                        backgroundColor: Colors.red,
+                        textColor: Colors.white,
+                        fontSize: 20.0,
+                      );
+                    } else {
+                      UserServices.updateProfilePicture(_user.uid, imageFile);
+                      submitOption(context);
+                      Navigator.pop(context);
+                    }
+
+                    stopwatch.stop();
+                    print('Edit Profile executed in ${stopwatch.elapsed}');
                   },
                   color: primary_color,
                   padding: EdgeInsets.symmetric(horizontal: 50),

@@ -46,9 +46,12 @@ class _HistoryScreenState extends State<HistoryScreen> {
             children: [
               Container(
                 child: StreamBuilder<QuerySnapshot>(
-                    stream: transactionCollection.where('status', isEqualTo: "In Progress").snapshots(),
+                    stream: transactionCollection
+                        .where('status', isEqualTo: "In Progress")
+                        .snapshots(),
                     builder: (BuildContext context,
                         AsyncSnapshot<QuerySnapshot> snapshot) {
+                      final stopwatch = Stopwatch()..start();
                       if (snapshot.hasError) {
                         return Text("Failed to get products data!");
                       }
@@ -58,9 +61,14 @@ class _HistoryScreenState extends State<HistoryScreen> {
                           color: Colors.blue,
                         );
                       }
+
                       return ListView(
-                        children: snapshot.data.docs.map((DocumentSnapshot doc) {
+                        children:
+                            snapshot.data.docs.map((DocumentSnapshot doc) {
                           print(doc.data()[FieldValue.arrayUnion]);
+                          stopwatch.stop();
+                          print(
+                              'History Booking executed in ${stopwatch.elapsed}');
                           return Cardtransaction(
                             transaction: Trans(
                                 doc.data()['partnerid'],
@@ -79,7 +87,9 @@ class _HistoryScreenState extends State<HistoryScreen> {
               ),
               Container(
                 child: StreamBuilder<QuerySnapshot>(
-                    stream: transactionCollection.where('status', isEqualTo: "Done").snapshots(),
+                    stream: transactionCollection
+                        .where('status', isEqualTo: "Done")
+                        .snapshots(),
                     builder: (BuildContext context,
                         AsyncSnapshot<QuerySnapshot> snapshot) {
                       if (snapshot.hasError) {
@@ -92,7 +102,8 @@ class _HistoryScreenState extends State<HistoryScreen> {
                         );
                       }
                       return ListView(
-                        children: snapshot.data.docs.map((DocumentSnapshot doc) {
+                        children:
+                            snapshot.data.docs.map((DocumentSnapshot doc) {
                           print(doc.data()[FieldValue.arrayUnion]);
                           return Cardtransaction(
                             transaction: Trans(
