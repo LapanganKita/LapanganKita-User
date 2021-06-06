@@ -4,7 +4,7 @@ part of 'bookings.dart';
 class BookingLapangan extends StatefulWidget {
   @override
   // ignore: override_on_non_overriding_member
-  Lap lapangan;
+  Lapangan lapangan;
   final ValueChanged<bool> isSelected;
   BookingLapangan({Key key, this.lapangan, this.isSelected}) : super(key: key);
   _BookingLapanganState createState() => _BookingLapanganState(lapangan);
@@ -39,7 +39,7 @@ class _BookingLapanganState extends State<BookingLapangan> {
   ];
   List selectedList = [];
 
-  Lap lapangan;
+  Lapangan lapangan;
   CollectionReference trans =
       FirebaseFirestore.instance.collection("Transactions");
   _BookingLapanganState(this.lapangan);

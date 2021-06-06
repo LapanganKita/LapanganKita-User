@@ -76,7 +76,7 @@ class _ListLapanganState extends State<ListLapangan> {
     );
   }
 
-  Widget buildCardLapangan(BuildContext context, int index, List<Lap> list) {
+  Widget buildCardLapangan(BuildContext context, int index, List<Lapangan> list) {
     print("index = " + index.toString());
     print(list[index].parent.nama);
     // return SizedBox(

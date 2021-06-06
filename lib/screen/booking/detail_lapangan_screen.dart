@@ -2,13 +2,13 @@ part of 'bookings.dart';
 
 class DetailLapangan extends StatefulWidget {
   @override
-  Lap lapangan;
+  Lapangan lapangan;
   DetailLapangan({Key key, this.lapangan}) : super(key: key);
   _DetailLapanganState createState() => _DetailLapanganState(lapangan);
 }
 
 class _DetailLapanganState extends State<DetailLapangan> {
-  Lap lapangan;
+  Lapangan lapangan;
   _DetailLapanganState(this.lapangan);
   var isSelected = false;
   var icon = Icons.favorite_border;
@@ -129,7 +129,7 @@ class _DetailLapanganState extends State<DetailLapangan> {
                             // Respond to icon toggle
 
                             // Favorite function
-                            Lap favorite = lapangan;
+                            Lapangan favorite = lapangan;
                             bool result =
                                 await UserServices.addToFavorite(favorite);
 

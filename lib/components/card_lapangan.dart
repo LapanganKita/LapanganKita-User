@@ -1,7 +1,7 @@
 part of 'components.dart';
 
 class CardLapangan extends StatelessWidget {
-  final Lap lapangan;
+  final Lapangan lapangan;
   final double offset;
 
   const CardLapangan({

@@ -5,7 +5,7 @@ const KEY_NATIVE = "showPAYMENTLAPANGANKITA";
 
 // ignore: must_be_immutable
 class PaymentDetails extends StatefulWidget {
-  Lap lapangan;
+  Lapangan lapangan;
   String partnerid;
   String fieldid;
   String date;
@@ -39,7 +39,7 @@ class PaymentDetails extends StatefulWidget {
 class _PaymentDetailsState extends State<PaymentDetails> {
   static const platform = const MethodChannel(CHANNEL);
 
-  Lap lapangan;
+  Lapangan lapangan;
   String date;
   List time;
   String subtotal;

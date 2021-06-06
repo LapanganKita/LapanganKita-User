@@ -51,7 +51,7 @@ class UserServices {
         .catchError((onError) => false);
   }
 
-  static Future<List<Lap>> getFavorite() async {
+  static Future<List<Lapangan>> getFavorite() async {
     // Untuk testing struktur database baru
 
     FirebaseAuth auth = FirebaseAuth.instance;
@@ -61,9 +61,9 @@ class UserServices {
         .doc(uid)
         .collection("Favorites");
 
-    List<Lap> lapList = await LapanganService.getTest();
+    List<Lapangan> lapList = await LapanganService.getMitra();
     List<dynamic> favlist = [];
-    List<Lap> lapFavlist = [];
+    List<Lapangan> lapFavlist = [];
 
     favorite.get().then((value) {
       print("fav length : " + value.docs.length.toString());
@@ -90,7 +90,7 @@ class UserServices {
     return lapFavlist;
   }
 
-  static Future<bool> checkIfFavorite(Lap lapangan) async {
+  static Future<bool> checkIfFavorite(Lapangan lapangan) async {
     FirebaseAuth auth = FirebaseAuth.instance;
     String uid = auth.currentUser.uid.toString();
     CollectionReference favorite = FirebaseFirestore.instance
@@ -114,7 +114,7 @@ class UserServices {
     return false;
   }
 
-  static Future<bool> addToFavorite(Lap lapangan) async {
+  static Future<bool> addToFavorite(Lapangan lapangan) async {
     FirebaseAuth auth = FirebaseAuth.instance;
     String uid = auth.currentUser.uid.toString();
     CollectionReference favorite = FirebaseFirestore.instance

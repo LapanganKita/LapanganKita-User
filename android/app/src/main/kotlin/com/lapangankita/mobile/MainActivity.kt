@@ -106,7 +106,6 @@ class MainActivity: FlutterActivity(), TransactionFinishedCallback {
                 }
                 result.response.validationMessages
 
-                return true
             } else if(result.isTransactionCanceled){
                 Toast.makeText(this, "Transaction Canceled", Toast.LENGTH_SHORT)
             } else {

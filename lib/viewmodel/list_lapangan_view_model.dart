@@ -5,8 +5,8 @@ import 'package:lapangankita_user/viewmodel/lapangan_view_model.dart';
 import 'package:lapangankita_user/viewmodel/partner_view_model.dart';
 
 class ListLapanganViewModel extends ChangeNotifier {
-  List<LapanganViewModel> lapangans = List<LapanganViewModel>();
-  List<Lap> laps = List<Lap>();
+  List<LapanganViewModel> lapangans = [];
+  List<Lapangan> laps = [];
 
   // Future<void> fetchLapangans(String keyword) async {
   //   print(keyword);
@@ -29,12 +29,12 @@ class ListLapanganViewModel extends ChangeNotifier {
 
   Future<void> fetchLapanganByType(String keyword) async {
     print(keyword);
-    var laps = await LapanganService.getTest();
+    var laps = await LapanganService.getMitra();
 
     print("print lapangan");
     print(lapangans);
 
-    List<Lap> filtered = [];
+    List<Lapangan> filtered = [];
     laps.forEach((l) {
       print(l.jenis == keyword);
       if (l.jenis == keyword) filtered.add(l);
@@ -48,7 +48,7 @@ class ListLapanganViewModel extends ChangeNotifier {
   }
 
   Future<void> fetchLapangan() async {
-    var laps = await LapanganService.getTest();
+    var laps = await LapanganService.getMitra();
 
     print("print lapangan");
     print(lapangans);

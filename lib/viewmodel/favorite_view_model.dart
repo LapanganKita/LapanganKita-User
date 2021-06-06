@@ -5,7 +5,7 @@ import 'package:lapangankita_user/viewmodel/lapangan_view_model.dart';
 import 'package:lapangankita_user/viewmodel/partner_view_model.dart';
 
 class FavoriteViewModel extends ChangeNotifier {
-  List<Lap> laps = List<Lap>();
+  List<Lapangan> laps = [];
 
   Future<void> fetchFavorite() async {
     var laps = await UserServices.getFavorite();

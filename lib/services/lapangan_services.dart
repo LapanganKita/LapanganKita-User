@@ -56,15 +56,15 @@ class LapanganService {
 
   // TODO : Fix Service untuk mendapatkan data lapangan
 
-  static Future<List<Lap>> getTest() async {
+  static Future<List<Lapangan>> getMitra() async {
     // Untuk testing struktur database baru
 
     CollectionReference testCol =
         FirebaseFirestore.instance.collection("Tests");
     DocumentReference testDoc;
 
-    List<Lap> lapList = [];
-    List<Test> testList = [];
+    List<Lapangan> lapList = [];
+    List<Mitra> testList = [];
 
     try {
       // Ambil documents pada test collection
@@ -86,8 +86,8 @@ class LapanganService {
           if (lapDoc.docs.isNotEmpty) {
             print("lapangan docs size = " + testDoc.docs.length.toString());
             lapDoc.docs.forEach((element) {
-              Lap l = Lap.fromMap(
-                  element.data(), Test.fromMap(testDoc.docs[i].data()));
+              Lapangan l = Lapangan.fromMap(
+                  element.data(), Mitra.fromMap(testDoc.docs[i].data()));
               print(l.parent.nama);
               lapList.add(l);
             });
@@ -105,106 +105,105 @@ class LapanganService {
   }
 }
 
-class Test extends Equatable {
-  final String alamat;
-  final String close;
-  final String kota;
-  final String nama;
-  final String open;
-  final String telp;
+// class Test extends Equatable {
+//   final String alamat;
+//   final String close;
+//   final String kota;
+//   final String nama;
+//   final String open;
+//   final String telp;
 
-  Test(
-    this.alamat,
-    this.close,
-    this.kota,
-    this.nama,
-    this.open,
-    this.telp,
-  );
+//   Test(
+//     this.alamat,
+//     this.close,
+//     this.kota,
+//     this.nama,
+//     this.open,
+//     this.telp,
+//   );
 
-  @override
-  List<Object> get props => [
-        alamat,
-        close,
-        kota,
-        nama,
-        open,
-        telp,
-      ];
+//   @override
+//   List<Object> get props => [
+//         alamat,
+//         close,
+//         kota,
+//         nama,
+//         open,
+//         telp,
+//       ];
 
-  Map<String, dynamic> toMap() {
-    return {
-      'alamat': alamat,
-      'close': close,
-      'kota': kota,
-      'nama': nama,
-      'open': open,
-      'telp': telp,
-    };
-  }
+//   Map<String, dynamic> toMap() {
+//     return {
+//       'alamat': alamat,
+//       'close': close,
+//       'kota': kota,
+//       'nama': nama,
+//       'open': open,
+//       'telp': telp,
+//     };
+//   }
 
-  static Test fromMap(Map<String, dynamic> map) {
-    if (map == null) return null;
+//   static Test fromMap(Map<String, dynamic> map) {
+//     if (map == null) return null;
 
-    return Test(
-      map['alamat'],
-      map['close'],
-      map['kota'],
-      map['nama'],
-      map['open'],
-      map['telp'],
-    );
-  }
-}
+//     return Test(
+//       map['alamat'],
+//       map['close'],
+//       map['kota'],
+//       map['nama'],
+//       map['open'],
+//       map['telp'],
+//     );
+//   }
+// }
 
-class Lap extends Equatable {
-  final String details;
-  final String fieldid;
-  final int harga;
-  final String jenis;
-  final String no;
-  final String id;
-  final Test parent;
-  
+// class Lap extends Equatable {
+//   final String details;
+//   final String fieldid;
+//   final int harga;
+//   final String jenis;
+//   final String no;
+//   final String id;
+//   final Test parent;
 
-  Lap(
-    this.details,
-    this.fieldid,
-    this.harga,
-    this.jenis,
-    this.no,
-    this.id, {
-    this.parent,
-  }
-  );
+//   Lap(
+//     this.details,
+//     this.fieldid,
+//     this.harga,
+//     this.jenis,
+//     this.no,
+//     this.id, {
+//     this.parent,
+//   });
 
-  @override
-  List<Object> get props => [
-        details,
-        fieldid,
-        harga,
-        jenis,
-        no,
-        id,
-        parent,
-      ];
+//   @override
+//   List<Object> get props => [
+//         details,
+//         fieldid,
+//         harga,
+//         jenis,
+//         no,
+//         id,
+//         parent,
+//       ];
 
-  Map<String, dynamic> toMap() {
-    return {
-      'details': details,
-      'fieldid' : fieldid,
-      'harga': harga,
-      'jenis': jenis,
-      'no': no,
-      'lapanganid' : id
-    };
-  }
+//   Map<String, dynamic> toMap() {
+//     return {
+//       'details': details,
+//       'fieldid': fieldid,
+//       'harga': harga,
+//       'jenis': jenis,
+//       'no': no,
+//       'lapanganid': id
+//     };
+//   }
 
-  static Lap fromMap(Map<String, dynamic> map, Test parent) {
-    if (map == null) return null;
-    print(map);
+//   static Lap fromMap(Map<String, dynamic> map, Test parent) {
+//     if (map == null) return null;
+//     print(map);
 
-    return Lap(map['details'] ,map['lapanganid'],map['harga'], map['jenis'], map['no'], map['lapanganid'],
-        parent: parent);
-  }
-}
+//     return Lap(map['details'], map['lapanganid'], map['harga'], map['jenis'],
+//         map['no'], map['lapanganid'],
+//         parent: parent);
+//   }
+// }

@@ -1,47 +1,52 @@
 part of 'models.dart';
 
-class Lapangans extends Equatable {
+class Lapangan extends Equatable {
+  final String details;
   final String fieldid;
+  final int harga;
   final String jenis;
-  final String review;
-  final String price;
-  final String detail;
-  final String jam;
-  final String nolapangan;
-  final String partnerid;
+  final String no;
+  final String id;
+  final Mitra parent;
 
-  Lapangans(this.fieldid, this.jenis, this.review, this.price, this.detail,
-      this.jam, this.nolapangan, this.partnerid);
+  Lapangan(
+    this.details,
+    this.fieldid,
+    this.harga,
+    this.jenis,
+    this.no,
+    this.id, {
+    this.parent,
+  });
 
   @override
-  List<Object> get props =>
-      [fieldid, jenis, review, price, detail, jam, nolapangan, partnerid];
+  List<Object> get props => [
+        details,
+        fieldid,
+        harga,
+        jenis,
+        no,
+        id,
+        parent,
+      ];
 
   Map<String, dynamic> toMap() {
     return {
-      'id': fieldid,
+      'details': details,
+      'fieldid': fieldid,
+      'harga': harga,
       'jenis': jenis,
-      'review': review,
-      'harga': price,
-      'details': detail,
-      'jam': jam,
-      'nomerlapangan': nolapangan,
-      'partnerid': partnerid,
+      'no': no,
+      'Lapangananganid': id
     };
   }
 
-  static Lapangans fromMap(Map<String, dynamic> map) {
+  static Lapangan fromMap(Map<String, dynamic> map, Mitra parent) {
     if (map == null) return null;
+    print(map);
 
-    return Lapangans(
-      map['fieldid'],
-      map['jenis'],
-      map['review'],
-      map['harga'],
-      map['details'],
-      map['jam'],
-      map['nomerlapangan'],
-      map['partnerid'],
-    );
+    return Lapangan(map['details'], map['Lapangananganid'], map['harga'],
+        map['jenis'], map['no'], map['Lapangananganid'],
+        parent: parent);
   }
 }

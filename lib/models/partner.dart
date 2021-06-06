@@ -1,52 +1,53 @@
 part of 'models.dart';
 
-class Partners extends Equatable {
-  final String id;
+class Mitra extends Equatable {
   final String alamat;
-  final String jam;
+  final String close;
+  final String kota;
   final String nama;
+  final String open;
   final String telp;
-  final List<Lapangans> lapangans;
 
-  Partners(this.id, this.nama, this.alamat, this.telp,
-      {this.jam, this.lapangans});
+  Mitra(
+    this.alamat,
+    this.close,
+    this.kota,
+    this.nama,
+    this.open,
+    this.telp,
+  );
 
   @override
-  List<Object> get props => [id, nama, alamat, telp, jam, lapangans];
+  List<Object> get props => [
+        alamat,
+        close,
+        kota,
+        nama,
+        open,
+        telp,
+      ];
 
   Map<String, dynamic> toMap() {
     return {
-      'id': id,
-      'nama': nama,
       'alamat': alamat,
+      'close': close,
+      'kota': kota,
+      'nama': nama,
+      'open': open,
       'telp': telp,
-      'jam': jam,
-      'lapangan': lapangans,
     };
   }
 
-  static Partners fromMap(Map<String, dynamic> map) {
+  static Mitra fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
 
-    List<Lapangans> lapangans = List<Lapangans>();
-    print(map['lapangan']);
-
-    if ((map['lapangans'] as List) != null) {
-      lapangans = (map['lapangans'] as List)
-          .map((data) => Lapangans.fromMap(data))
-          .toList();
-
-      print("lapangans = " + lapangans.toString());
-      print("lapangans = " + lapangans.length.toString());
-    }
-
-    return Partners(
-      map['id'],
-      map['nama'],
+    return Mitra(
       map['alamat'],
+      map['close'],
+      map['kota'],
+      map['nama'],
+      map['open'],
       map['telp'],
-      jam: map['jam'],
-      lapangans: lapangans,
     );
   }
 }
