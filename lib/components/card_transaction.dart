@@ -19,9 +19,9 @@ class _CardtransactionState extends State<Cardtransaction> {
         showAlertDialog(context);
       },
       child: Container(
-        margin: EdgeInsets.only(bottom: 8),
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height - 720,
+        margin: EdgeInsets.fromLTRB(6, 4, 6, 12),
+        // width: MediaQuery.of(context).size.width,
+        // height: MediaQuery.of(context).size.height - 720,
         decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(15),
@@ -35,7 +35,7 @@ class _CardtransactionState extends State<Cardtransaction> {
               borderRadius: BorderRadius.circular(15),
               child: Image.network(
                 "https://images.unsplash.com/photo-1464983308776-3c7215084895?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80",
-                height: 150,
+                height: 100,
                 width: 120,
                 fit: BoxFit.cover,
               ),
@@ -81,10 +81,10 @@ class _CardtransactionState extends State<Cardtransaction> {
                               fontFamily: "Ubuntu",
                             ),
                           )),
-                      Container(
-                        margin: EdgeInsets.only(top: 8),
-                        child: Text("Status:"),
-                      ),
+                      // Container(
+                      //   margin: EdgeInsets.only(top: 8),
+                      //   child: Text("Status:"),
+                      // ),
                       Container(
                         margin: EdgeInsets.only(top: 8),
                         child: Text(widget.transaction.status),

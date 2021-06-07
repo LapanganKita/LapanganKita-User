@@ -8,9 +8,9 @@ import com.midtrans.sdk.corekit.models.snap.CreditCard
 
 
 object DataCustomer {
-    var NAME="Joni"
-    var PHONE="0812345678"
-    var EMAIL="joni@lapangankita.com"
+    var NAME="Trevincen"
+    var PHONE="0812312411"
+    var EMAIL="trevincentambunan@gmail.com"
 
     fun customerDetails(): CustomerDetails {
         var cd=CustomerDetails()
