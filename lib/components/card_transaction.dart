@@ -126,33 +126,32 @@ class _CardtransactionState extends State<Cardtransaction> {
     print('Download-Link: $urlDownload');
   }
 
-  
   showAlertDialog(BuildContext context) async {
-  // show the dialog
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: Text("AlertDialog"),
-        content: Text("Upload"),
-        actions: [
-          FlatButton(
-            child: Text("Cancel"),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
-          FlatButton(
-            child: Text("Continue"),
-            onPressed: () {
-              selectFile();
-            },
-          )
-        ],
-      );
-    },
-  );
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("AlertDialog"),
+          content: Text("Upload"),
+          actions: [
+            FlatButton(
+              child: Text("Cancel"),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+            FlatButton(
+              child: Text("Continue"),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return UploadImagetoFirebase();
+                }));
+              },
+            )
+          ],
+        );
+      },
+    );
+  }
 }
-}
-
-
