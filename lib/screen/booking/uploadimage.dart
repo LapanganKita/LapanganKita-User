@@ -20,28 +20,32 @@ class _UploadImagetoFirebaseState extends State<UploadImagetoFirebase> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        child: Column(
-          children: [
-            RaisedButton(
-              padding: const EdgeInsets.all(8.0),
-              textColor: Colors.white,
-              color: Colors.blue,
-              onPressed: () {
-                selectFile();
-              },
-              child: new Text("Add"),
+      body: SafeArea(
+        child: Center(
+          child: Expanded(
+            child: Column(
+              children: [
+                RaisedButton(
+                  padding: const EdgeInsets.all(8.0),
+                  textColor: Colors.white,
+                  color: Colors.blue,
+                  onPressed: () {
+                    selectFile();
+                  },
+                  child: new Text("Choose Image"),
+                ),
+                RaisedButton(
+                  padding: const EdgeInsets.all(8.0),
+                  textColor: Colors.white,
+                  color: Colors.blue,
+                  onPressed: () {
+                    uploadFile();
+                  },
+                  child: new Text("Upload"),
+                ),
+              ],
             ),
-            RaisedButton(
-              padding: const EdgeInsets.all(8.0),
-              textColor: Colors.white,
-              color: Colors.blue,
-              onPressed: () {
-                uploadFile();
-              },
-              child: new Text("Add"),
-            ),
-          ],
+          ),
         ),
       ),
     );
